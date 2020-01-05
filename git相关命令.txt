@@ -1,5 +1,6 @@
 #参考链接：https://www.bootcss.com/p/git-guide/
 #https://www.cnblogs.com/zhangyinhua/p/8097530.html
+#！仓库是仓库，分支是分支
 #初始化
 git init 把这个目录变成git可以管理的仓库
 #######################################
@@ -40,8 +41,15 @@ git reset 分为三种：软 --soft，中 ---mixed，硬 --hard
 3. --hard 硬核，彻底，会彻底返回到回退前的版本状态，了无痕迹
 
 https://blog.csdn.net/chao821/article/details/81033003
-
+###############################################################################################
 #推送改动
-git push origin master提交到远端master仓库
-#更新与合并
+git push origin master 提交到远端master仓库
 
+echo "# Study-Records" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/daofree/Study-Records.git
+git push -u origin master
+加了参数-u后，以后即可直接用git push 代替git push origin master
+#更新与合并
