@@ -12,11 +12,13 @@ git commit -m "代码提交的信息" ，告诉Git，把文件提交到仓库，-m是提交的注释
 git status，来查看是否还有文件未提交
 git diff XXXX.txt ，看下XXXX.txt文件到底改了什么内容，不同
 #######################################
-#两种命令查看日志区别：提交与操作
+#两种命令查看日志区别：提交与操作https://baijiahao.baidu.com/s?id=1598885936030644678&wfr=spider&for=pc
 git log，详细查看下历史提交记录，显示所有提交过的版本信息，commit后是版本号
 git log --pretty=oneline，一行显示版本号和提交时的备注信息
 
 git reflog，可以查看所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）获取到版本号
+
+git log --pretty=oneline origin/master..HEAD   本地当前仓库和远程仓库之间的差异
 #######################################
 #两种命令回退版本
 git reset  --hard HEAD^，回退到上一个版本，恢复某一个库
