@@ -1,6 +1,7 @@
 #参考链接：https://www.bootcss.com/p/git-guide/
 #https://www.cnblogs.com/zhangyinhua/p/8097530.html
 #https://blog.csdn.net/wu347771769/article/details/88999943
+#https://www.liaoxuefeng.com/wiki/896043488029600
 #！仓库是仓库，分支是分支
 #初始化
 git init 把这个目录变成git可以管理的仓库
@@ -66,7 +67,7 @@ git push origin master
 
 #远程库到本地库
 git clone https://github.com/daofree/Study-Records.git
-
+git remote -v
 要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
 关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
 此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
@@ -74,5 +75,17 @@ git clone https://github.com/daofree/Study-Records.git
 Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
 
 #更新与合并
+#分支查看创建
+git branch
 
+#git如何同时同步提交到码云和GitHub上
+https://blog.csdn.net/qq_26486685/article/details/80891411
+https://www.jianshu.com/p/c8ef25329ca4
 
+################################
+git 与TortoiseGit
+https://www.cnblogs.com/mq0036/p/9442751.html
+Git与IntelliJ IDEA整合
+https://blog.csdn.net/fanbaodan/article/details/90554142
+https://www.jianshu.com/p/7b834f4955fe
+https://blog.csdn.net/ccior/article/details/78511610
