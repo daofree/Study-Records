@@ -1,0 +1,47 @@
+#参考链接：https://www.bootcss.com/p/git-guide/
+#https://www.cnblogs.com/zhangyinhua/p/8097530.html
+#初始化
+git init 把这个目录变成git可以管理的仓库
+#######################################
+#基本操作-添加与提交注释
+git config --list 查看配置
+git add XXXX.txt ，添加到暂存区里面去
+git commit -m "代码提交的信息" ，告诉Git，把文件提交到仓库，-m是提交的注释
+git status，来查看是否还有文件未提交
+git diff XXXX.txt ，看下XXXX.txt文件到底改了什么内容，不同
+#######################################
+#两种命令查看日志区别：提交与操作
+git log，详细查看下历史提交记录，显示所有提交过的版本信息，commit后是版本号
+git log --pretty=oneline，一行显示版本号和提交时的备注信息
+
+git reflog，可以查看所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）获取到版本号
+#######################################
+#两种命令回退版本
+git reset  --hard HEAD^，回退到上一个版本，恢复某一个库
+git reset  HEAD <f> 从库恢复暂存区某一个文件
+git reset --hard HEAD~1，退回到上一个版本
+
+git reset  --hard HEAD^^，回退到上上个版本
+git reset --hard HEAD~2，退回到上上一个版本
+git reset  --hard HEAD~100，回退到前100个版本
+
+git reset  --hard 版本号 ，回退到指定版本
+#区别https://blog.csdn.net/neve_give_up_dan/article/details/96198010
+#https://blog.csdn.net/yangfengjueqi/article/details/61668381
+
+git reset缺省为git reset --soft
+git reset –-soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
+git reset -–hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容，撤销的commit中所包含的更改被冲掉
+一点点自我理解和总结： 
+git reset 分为三种：软 --soft，中 ---mixed，硬 --hard 
+对应着三种回滚的程度，程度越硬，回滚的越“狠” 
+1. --soft 已 add，但尚未 commit 
+2. --mixed（git reset 的默认设定，可以省略不写），文件会回退到未 add（未暂存）的状态 
+3. --hard 硬核，彻底，会彻底返回到回退前的版本状态，了无痕迹
+
+https://blog.csdn.net/chao821/article/details/81033003
+
+#推送改动
+git push origin master提交到远端master仓库
+#更新与合并
+
