@@ -1,5 +1,6 @@
 #参考链接：https://www.bootcss.com/p/git-guide/
 #https://www.cnblogs.com/zhangyinhua/p/8097530.html
+#https://blog.csdn.net/wu347771769/article/details/88999943
 #！仓库是仓库，分支是分支
 #初始化
 git init 把这个目录变成git可以管理的仓库
@@ -42,14 +43,34 @@ git reset 分为三种：软 --soft，中 ---mixed，硬 --hard
 
 https://blog.csdn.net/chao821/article/details/81033003
 ###############################################################################################
-#推送改动
+#推送改动https://blog.csdn.net/wu347771769/article/details/88999943
 git push origin master 提交到远端master仓库
-
+#本地库到远程库
 echo "# Study-Records" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/daofree/Study-Records.git
 git push -u origin master
-加了参数-u后，以后即可直接用git push 代替git push origin master
+
+把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，
+还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令，以后即可直接用git push 代替git push origin master
+推送成功后，可以立刻在GitHub页面中看到远程库的内容已经和本地一模一样
+
+从现在起，只要本地作了提交，就可以通过命令：
+git push origin master
+
+
+#远程库到本地库
+git clone https://github.com/daofree/Study-Records.git
+
+要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+此后，每次本地提交后，只要有必要，就可以使用命令git push origin master推送最新修改；
+要克隆一个仓库，首先必须知道仓库的地址，然后使用git clone命令克隆。
+Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
+
 #更新与合并
+
+
