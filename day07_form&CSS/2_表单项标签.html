@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>form里面表单项</title>
+</head>
+<body>
+    <form method="get" action="#">
+        文本框<br>
+        用户<input  name="username" value="请输入"><br>
+        <label for="username">用户名</label><input id="username" type="text" name="username" placeholder="请输入"><br>
+        密码框<br>
+        <input type="password" name="pwd"><br>
+        单选框,name必须同,选中就是on,要赋值value<br>
+        <input type="radio" name="gender" value="male" checked>男
+        <input type="radio" name="gender" value="female">女
+        <input type="radio" name="gender" value="mf">待定<br>
+        复选框,选中就是on,要赋值value<br>
+        <input type="checkbox" name="hobby" value="1" checked="checked">走路
+        <input type="checkbox" name="hobby" value="2">跑步
+        <input type="checkbox" name="hobby" value="3">跳跃
+        <input type="checkbox" name="hobby" value="4">飞翔<br>
+        上传<input type="file" name="file"><br>
+        隐藏域:<input type="hidden" name="id" value="aaa"><br>
+        隐藏域虽看不见，但值会提交<br>
+        <input type="image" src="img/regbtn.jpg"><br>
+
+        取色器<input type="color" name="color"><br>
+        日期1<input type="date" name="bir"><br>
+        日期2<input type="datetime-local" name="bir"><br>
+        邮箱<input type="email" name="email"><br>
+        数字<input type="number" name="age"><br>
+
+        下拉列表
+        <select name="province">
+            <option value="">---请选择城市---</option>
+            <option value="1">北京</option>
+            <option value="2">上海</option>
+            <option value="3">广州</option>
+            <option value="4" selected>南京</option>
+        </select>
+        <br>
+        文本域<br>
+        简介<textarea cols="25" rows="6" name="des"></textarea>
+        <br>
+        <input type="submit" value="登录提交">
+    </form>
+
+</body>
+</html>
