@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扩展选择器，并父子属伪</title>
+    <style>
+        <!---->
+        /**{*/
+            /*background: grey;*/
+        /*}*/
+
+        /*并集*/
+        span,ul{
+            color: blueviolet;
+        }
+        /*子*/
+        div p{
+            color: red;
+        }
+        /*父，p的父元素*/
+        div > p{
+            border: 1px solid;
+        }
+
+        /*属性*/
+        input[type='text']{
+            border: 5px solid;
+        }
+
+        /*伪类（状态）选择器
+        *元素：状态{
+        *         }
+        */
+        a:link{
+            color: red;
+        }
+        a:hover{
+            color: black;
+        }
+        a:active{
+            color: deeppink;
+        }
+        a:visited{
+            color: grey;
+        }
+        a{
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <span>2020</span>
+    <ul>今晚大雪</ul>
+    <div>
+        <p>2020春节肺炎肆虐</p>
+    </div>
+    <p>2020春节肺炎肆虐</p>
+
+    <div>
+        2020春节肺炎肆虐
+    </div>
+
+<input type="text">
+<input type="password">
+    <br>
+    <a href="#">2020,1.26,加油中国</a>
+    <br>
+    <a href="#">2020,1.26----加油中国</a>
+<hr>
+</body>
+</html>
