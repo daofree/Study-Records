@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逻辑运算符</title>
+</head>
+<body>
+
+    <script>
+        var a = true;
+        document.write(!a + '<br>');
+    </script>
+    * 其他类型转boolean：
+    1. number：0或NaN为假，其他为真<br>
+    <script>
+        if(1){
+            document.write('直接if（1）简化判断')
+        }
+    </script>
+    <br>
+    2. string：除了空字符串("")，其他都是true，if也不用判断了<br>
+    3. null&undefined:都是false<br>
+    4. 对象：所有对象(如new date())都为true<br>
+
+    <br>
+
+    <script>
+        var date = new Date();
+        document.write(date + "<br>");
+        document.write(!date);
+        if(date){
+            alert('if里面要boolean，对象为空就是false')
+        }
+    </script>
+<br>
+</body>
+</html>

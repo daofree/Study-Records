@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一元运算符</title>
+</head>
+<body>
++-按字面值转，结果是数字就是数字，不是数字就是 NaN <br>
+
+<script>
+var z = +'a';
+var z2 = +'123';
+var zT = +true;
+var zF = +false;
+document.write(z + '----a--' + typeof (z) + '<br>');
+document.write(z2 + '----123--' + typeof (z2) + '<br>');
+document.write(zT + '---true---' + typeof (zT) + '<br>');
+document.write(zF + '---false---' + typeof (zF) + '<br>');
+</script>
+<br>
+</body>
+</html>
+<script>
+    var num = 3;
+    var a = num++;
+    var b = ++num;
+    document.write(num + '-----' + a +'----' + b);
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>特殊语法</title>
+    <script>
+        var a = 3;
+        document.write(a+'<br>')
+
+        var b = 5;// 局部变量
+        c = 6; // 全局变量
+        document.write(c+'<br>')
+        document.write(b+'<br>')
+
+        function f() {
+            var z = 4;
+            x = 100;
+            document.write(z+'<br>')
+        }
+        f();
+        alert(x);
+        document.write(x +'<br>');
+        // document.write(z +'<br>');
+        document.write('脚本哪部错了就不往下走了'+ '<br>');
+        document.write(x +'<br>');
+
+    </script>
+</head>
+<body>
+aaaaaaaaaaaaaaaaaaaaaaaa
+<br>
+<script>
+    document.write(a+'<br>');
+    document.write(c+'<br>');
+</script>
+</body>
+</html>
