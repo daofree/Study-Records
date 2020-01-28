@@ -61,22 +61,28 @@
             height: 45px;
         }
 
+        /*左边单元格离右边单元格之间的距离*/
         .td_right{
             padding-left: 50px;
         }
 
+        /*单元格里面的内容，离单元格15px*/
+        /*并集选择器*/
         #username,#pwd,#email,#name,#tel,#bir,#checkcode{
             width: 251px;
             height: 32px;
             border: 1px solid #A6A6A6;
+            /*设置圆角*/
             border-radius: 5px;
-            padding-left: 5px;
+            /*单元格里面的内容，离单元格15px*/
+            padding-left: 15px;
         }
         #checkcode{
-            width: 110px;
+            width: 140px;
         }
         #check_img{
             height: 32px;
+            /*垂直居中*/
             vertical-align: middle;
         }
 
@@ -106,41 +112,41 @@
                         </tr>
 
                         <tr>
-                            <td><label for="pwd">密码</label></td>
-                            <td><input type="password" name="pwd" id="pwd"></td>
+                            <td class="td_left"><label for="pwd">密码</label></td>
+                            <td class="td_right"><input type="password" name="pwd" id="pwd"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="email">Emial</label></td>
-                            <td><input type="email" name="email" id="email"></td>
+                            <td class="td_left"><label for="email">Emial</label></td>
+                            <td class="td_right"><input type="email" name="email" id="email"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="name">姓名</label></td>
-                            <td><input type="text" name="name" id="name"></td>
+                            <td class="td_left"><label for="name">姓名</label></td>
+                            <td class="td_right"><input type="text" name="name" id="name"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="tel">手机号</label></td>
-                            <td><input type="text" name="tel" id="tel"></td>
+                            <td class="td_left"><label for="tel">手机号</label></td>
+                            <td class="td_right"><input type="text" name="tel" id="tel"></td>
                         </tr>
 
                         <tr>
-                            <td><label>性别</label></td>
-                            <td>
+                            <td class="td_left"><label>性别</label></td>
+                            <td class="td_right">
                                 <input type="radio" name="gender" value="male">男
                                 <input type="radio" name="gender" value="female">女
                             </td>
                         </tr>
 
                         <tr>
-                            <td><label for="bir">出生日期</label></td>
-                            <td><input type="date" name="bir" id="bir"></td>
+                            <td class="td_left"><label for="bir">出生日期</label></td>
+                            <td class="td_right"><input type="date" name="bir" id="bir"></td>
                         </tr>
 
                         <tr>
-                            <td><label for="checkcode">验证码</label></td>
-                            <td>
+                            <td class="td_left"><label for="checkcode">验证码</label></td>
+                            <td class="td_right">
                                 <input type="text" name="checkcode" id="checkcode">
                                 <img id="check_img" src="img/verify_code.jpg">
                             </td>

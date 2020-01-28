@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS变量</title>
+
+    <style>
+        .s{
+            color: red;
+        }
+    </style>
+
+    <script>
+        // var a = 3;
+        // alert(a);
+        //
+        // a = 4;
+        // alert(a);
+        //
+        // a = 'abc';
+        // alert(a)
+
+        // 定义number类型
+        var num = 1;
+        var num2 = 1.234;
+        var num3 = NaN;
+
+        // 输出到页面上
+        document.write(num + "<br>");
+        document.write(num2 + "<br>");
+        document.write(num3 + "<br>");
+    </script>
+
+</head>
+<body>
+
+    定义string类型<br>
+<script>
+    // 定义string类型
+    var str = "abf";
+    var str2 = 'dfg';
+    document.write(str + '<br>');
+    document.write(str2 + '<br>');
+</script>
+
+    <span class="s">定义boolean类型</span><br>
+    <script>
+        var flag = true;
+        var flag2 = false;
+        document.write(flag + '<br>');
+        document.write(flag2 + '<br>');
+    </script>
+    <span class="s">定义null类型</span><br>
+    <script>
+        var obj = null;
+        document.write(obj + '<br>');
+    </script>
+    <span class="s">定义undifined类型</span><br>
+    <script>
+        var obj2 = undefined;
+        document.write(obj2 + "<br>");
+    </script>
+
+    <span>没有初始化是啥类型？</span><br>
+    <script>
+        var obj3;
+        document.write(obj3);
+    </script>
+
+
+</body>
+</html>

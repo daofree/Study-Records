@@ -123,7 +123,7 @@
 
 	5. 选择器：筛选具有相似特征的元素
 		* 分类：
-			1. 基础选择器：＃类元
+			1. 基础选择器：＃点类属性，元
 				1. id选择器：选择具体的id属性值的元素.建议在一个html页面中id值唯一
 			        * 语法：#id属性值{}
 			    2. 元素选择器：选择具有相同标签名称的元素
@@ -161,22 +161,44 @@
 			* text-align：对其方式
 			* line-height：行高 
 		2. 背景
-			* background：
+			* background： 
 		3. 边框
 			* border：设置边框，复合属性
 		4. 尺寸
 			* width：宽度
 			* height：高度
 		5. 盒子模型：控制页面布局
-		内外由在哪一个视角决定
+		内外边距，由在哪一个视角决定
 			* margin：外边距
 			* padding：内边距,需要设置盒子大小
-				* 默认情况下内边距会影响整个盒子的大小box-sizing: border-box;
+				* 默认情况下内边距会影响整个盒子的大小box-sizing: border-box;、
 				* box-sizing: border-box;  设置盒子的属性，让width和height就是最终盒子的大小
-
+				
 			* float：浮动
 				* left
 				* right
+
+
+注意：CSS里面：元素里面id class属性少不了
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
