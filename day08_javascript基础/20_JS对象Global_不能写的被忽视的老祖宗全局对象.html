@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Global全局对象</title>
+    <script>
+        let str = "http://www.baidu.com?wd=传智播客"//'传智播客';
+        let encodeurl = encodeURI(str);
+        document.write(encodeurl + '<br>');// 当前页面UTF-8编码
+        // %E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2
+
+        // 服务器端解码
+        let decodeURI1 = decodeURI(encodeurl);
+        document.write(decodeURI1 + '<br>');//传智播客
+
+        let str2 = "http://www.baidu.com?wd=传智播客";//'传智播客';
+        let encodeurl2 = encodeURIComponent(str2);
+        document.write(encodeurl2 + '<br>');// 当前页面UTF-8编码
+        // %E4%BC%A0%E6%99%BA%E6%92%AD%E5%AE%A2
+
+        // 服务器端解码
+        let decodeURI12 = decodeURIComponent(encodeurl2);
+        document.write(decodeURI12 + '<br>');//传智播客
+
+        //"http://www.baidu.com?wd=传智播客"
+    </script>
+</head>
+<body>
+
+
+    <script>
+        let s = '123abc';
+        let n = NaN;
+        let number = parseInt(s);
+        document.write(number + '<br>');
+
+        let abc = 'abc';
+        document.write('NaN六亲不认，连自己都不认。NaN参与的==比较全部问false,----' + (abc == NaN) + '<br>');
+        document.write('(NaN==NaN)====' + (n==NaN) + '<br>');
+        document.write('用isNaN()判断===' + isNaN(n));
+    </script>
+</body>
+
+
+        <script>
+            let alert123 = 'alert(123)';
+            alert(alert123);
+
+            eval(alert123);
+        </script>
+</html>
