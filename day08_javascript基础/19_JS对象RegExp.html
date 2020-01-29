@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则RegExp</title>
+</head>
+<body>
+    <script>
+        // new正则，要注意转义
+        let regExp = new RegExp("\\w{6,12}");
+        let regExp2 = /^\w{6,12}$/;
+        // alert(regExp);
+        // alert(regExp2);
+
+        let zhangsan = 'zhangsan';
+        let b = regExp.test(zhangsan);
+        let c = regExp2.test(zhangsan);
+        document.write(b+'<br>');
+        document.write(c);
+
+    </script>
+</body>
+</html>
