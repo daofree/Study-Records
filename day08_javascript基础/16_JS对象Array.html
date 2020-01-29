@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array</title>
+    <script>
+        var  arry1 = new Array(1,2,3);
+        var  arry2 = new Array(5);
+        var  arry5 = new Array('5');
+        var  arry3 = [1,2,'abc',true,null,undefined,666];
+        var  arry4 = new Array();
+        document.write(arry1+'<br>');
+        document.write(arry2+'<br>');
+        document.write(arry4+'<br>');
+        document.write(arry5+'<br>');
+        document.write(arry3 +'---数组里面可放任意类型---个数-'+arry3.length + '<br>');
+        document.write(arry3[10] +'--- 访问超过数组的个数，就自动扩容，由于未定义赋值，就undefined----未赋值，假扩容-个数不变-'+arry3.length + '<br>');
+        arry3[10] = 'fuzhi';
+        document.write('<br>'+ arry3[10] + '--赋值后真扩容--属性----个数--'+arry3.length);
+        document.write('<br>'+ arry3[9] +'------个数-'+arry3.length + '<br>');
+        document.write('<br>'+ '------join默认逗号拼接-' + arry3.join());
+        document.write('<br>'+ '------join指定拼接符拼接-' + arry3.join('>'));
+        arry3.push('push追加');
+        document.write('<br>'+ '------push方法追加-' + arry3.join('>'));
+    </script>
+</head>
+<body>
+
+</body>
+</html>
