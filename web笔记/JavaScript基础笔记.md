@@ -184,6 +184,31 @@ JS三部分：JS==ES+BOM+DOM
              注意：超访问，未赋值，假扩容；
                    超访问，有赋值，真扩容；
                    
+			3. Boolean
+			创建
+			    Boolean(value);如Boolean(1);
+			    new Boolean(value);
+			    
+			4. Date：日期对象
+                1. 创建：
+                    var date = new Date();
+
+                2. 方法：
+                    toLocaleString()：返回当前date对象对应的时间本地字符串格式
+                    getTime():获取毫秒值。返回当前如期对象描述的时间到1970年1月1日零点的毫秒值差
+                    日后作时间戳使用
+                    
+			5. Math：数学对象,不用创建.
+                1. 创建：
+                    * 特点：Math对象不用创建，直接使用。  Math.方法名();
+
+                2. 方法：
+                    random():返回 0 ~ 1 之间的随机数。 含0不含1,[);
+                    ceil(x)：对数进行上舍入。
+                    floor(x)：对数进行下舍入。
+                    round(x)：把数四舍五入为最接近的整数。
+                3. 属性：
+                    PI
                    
                     
 			
