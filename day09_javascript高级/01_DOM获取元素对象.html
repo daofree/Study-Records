@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM获取元素对象</title>
+</head>
+<body>
+
+
+        <img id="light" src="img/off.gif">
+        <h1 id="title">倩女幽魂</h1>
+
+        <script>
+            let light = document.getElementById("light");
+            // alert(light);
+            document.write(light);
+            // alert('我要换图片了');
+            light.src = "img/on.gif";
+
+
+            let title = document.getElementById("title");
+            alert('我要换内容了');
+            title.innerHTML = "我自寻我道";
+
+
+
+        </script>
+</body>
+</html>

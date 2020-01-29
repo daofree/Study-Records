@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定事件</title>
+    <style>
+        #found{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+        <div id="found">发现：方法函数只能绑定一次，被绑多次，只生效一次（谁先绑，谁生效）</div>
+        // 一行写<br>
+        直接绑定直接代码
+        <img id="light" src="img/off.gif" onclick="alert('我被点了一次。事件属性js代码（直接绑定直接代码）')">
+        // function
+        直接绑定间接代码
+        <img id="light2" src="img/off.gif" onclick="fun();">
+        事件直接运行or间接运行js代码<br>
+这种绑定方式：标签与事件绑定在一起<br>
+
+
+        <br>
+        （对象）light4间接绑定onclick()
+        <img id="light3" src="img/off.gif"><br>
+        light4后绑定onclick(),无效
+        <img id="light4" src="img/off.gif"><br>
+</body>
+
+
+<script>
+    function fun() {
+        alert('我被点了,直接绑定，间接代码fun()')
+    }
+    // 方式1绑定。直接绑定
+    function onclick() {
+        alert('事件间接绑定js代码/方法函数onclick()')
+    }
+
+    // 方式2绑定。间接绑定
+    let light3 = document.getElementById("light3");
+    let light4 = document.getElementById("light3");
+    light3.onclick = onclick;
+    light4.onclick = onclick;
+
+</script>
+</html>
