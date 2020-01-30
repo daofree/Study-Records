@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <div id="div3">div3</div>
+
+    <div class="class1">div4</div>
+    <div class="class1">div5</div>
+
+    <input type="text" name="username">
+
+<script>
+    // 获取元素对象
+    let byTagName = document.getElementsByTagName("div");
+    document.write(byTagName + "<br>");
+    // alert(byTagName.length)
+    let byClassName = document.getElementsByClassName("class1");
+    document.write(byClassName + "<br>");
+
+    let elementsByName = document.getElementsByName("username");
+    document.write(elementsByName + "<br>");
+
+    // 创建元素对象
+    let table = document.createElement("table");
+    document.write(table+ "<br>")
+</script>
+</body>
+</html>

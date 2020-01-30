@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>element</title>
+</head>
+<body>
+        <a>点我</a>
+        <input  id="setBtn" type="button" value="设置属性">
+        <input  id="rmBtn" type="button" value="删除属性">
+        <script>
+            let elementById = document.getElementById("setBtn");
+            elementById.onclick = function(){
+                let tagName = document.getElementsByTagName("a")[0];
+                tagName.setAttribute("href","https://wwww.baidu.com")
+            }
+
+
+            let rmById = document.getElementById("rmBtn");
+            rmById.onclick = function(){
+                let tagName = document.getElementsByTagName("a")[0];
+                tagName.removeAttribute("href");
+            }
+
+        </script>
+</body>
+</html>
