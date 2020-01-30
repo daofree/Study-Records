@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>History</title>
+</head>
+<body>
+
+        <input type="button" id="btn" value="获取历史记录">
+        <a href="09_BOM_History2.html">09页面</a>
+        <input type="button" id="fo" value="前进">
+        <input type="button" id="go" value="go">
+
+
+        <script>
+        let btn = document.getElementById("btn");
+        btn.onclick = function(){
+            let length = history.length;
+            alert(length);
+        }
+
+        let fo = document.getElementById("fo");
+        fo.onclick = function(){
+            history.forward()
+        }
+
+        let go = document.getElementById("go");
+        go.onclick = function(){
+            history.go(1);
+        }
+    </script>
+</body>
+</html>
