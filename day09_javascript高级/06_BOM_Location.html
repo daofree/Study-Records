@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location</title>
+
+</head>
+<body>
+    <input id="btn" type="button" value="刷新">
+    <input id="gobtn" type="button" value="去百度">
+    <script>
+        let btn = window.document.getElementById("btn");
+        btn.onclick = function () {
+            window.location.reload();
+        }
+
+        // 获取属性
+        let href = location.href;
+        document.write(href);
+
+        // 修改书信给
+        let gobtn = window.document.getElementById("gobtn");
+        gobtn.onclick = function () {
+            window.location.href = "https://www.baidu.com";
+        }
+    </script>
+</body>
+</html>
