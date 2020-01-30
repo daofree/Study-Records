@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Window对象</title>
+    <script>
+        // let a = window.alert("窗口window弹出个框alert");
+        // let b = confirm("确定退出吗");
+        // document.write(a + "<br>");
+        // document.write(b + "<br>");
+        // if(b) {
+        //     document.write("点击确定退出" + "<br>");
+        // }else {
+        //     document.write("取消退出" + "<br>");
+        // }
+        //
+        // let s = prompt("请输入");
+        // document.write(s + "<br>");
+
+
+        // open();
+
+
+    </script>
+</head>
+<body>
+    <input id="openWindow" type="button" value="打开新窗口">
+    <input id="closeWindow" type="button" value="关闭打开的新窗口">
+
+    <script>
+        let openWindow = document.getElementById("openWindow");
+        openWindow.onclick = f;
+        let newWindow;
+        function f() {
+            newWindow = open("https://www.baidu.com");
+        }
+
+        let closeWindow = document.getElementById("closeWindow");
+        closeWindow.onclick = function(){
+            newWindow.close();
+        }
+
+        let id = setTimeout(time,2000);
+        clearTimeout(id);
+        // setTimeout("time()",2000);
+        function time() {
+            alert('Boommmm');
+        }
+        function time2() {
+            document.write('Boommmm' + "<br>");
+        }
+
+
+        let id2 = setInterval(time2,2);
+        clearInterval(id2);
+
+        let history = window.history;
+        let h2 = history;
+        document.write(history);
+        window.document.write(h2);
+
+
+    </script>
+
+</body>
+</html>
