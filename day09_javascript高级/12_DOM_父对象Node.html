@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node</title>
+    <style>
+        div{
+            border: red 1px solid;
+        }
+
+        #div1{
+            width: 200px;
+            height: 200px;
+        }
+
+        #div2{
+            width: 100px;
+            height: 100px;
+        }
+
+        #div3{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <div id="div2">div2</div>
+        div1
+    </div>
+    // 点一下，跳转当前页面，一直在刷新，删了又回来了<br>
+    href="javascript:void(0);"===死链接,void(0)阻止返回的运算符<br>
+
+    <a href="javascript:void(0);" id="del">删除子节点</a><br>
+    <a href="javascript:void(0);" id="add">添加子节点</a>
+    <!--<input type="button" id="del" value="删除子节点">-->
+    <script>
+        // 删除子节点
+        let elementById = document.getElementById("del");
+        elementById.onclick = function () {
+            let d1 = document.getElementById("div1");
+            let d2 = document.getElementById("div2");
+            d1.removeChild(d2)
+
+        }
+
+        // 添加子节点
+        let add = document.getElementById("add");
+        add.onclick = function () {
+            let d1 = document.getElementById("div1");
+            // 先创建
+            let d3 = document.createElement("div");
+            d3.setAttribute("id","div3");
+            d3.textContent = "xx";
+            d1.appendChild(d3);
+
+        }
+
+
+        let div2 = document.getElementById("div2");
+        let div1 = div2.parentNode;
+        alert(div1)
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
