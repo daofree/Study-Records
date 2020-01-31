@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格全选</title>
+    <style>
+        table{
+            border: 1px solid;
+            margin-left: 30%;
+            width: 500px;
+        }
+
+        td,th{
+            text-align: center;
+            border: 1px solid;
+        }
+
+        div{
+            margin-left: 30%;
+            margin-top: 10px;
+        }
+
+        .over{
+            background: deeppink;
+         }
+
+        .out{
+            background: white;
+        }
+    </style>
+
+    <script>
+        // 页面加载完后绑定事件
+        window.onload = function () {
+            // 全选
+            document.getElementById("selectAll").onclick = function () {
+                // 获取所有的checkbox
+                let cbs = document.getElementsByName("cb");
+                //遍历
+                for (let i = 0; i < cbs.length; i++) {
+                    // 遍历，设置状态为选中。checked属性（true/false）代表选中与否
+                    cbs[i].checked = true;
+                }
+
+            }
+
+            // 全不选
+            document.getElementById("unselectAll").onclick = function () {
+                // 获取所有的checkbox
+                let cbs = document.getElementsByName("cb");
+                //遍历
+                for (let i = 0; i < cbs.length; i++) {
+                    // 遍历，设置状态为未选中。checked属性（true/false）代表选中与否
+                    cbs[i].checked = false;
+                }
+
+            }
+
+            // 反选
+            document.getElementById("selectRev").onclick = function () {
+                // 获取所有的checkbox
+                let cbs = document.getElementsByName("cb");
+                //遍历
+                for (let i = 0; i < cbs.length; i++) {
+                    // 遍历，设置状态为未选中。checked属性（true/false）代表选中与否
+                    cbs[i].checked = !cbs[i].checked;
+                    // if(cbs[i].checked){
+                    //     cbs[i].checked = false;
+                    // }else{
+                    //     cbs[i].checked = true;
+                    // }
+                }
+
+            }
+
+            // 总框  this
+            document.getElementById("first").onclick = function () {
+                // 获取所有的checkbox
+                let cbs = document.getElementsByName("cb");
+                //遍历
+                for (let i = 0; i < cbs.length; i++) {
+                    // 遍历，设置状态为未选中。checked属性（true/false）代表选中与否
+                    cbs[i].checked = this.checked;
+                }
+
+            }
+
+            // 鼠标绑定移进移出
+            let trs = document.getElementsByTagName("tr");
+            for (let i = 0; i < trs.length; i++) {
+                trs[i].onmouseover = function () {
+                    // this.className = "over";
+                    this.style.background = "pink";
+                }
+                trs[i].onmouseout = function () {
+                    // this.className = "out";
+                    this.style.background = "white";
+                }
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+<body>
+<table>
+    <caption>学生信息表</caption>
+    <tr>
+        <td><input id="first" type="checkbox" name="cb"></td>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>操作</th>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"></td>
+        <td>1</td>
+        <td>令狐聪</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" onclick="deT(this)">删除</a></td>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"></td>
+        <td>2</td>
+        <td>任我行</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" onclick="deT(this)">删除</a></td>
+    </tr>
+
+    <tr>
+        <td><input type="checkbox" name="cb"></td>
+        <td>3</td>
+        <td>任我行</td>
+        <td>男</td>
+        <td><a href="javascript:void(0)" onclick="deT(this)">删除</a></td>
+    </tr>
+</table>
+<div>
+    <input type="button" id="selectAll" value="全选">
+    <input type="button" id="unselectAll" value="全不选">
+    <input type="button" id="selectRev" value="反选">
+</div>
+
+</body>
+</html>
