@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS注册页面</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body{
+            background: url("img/register_bg.png") no-repeat center;
+        }
+
+        .rg_layout{
+            width: 900px;
+            height: 500px;
+            border: 8px solid #EEEEEE;
+            background: white;
+            margin: auto;
+            margin-top: 15px;
+        }
+
+        .left{
+            /*border: 1px solid red;*/
+            float: left;
+            margin: 15px;
+        }
+        .left > p:first-child{
+            color: #FFD026;
+            font-size: 20px;
+        }
+        .left > p:last-child{
+            color: #A6A6A6;
+            font-size: 20px;
+        }
+
+        .center{
+            border: 1px solid red;
+            float: left;
+            width: 525px;
+        }
+
+        .right{
+            /*border: 1px solid red;*/
+            float: right;
+            margin: 15px;
+        }
+        .right > p:first-child{
+            font-size: 15px;
+        }
+        .right p a{
+            color: pink;
+        }
+
+        .td_left{
+            width: 100px;
+            text-align: right;
+            height: 45px;
+        }
+
+        /*左边单元格离右边单元格之间的距离*/
+        .td_right{
+            padding-left: 40px;
+        }
+
+        /*单元格里面的内容，离单元格15px*/
+        /*并集选择器*/
+        #username,#pwd,#email,#name,#tel,#bir,#checkcode{
+            width: 251px;
+            height: 32px;
+            border: 1px solid #A6A6A6;
+            /*设置圆角*/
+            border-radius: 5px;
+            /*单元格里面的内容，离单元格15px*/
+            padding-left: 15px;
+        }
+        #checkcode{
+            width: 140px;
+        }
+        #check_img{
+            height: 32px;
+            /*垂直居中*/
+            vertical-align: middle;
+        }
+
+        #btn_sub{
+            width: 150px;
+            height: 40px;
+            background: #FFD026;
+            border: 1px solid #FFD026;
+        }
+
+        .error{
+            font-size: 15px;
+            color: red;
+        }
+
+        #td_sub{
+            padding-left: 100px;
+        }
+
+        span{
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+
+    <script>
+        // 表单绑定submit事件。监听器中判断每一个方法校验的结果，
+        // 分别校验表单项
+        // 表单项绑定离焦事件
+        window.onload = function () {
+            document.getElementById("form").onsubmit = function () {
+                // 调用用户名校验方法 checkUserName()
+                // 调用密码校验方法 checkPassword()
+                return checkUserName() && checkPassword();
+            }
+
+            // 离焦事件
+            document.getElementById("username").onblur = checkUserName;
+            document.getElementById("pwd").onblur = checkPassword;
+
+        }
+
+        // 校验密码
+        function checkPassword() {
+            // 获取用户名
+            let pwd = document.getElementById("pwd").value;
+            // 定义正则表达式
+            var reg_pwd = /^\w{6,12}$/;
+            // 正则校验获取的值
+            let flag = reg_pwd.test(pwd);
+            console.log("-----" + flag);
+            // 提示信息
+            let s_pwd = document.getElementById("s_pwd");
+            if(flag){
+                // 提示绿色的对勾
+                s_pwd.innerHTML = "<img width='25' height='15' src='img/gou.png'>";
+            }else {
+                // 提示红色错误
+                s_pwd.innerHTML = "密码格式有误";
+            }
+            return flag;
+        }
+
+        // 校验用户名
+        function checkUserName(){
+            // 获取用户名
+            let username = document.getElementById("username").value;
+            // 定义正则表达式
+            var reg_username = /^\w{6,12}$/;
+            // 正则校验获取的值
+            let flag = reg_username.test(username);
+            console.log("-----" + flag);
+            // 提示信息
+            let s_username = document.getElementById("s_username");
+            if(flag){
+                // 提示绿色的对勾
+                s_username.innerHTML = "<img width='25' height='15' src='img/gou.png'>";
+            }else {
+                // 提示红色错误
+                s_username.innerHTML = "用户名格式有误";
+            }
+            return flag;
+        }
+
+    </script>
+</head>
+<body>
+   <div class="rg_layout">
+       <div class="left">
+           <p>新用户注册</p>
+           <p>USRER REGISTER</p>
+       </div>
+
+       <div class="center">
+            <div class="form">
+                <form action="#" method="get" id="form">
+                    <table>
+                        <caption>用户注册</caption>
+                        <tr>
+                            <td class="td_left"><label for="username">用户名</label></td>
+                            <td class="td_right"><input type="text" name="username" id="username" placeholder="请输入用户名">
+                            <span id="s_username" class="error"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label for="pwd">密码</label></td>
+                            <td class="td_right"><input type="password" name="pwd" id="pwd">
+                                <span id="s_pwd" class="error"></span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label for="email">Emial</label></td>
+                            <td class="td_right"><input type="email" name="email" id="email"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label for="name">姓名</label></td>
+                            <td class="td_right"><input type="text" name="name" id="name"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label for="tel">手机号</label></td>
+                            <td class="td_right"><input type="text" name="tel" id="tel"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label>性别</label></td>
+                            <td class="td_right">
+                                <input type="radio" name="gender" value="male">男
+                                <input type="radio" name="gender" value="female">女
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label for="bir">出生日期</label></td>
+                            <td class="td_right"><input type="date" name="bir" id="bir"></td>
+                        </tr>
+
+                        <tr>
+                            <td class="td_left"><label for="checkcode">验证码</label></td>
+                            <td class="td_right">
+                                <input type="text" name="checkcode" id="checkcode">
+                                <img id="check_img" src="img/verify_code.jpg">
+                            </td>
+                        </tr>
+
+                        <tr align="center">
+                            <td colspan="2" id="td_sub"><input id="btn_sub" type="submit" value="注册"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+       </div>
+
+       <div class="right">
+           <p>已有账号?<a href="#">立即登录</a></p>
+       </div>
+   </div>
+</body>
+</html>
