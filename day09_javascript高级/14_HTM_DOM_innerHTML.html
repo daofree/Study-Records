@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML DOM</title>
+</head>
+<body>
+        <div id="div1">
+            div
+        </div>
+
+        <script>
+            let div1 = document.getElementById("div1");
+            let innerHTML = div1.innerHTML;
+            // alert(innerHTML);
+            // 替换
+            // div1.innerHTML = "<input type='text'>";
+
+            // 追加
+            div1.innerHTML += "<input type='text'>";
+
+
+        </script>
+
+</body>
+</html>
