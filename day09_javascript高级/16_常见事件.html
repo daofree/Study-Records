@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件</title>
+    <script>
+
+        // 加载完成事件onload
+        window.onload = function(){
+            // 焦点事件
+            // document.getElementById("username").onblur = function () {
+            //     alert("失去焦点。。。")
+            // }
+            //
+            // // 鼠标移动
+            // document.getElementById("username").onmousemove = function () {
+            //     alert("鼠标来了。。。")
+            // }
+
+            // 鼠标点击后.监听器代码是 JS/浏览器 引擎自动调用function，调方法会传对象！接收即可event
+            // button 012（左0滚1轮右2）
+            // document.getElementById("username").onmousedown = function (event) {
+            //     // alert("鼠标点击。。。")
+            //     alert(event.button)
+            // }
+
+            // document.getElementById("username").onkeydown = function (event) {
+            //     // alert("鼠标点击。。。")
+            //     // alert(event.keyCode)
+            //     if(event.keyCode == 13){
+            //         alert("提交表单");
+            //     }
+            // }
+
+
+            // document.getElementById("username").onchange = function (event) {
+            //     alert("改变了。。。")
+            // }
+            //
+            // document.getElementById("city").onchange = function (event) {
+            //     alert("改变了。。。")
+            // }
+
+            // 定义一个事件，自己没调用，引擎看管调用，并反馈T/F
+            // document.getElementById("form").onsubmit = function () {
+            //     var flag = false;
+            //
+            //     return flag;
+            // }
+
+        }
+
+        // 分析onclick="false"，依然可以提交，即提交失效的原因
+        // 自己调用的，相当于属性onclick="false",这个没用
+        // 但我们期望onclick="是代码"，然后这个代码有返回值，而不是一个字符串
+        function checkForm(){
+            return false;
+        }
+        // onclick会这样，把onclick封装成，JS内部生成个函数，调用
+        // function f() {
+        //     return checkForm();
+        // }
+        // 最后表单能不能提交是看这个方法的返回值（而不是给个TF）
+
+
+    </script>
+</head>
+<body>
+          <!--不要返回值，要代码的返回值，间接返回（）因为T/F要给引擎处理，搁这里没用-->
+<form action="#" onclick="return checkForm()" id="form">
+    <input id="username" name="username">
+    <select id="city">
+        <option>-请选择-</option>
+        <option>-南京-</option>
+        <option>-合肥-</option>
+    </select>
+
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
