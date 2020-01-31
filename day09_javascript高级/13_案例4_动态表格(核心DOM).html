@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态表格</title>
+    <style>
+        table{
+            border: 1px solid;
+            margin: auto;
+            width: 500px;
+        }
+
+        td,th{
+            text-align: center;
+            border: 1px solid;
+        }
+
+        div{
+            text-align: center;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="id" placeholder="请输入编号">
+        <input type="text" id="name" placeholder="请输入姓名">
+        <input type="text" id="gender" placeholder="请输入性别">
+        <input type="button" value="添加" id="add">
+    </div>
+
+    <table>
+        <caption>学生信息表</caption>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>操作</th>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>令狐聪</td>
+            <td>男</td>
+            <td><a href="javascript:void(0)" onclick="deT(this)">删除</a></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>任我行</td>
+            <td>男</td>
+            <td><a href="javascript:void(0)" onclick="deT(this)">删除</a></td>
+        </tr>
+    </table>
+
+
+
+<script>
+    // 添加操作详解
+    // 点击可以获取文本框内容
+    // 创建td，文本设置获取的值
+    // 创建tr
+    // tr添加td
+    // 获取table,添加tr
+
+    document.getElementById("add").onclick = function () {
+        let id = document.getElementById("id").value;
+        let name = document.getElementById("name").value;
+        let gender = document.getElementById("gender").value;
+
+        // 创建td，文本设置获取的值
+        let td_id = document.createElement("td");
+        // 直接赋值
+        td_id.textContent = id;
+        // td_id.appendChild(id);
+
+        let td_name = document.createElement("td");
+        // td_name.appendChild(name);
+        td_name.textContent = name;
+
+        let td_gender = document.createElement("td");
+        //td_gender.textContent = gender;
+
+        // td_gender.appendChild(gender);
+        //创建文本节点，再添加
+         let text_gender = document.createTextNode(gender);
+         td_gender.appendChild(text_gender);
+
+        let td_del = document.createElement("td");
+        let a = document.createElement("a");
+        a.setAttribute("href","javascript:void(0)");
+        a.setAttribute("onclick","deT(this)");
+        a.innerHTML = "删除";
+        td_del.appendChild(a);
+
+        let tr = document.createElement("tr");
+        tr.appendChild(td_id);
+        tr.appendChild(td_name);
+        tr.appendChild(td_gender);
+        tr.appendChild(td_del);
+
+        let table = document.getElementsByTagName("table")[0];
+        table.appendChild(tr);
+
+    }
+
+
+    // 删除
+    // 确定点击的是哪一个超链接
+    // this 当前超链接对象
+    // 怎么删除
+    // 找到父标签，删除子节点
+    function deT(obj) {
+        // alert(obj);
+        let table = obj.parentNode.parentNode.parentNode;
+        let tr = obj.parentNode.parentNode;
+        table.removeChild(tr);
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

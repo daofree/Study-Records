@@ -118,7 +118,7 @@
                     * 正数：前进几个历史记录
                     * 负数：后退几个历史记录
         3. 属性：
-            * length	返回当前窗口历史列表中的 URL 数量。
+            * length	返回当前窗口历史列表中的 URL 数量。谷歌浏览器，有问题，一直是2.
 
 ## DOM：描述处理网页内容的方法和接口
 	* 概念： Document Object Model 文档对象模型
@@ -131,12 +131,13 @@
 ##DOM树里的框里的都是对象
 		* 核心 DOM - 针对任何结构化文档的标准模型
 			** Document：文档对象
-			** Element：元素对象
-			* Attribute：属性对象
-			* Text：文本对象
-			* Comment:注释对象
+    			** Element：元素对象
+	    		* Attribute：属性对象
+		    	* Text：文本对象
+			    * Comment:注释对象
 
 			** Node：节点对象，其他5个的父对象
+			
 		* XML DOM - 针对 XML 文档的标准模型
 		* HTML DOM - 针对 HTML 文档的标准模型
 
@@ -182,6 +183,4 @@
         去掉跳转：href="javascript:void(0);"(死链接)。
 
 
-
-
-
+##创建对象，添加节点！
