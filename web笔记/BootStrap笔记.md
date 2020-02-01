@@ -96,21 +96,3 @@
 ##----https://v3.bootcss.com/components/#pagination		
 	3. 插件：
 		* 轮播图
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
