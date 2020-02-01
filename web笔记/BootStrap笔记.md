@@ -11,7 +11,7 @@
 		* 好处：
 			1. 定义了很多的css样式和js插件。
 			    * 我们开发人员直接可以使用这些样式和插件得到丰富的页面效果。
-			2. 响应式布局。
+			2. 响应式布局。-----栅格系统，3个类，class容器-1行-12列
 				* 同一套页面可以兼容不同分辨率的设备。
 
 
@@ -21,7 +21,7 @@
 		3. 创建html页面，引入必要的资源文件
 
 ##jQuery是JS重要的框架
-##Bootstrap基本模板
+##Bootstrap基本模板-----注意meta设置
 		<!DOCTYPE html>
 		<html lang="zh-CN">
 		<head>
@@ -34,7 +34,6 @@
 		    <!-- Bootstrap -->
 		    <link href="css/bootstrap.min.css" rel="stylesheet">
 		
-		
 		    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
 		    <script src="js/jquery-3.2.1.min.js"></script>
 		    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
@@ -46,11 +45,11 @@
 		</body>
 		</html>
 
-## 响应式布局
+## 响应式布局-----------https://v3.bootcss.com/css/#grid
 	* 同一套页面可以兼容不同分辨率的设备。
 	* 实现：
 	    依赖于栅格系统：将一行平均分成12个格子，可以指定元素占几个格子
-	* 步骤：
+	* 3步骤：
 		1. 定义容器（栅格系统/把行放到容器里）。相当于之前的table、
 ##			* 容器分类：
 				1. container：两边留有空白
@@ -67,3 +66,51 @@
 			1. 一行中如果格子数目超过12，则超出部分自动换行。-------自动换行
 			2. 栅格类属性可以向上兼容。栅格类适用于与屏幕宽度大于或等于分界点大小的设备。------向上兼容即样式不变
 			3. 如果真实设备宽度小于了设置栅格类属性的设备代码的最小值，会一个元素沾满一整行。----向下不兼容即样式变化
+			
+			
+## CSS样式和JS插件
+	1. 全局CSS样式：
+##---https://v3.bootcss.com/css/
+		* 按钮：class="btn btn-default"
+		* 图片：
+			*  class="img-responsive"：图片在任意尺寸都占100%
+			*  图片形状
+				*  <img src="..." alt="..." class="img-rounded">：方形
+				*  <img src="..." alt="..." class="img-circle"> ： 圆形
+				*  <img src="..." alt="..." class="img-thumbnail"> ：相框
+				
+		* 表格
+##-----https://v3.bootcss.com/css/#tables
+			* table
+			* table-bordered
+			* table-hover
+		* 表单
+##----https://v3.bootcss.com/css/#forms
+			* 给表单项添加：class="form-group" class="form-control" 
+	2. 组件：
+##----https://v3.bootcss.com/components/
+		* 导航条
+##----https://v3.bootcss.com/components/#navbar
+		-----哪里不会删哪里
+		* 分页条
+##----https://v3.bootcss.com/components/#pagination		
+	3. 插件：
+		* 轮播图
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
