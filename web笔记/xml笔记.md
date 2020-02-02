@@ -191,7 +191,12 @@
 ##  * 2种快捷查询方式：（一个一个层级找）
 			1. selector:选择器cssQuery
 				* 使用的方法：Elements	select​(String cssQuery)
-					* 语法：参考Selector类中定义的语法
+					* 语法：参考Selector类中定义的语法，即定位参数写法
 
+            2. XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言
+#             XPath是对DOM树（Jsoup获得的document）操作的。
 
-
+###				* 使用Jsoup的Xpath需要额外导入jar包。
+###				* 查询w3cshool参考手册，使用xpath的语法完成查询
+				
+				selN等4个方法
