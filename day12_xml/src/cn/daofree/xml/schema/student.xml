@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+	1.填写xml文档的根元素
+	2.引入xsi前缀.  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+	xsi引入xsd文件===========约束文件a
+	3.引入xsd文件,并取个名字（命名空间）.  xsi:schemaLocation="http://www.itcast.cn/xml  student.xsd"
+	有名称空间（类似包路径），就可以包名:元素使用了，问题是名称长，麻烦。
+
+	为了简化书写，给名称空间添加个前缀，就引入一个，可以不写，即默认空前缀！
+	为防冲突，给约束文件的命名空间 定义前缀,默认空前缀
+	4.为每一个xsd约束声明一个前缀,作为标识  xmlns="http://www.itcast.cn/xml" 
+
+
+
+	衔接的很紧密
+ -->
+ <students   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="a  student.xsd"
+			 xmlns="a"
+ 		    >
+ 	<student number="daofree_0001">
+ 		<name>tom</name>
+ 		<age>156</age>
+ 		<sex>male</sex>
+ 	</student>
+		 
+ </students>

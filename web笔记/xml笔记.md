@@ -69,3 +69,40 @@
 			5. 文本：特殊字符$lt;$amp;$gt;
 				* CDATA区：在该区域中的数据会被原样展示
 					* 格式：  <![CDATA[ 数据 ]]>
+					
+#     * 约束：规定xml文档的书写规则
+##---------要求：读懂
+			* 作为框架的使用者(程序员)：
+				1. 能够在xml中引入约束文档
+				2. 能够简单的读懂约束文档
+			
+			* 分类：
+				1. DTD:一种简单的约束技术
+				2. Schema:一种复杂的约束技术
+
+
+#			* DTD（.dtd文件）：-----限制不了里面的内容
+##				* 引入dtd文档到xml文档中
+					* 内部dtd：将约束规则定义在xml文档中
+					* 外部dtd：将约束的规则定义在外部的dtd文件中
+						* 本地SYSTEM：<!DOCTYPE 根标签名 SYSTEM "dtd文件的位置">
+						* 网络PUBLIC：<!DOCTYPE 根标签名 PUBLIC "dtd文件名字" "dtd文件的位置URL">
+<!ATTLIST student number ID #REQUIRED>
+属性number，属性类型ID，必须出现，ID表示number唯一
+（#PCDATA）是字符串
+
+
+
+#			* Schema（.xsd文件）:（DTD限制不了字符串里面的内容）
+				* 引入：在根标签里面引入
+					1.填写xml文档的根元素
+					2.引入xsi前缀.  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					3.引入xsd文件命名空间.  xsi:schemaLocation="http://www.itcast.cn/xml  student.xsd"
+					4.为每一个xsd约束声明一个前缀,作为标识  xmlns="http://www.itcast.cn/xml" 
+
+				<students   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xmlns="http://www.itcast.cn/xml"
+					xsi:schemaLocation="http://www.itcast.cn/xml  student.xsd">
+
+
+约束文件定义的所有元素的别名targetNamespace（命名空间）  约束文件名

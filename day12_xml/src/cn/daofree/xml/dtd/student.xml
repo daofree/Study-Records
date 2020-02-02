@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE students SYSTEM "student.dtd">-->
+
+
+<!DOCTYPE students [
+
+		<!ELEMENT students (student*) >
+		<!ELEMENT student (name,age,sex)>
+		<!ELEMENT name (#PCDATA)>
+		<!ELEMENT age (#PCDATA)>
+		<!ELEMENT sex (#PCDATA)>
+		<!ATTLIST student number ID #REQUIRED>
+
+		]>
+<!--属性number，属性类型ID，必须出现，ID表示number唯一-->
+<students>
+	<student number="A001">
+		<name>tom</name>
+		<age>18</age>
+		<sex>male</sex>
+	</student>
+
+	<student number="s">
+		<name>s</name>
+		<age>s</age>
+		<sex>44</sex>
+	</student>
+</students>
