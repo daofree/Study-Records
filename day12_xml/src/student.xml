@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+ <students >
+ 	<student number="daofree_0001">
+ 		<name>tom</name>
+ 		<age>156</age>
+ 		<sex>male</sex>
+ 	</student>
+
+	<student number="daofree_0002">
+		<name>lili</name>
+		<age>24</age>
+		<sex>female</sex>
+	</student>
+		 
+ </students>
