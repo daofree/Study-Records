@@ -2,7 +2,7 @@
 
  <students >
  	<student number="daofree_0001">
- 		<name>tom</name>
+ 		<name id="daofree">tom</name>
  		<age>156</age>
  		<sex>male</sex>
  	</student>
