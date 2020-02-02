@@ -158,7 +158,7 @@
 		        String name = element.text();
 		        System.out.println(name);
 
-#      * 对象的使用：
+#      * 对象的使用：在这里Document的对象是继承Element对象的
 			1. Jsoup：工具类，可以解析html或xml文档，返回Document
 				* parse：解析html或xml文档，返回Document
 					* 文件parse​(File in, String charsetName)：解析xml或html文件的。
@@ -188,17 +188,10 @@
 			5. Node：节点对象
 				* 是Document和Element的父类。方法大家都可用！
 
-
-
-
-
-
-
-
-
-
-
-
+##  * 2种快捷查询方式：（一个一个层级找）
+			1. selector:选择器cssQuery
+				* 使用的方法：Elements	select​(String cssQuery)
+					* 语法：参考Selector类中定义的语法
 
 
 
