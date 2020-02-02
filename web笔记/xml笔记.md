@@ -166,7 +166,7 @@
 					* 远程parse​(URL url, int timeoutMillis)：通过网络路径获取指定的html或xml的文档对象
 # 远程parse------->爬虫
 			2. Document：文档对象。代表内存中的dom树
-				* 获取Element对象
+				* 获取任意Element对象
 					* getElementById​(String id)：根据id属性值获取唯一的element对象
 					* getElementsByTag​(String tagName)：根据标签名称获取元素对象集合
 					* getElementsByAttribute​(String key)：根据属性名称获取元素对象集合
@@ -182,10 +182,11 @@
 				2. 获取属性值
 					* String attr(String key)：根据属性名称获取属性值
 				3. 获取文本内容
-					* String text():获取文本内容
-					* String html():获取标签体的所有内容(包括字标签的字符串内容)
+					* String text():获取所有子标签纯文本内容
+					* String html():获取该标签体里面的所有内容(包括子标签的标签和文本内容)
+					
 			5. Node：节点对象
-				* 是Document和Element的父类
+				* 是Document和Element的父类。方法大家都可用！
 
 
 

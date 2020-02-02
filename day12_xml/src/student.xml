@@ -2,7 +2,10 @@
 
  <students >
  	<student number="daofree_0001">
- 		<name id="daofree">tom</name>
+ 		<name id="daofree">
+			<xing>张</xing>
+			<ming>三</ming>
+		</name>
  		<age>156</age>
  		<sex>male</sex>
  	</student>
