@@ -96,3 +96,6 @@
 ##----https://v3.bootcss.com/components/#pagination		
 	3. 插件：
 		* 轮播图
+		
+案例中：  行中分行，还分2行
+
