@@ -87,3 +87,48 @@
 				* 点击启动窗口的×
 
 
+#		6. 部署配置:
+##			* 部署项目的方式：直接，间接，冷，热
+				1. 直接将项目放到webapps目录下即可。http://127.0.0.1:8080/hello/hello.html
+					* /hello：项目的访问路径（同项目名称）-叫->虚拟目录
+					hello.html 资源名称
+##					* 简化部署：将项目打成一个war包，再将war包放置到webapps目录下。
+						* tomcat开启状态，war包放进去会自动解压缩
+						* 卸载时，只要直接删除war包即可，解压文件随之删除
+            缺点：1.虚拟目录名称==项目名称
+                 2.需要拷到webapps下
+            
+				2. 配置conf/server.xml文件（重启生效）
+					在<Host>标签体中配置（文档最后面）
+#					<Context docBase="D:\hello" path="/suiyihuamming" />
+					* docBase:项目存放的路径
+					* path：虚拟目录(访问的)
+#					http://127.0.0.1:8080/suiyihuamming/hello.html
+           缺点：server.xml是tomcat核心配置文件。在里面配置多个项目，可能会搞坏了，很不安全
+           
+           
+##				3. 在conf\Catalina\localhost创建任意名称（虚拟目录）的xml文件。在文件中编写
+## 这是热部署	
+					<Context docBase="D:\hello" />
+					* 虚拟目录：xml文件的名称
+					http://127.0.0.1:8080/xml文件名/hello.html
+				
+#Catalina就是Tomcat的servlet容器.			
+			
+    内部寓意就是tomcat的脚本文件，寄寓，是个小岛的名字，开发者曾在岛上生活过。
+    Tomcat的这个单词的意思是“公猫”，因为它的开发者姆斯·邓肯·戴维森希望用一种能够自己照顾自己的动物代表这个软件，
+    于是命名为tomcat，它的Logo兼吉祥物也被设计成了一只公猫形象。
+    Catalina是美国西海岸靠近洛杉矶22英里的一个小岛，因为其风景秀丽而著名。
+    Servlet运行模块的最早开发者Craig McClanahan因为喜欢Catalina岛故以Catalina命名他所开这个模块，
+    尽管他从来也没有去过那里。
+    另外在开发的早期阶段，Tomcat是被搭建在一个叫Avalon的服务器框架上，
+    而Avalon则是Catalina岛上的一个小镇的名字，于是想一个与小镇名字相关联的单词也是自然而然。
+    还有一个原因来自于Craig McClanahan养的猫，他养的猫在他写程序的时候喜欢在电脑周围闲逛。
+    可能是Catalina岛是个悠闲散步的好地方，猫的闲逛让Craig McClanahan想起了那里。
+    catalina和tomcat的关系
+    catalina 就是Tomcat服务器使用的 Apache实现的servlet容器的名字。
+    Tomcat的核心分为3个部分: 
+    （1）Web容器—处理静态页面； 
+    （2）catalina — 一个servlet容器—–处理servlet; 
+    （3）还有就是JSP容器，它就是把jsp页面翻译成一般的servlet。
+
