@@ -70,6 +70,39 @@
 				* (urlPatterns = "/demo")
 				* (value = "/demo2")
 				* ("/demo3")
-虚拟目录是项目的访问方式
+##          注解说明WebServlet
+                @Target({ElementType.TYPE})
+				@Retention(RetentionPolicy.RUNTIME)
+				@Documented
+				public @interface WebServlet {
+				    String name() default "";//相当于<Servlet-name>
+				    String[] value() default {};//代表urlPatterns()属性配置
+				    String[] urlPatterns() default {};//相当于<url-pattern>				
+				    int loadOnStartup() default -1;//相当于<load-on-startup>				
+				    WebInitParam[] initParams() default {};				
+				    boolean asyncSupported() default false;				
+				    String smallIcon() default "";				
+				    String largeIcon() default "";				
+				    String description() default "";				
+				    String displayName() default "";
+				}
 
+###注：虚拟目录是项目的访问方式
 
+## IDEA与tomcat的相关配置
+	1. IDEA会为每一个tomcat部署的项目单独建立一份配置文件
+		* 查看控制台启动日志的log：
+IDEA单独配置当前项目的配置文件
+##      Using CATALINA_BASE:   "C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records"
+#   项目存放路径位置：docBase="D:\IdeaProjects\Study-Records\out\artifacts\day13_servlet_war_exploded" />
+#   源码路径位置：工作空间web项目
+
+#	2. 工作空间web项目(源码)    和     tomcat部署的web项目(out)
+		* tomcat真正访问的是“tomcat部署的web项目”，
+##		* "tomcat部署的web项目"对应着"工作空间项目" 的web目录下的所有资源
+##		（WEB-INF下的）classes（字节码）下的文件来源于src（源码）下的。
+		* WEB-INF目录下的资源不能被浏览器直接访问。
+		现在不要在里面放资源，但有其他技术可以访问
+		
+#	3. Javaweb的tomcat断点调试：使用"小虫子"启动 dubug 启动
+	
