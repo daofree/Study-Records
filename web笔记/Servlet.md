@@ -12,7 +12,7 @@
 			* public class ServletDemo1 implements Servlet
 		3. 实现接口中的5个抽象方法
 ##		4. 配置Servlet，映射资源名（/demo1），配置全类名路径	
-			 在web.xml中配置：
+#			 在web.xml中配置：写一个servlet,配置一个！。。。多！
 		    <!--配置Servlet -->
 		    <servlet>
 		        <servlet-name>demo1</servlet-name>
@@ -56,3 +56,20 @@
 			* Servlet被销毁时执行。服务器关闭时，Servlet被销毁。
 			* 只有服务器正常关闭时，才会执行destroy方法。
 			* destroy方法在Servlet被销毁之前执行，一般用于释放资源
+			
+##  * Servlet3.0：javaEE 6之后支持
+		* 好处：
+			* 支持注解配置。可以不需要web.xml（多次配置，烦）了。
+
+		* 步骤：
+			1. 创建JavaEE项目，选择Servlet的版本3.0以上，可以不创建web.xml
+			2. 定义一个类，实现Servlet接口
+			3. 复写方法
+			4. 在类上使用@WebServlet注解，进行配置
+				* @WebServlet("资源路径")
+				* (urlPatterns = "/demo")
+				* (value = "/demo2")
+				* ("/demo3")
+虚拟目录是项目的访问方式
+
+
