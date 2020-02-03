@@ -132,3 +132,18 @@
     （2）catalina — 一个servlet容器—–处理servlet; 
     （3）还有就是JSP容器，它就是把jsp页面翻译成一般的servlet。
 
+#        * 静态项目和动态项目：
+				* 目录结构
+					* java动态项目(WEB-INF)的目录结构：
+						-- 项目的根目录
+							-- WEB-INF目录：
+								-- web.xml：web项目的核心配置文件
+								-- classes目录：放置字节码文件的目录(有java代码)
+								-- lib目录：放置依赖的jar包
+
+
+
+
+
+
+
