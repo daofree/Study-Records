@@ -141,7 +141,12 @@
 								-- classes目录：放置字节码文件的目录(有java代码)
 								-- lib目录：放置依赖的jar包
 
-
+ ##   * 将Tomcat集成到IDEA中，run-->Edit Configurations
+        并且创建JavaEE的项目，暂选JavaEE 7(要学servlet3.0规范)
+        部署项目。web下的index.jsp是默认首页！！
+        热部署设置
+    
+    
 
 
 
