@@ -97,8 +97,6 @@
 			username=zhangsan	
 
 
-#	* 响应消息数据格式 
-
  ## Request：原理图
  	1. request对象和response对象的原理----------图
  		1. request和response对象是由服务器tomcat创建的。我们来使用它们
@@ -153,7 +151,43 @@
 ##					2. 再从流对象中拿数据
 
 
+##		2. 其他功能：
+			1. 获取请求参数通用方式：
+			不论get还是post请求方式都可以使用下列方法来获取请求参数，故有了this.doPost(request,response);
+				1. String getParameter(String name):
+				    根据参数名称获取参数值    username=zs&password=123
+				2. String[] getParameterValues(String name):复选框
+				    根据参数名称获取参数值的数组  hobby=xx&hobby=game
+				3. Enumeration<String> getParameterNames():获取所有请求的参数名称
+				4. Map<String,String[]> getParameterMap():获取所有参数的map集合
 
+#				* 中文乱码问题：
+					* get方式：tomcat 8 已经将get方式乱码问题解决了(参数在url中)
+					* post方式：会乱码(还是从流获取的参数，需要设置流的编码)
+						* 解决：在获取参数前，设置request的编码request.setCharacterEncoding("utf-8");
+			
+					
+##			2. 请求转发：一种在服务器内部的 资源跳转 方式（分工）
+				1. 步骤：
+					1. 通过request对象获取请求转发器对象：RequestDispatcher getRequestDispatcher(String path)
+					2. 使用RequestDispatcher对象来进行转发：forward(ServletRequest request, ServletResponse response) 
+
+				2. 特点：
+					1. 浏览器地址栏路径不发生变化；
+					2. 只能转发到当前服务器内部资源中；
+					3. 转发是一次请求，多个内部资源访问。
+
+请求转发产生了域对象！
+##			3. 共享数据：
+				* 域对象：一个有作用范围的对象，可以在范围内共享数据
+				* request域：代表一次请求的范围，一般用于请求转发的多个资源中共享数据
+				* 方法：
+					1. void setAttribute(String name,Object obj):存储数据
+					2. Object getAttitude(String name):通过键获取值
+					3. void removeAttribute(String name):通过键移除键值对
+
+			4. 获取ServletContext：org.apache.catalina.core.ApplicationContextFacade@7eeb6b8c
+				* ServletContext getServletContext()
 
 
 

@@ -5,30 +5,27 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * 获取请求消息体--请求参数
+ * 请求转发：转发到demo9资源
  * @author doafree
  */
-@WebServlet("/requestDemo5")
-public class RequestDemo5 extends HttpServlet {
+@WebServlet("/requestDemo9")
+public class RequestDemo9 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //1.获取字符流username=lisan&password=33344555
-        BufferedReader br = request.getReader();
-        //2.读取数据
-        String line = null;
-        while((line = br.readLine()) != null){
-            System.out.println(line);
-            // username=lisan&password=33344555
-        }
+        //获取数据
+        Object msg = request.getAttribute("msg");
+        System.out.println(msg);
+
+        System.out.println("demo9999被访问了。。。");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        this.doPost(request,response);
     }
 }

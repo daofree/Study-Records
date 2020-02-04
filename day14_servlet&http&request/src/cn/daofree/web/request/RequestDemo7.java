@@ -9,26 +9,26 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
- * 获取请求消息体--请求参数
+ * 中文乱码问题：设置流的编码
  * @author doafree
  */
-@WebServlet("/requestDemo5")
-public class RequestDemo5 extends HttpServlet {
+@WebServlet("/requestDemo7")
+public class RequestDemo7 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //1.获取字符流username=lisan&password=33344555
-        BufferedReader br = request.getReader();
-        //2.读取数据
-        String line = null;
-        while((line = br.readLine()) != null){
-            System.out.println(line);
-            // username=lisan&password=33344555
-        }
+        //1.设置流的编码
+        request.setCharacterEncoding("utf-8");
+
+        //获取请求参数username
+        String username = request.getParameter("username");
+
+        System.out.println(username);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        this.doPost(request,response);
     }
 }
