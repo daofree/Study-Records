@@ -99,7 +99,18 @@
 
 #	* 响应消息数据格式
 
-    
+ ## Request：原理图
+ 	1. request对象和response对象的原理----------图
+ 		1. request和response对象是由服务器tomcat创建的。我们来使用它们
+ 		2. request对象是来获取请求消息，response对象是来设置响应消息
+ 	
+ 	2. request对象继承体系结构：	
+ 		ServletRequest		--	接口
+ 			|	继承
+ 		HttpServletRequest	-- 接口
+ 			|	tomcat实现
+ 		org.apache.catalina.connector.RequestFacade 类(tomcat编写的)
+ 		
 
 
 
