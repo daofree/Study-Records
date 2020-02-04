@@ -11,7 +11,7 @@
 		2. 定义一个类，实现Servlet接口
 			* public class ServletDemo1 implements Servlet
 		3. 实现接口中的5个抽象方法
-##		4. 配置Servlet，映射资源名（/demo1），配置全类名路径	
+##		4. 配置Servlet，映射资源名（/demo1），配置全类名路径(资源)	
 #			 在web.xml中配置：写一个servlet,配置一个！。。。多！
 		    <!--配置Servlet -->
 		    <servlet>
