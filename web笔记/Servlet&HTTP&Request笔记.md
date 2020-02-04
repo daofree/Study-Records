@@ -73,14 +73,14 @@
 				1. User-Agent：浏览器告诉服务器，我访问你使用的浏览器版本信息
 ###					* 可以在服务器端获取该头的信息，解决浏览器的兼容性问题
 
-###				2. Referer：http://localhost/login.html
-					* 告诉服务器，我(当前请求)从哪里来？
-						* 作用：哪来的，既可以识别又可以统计。
+###				2. Referer：http://localhost/login.html获取非我网址
+					* 告诉服务器，我(当前请求)从哪里来？原网址
+						* 作用：哪来的，获取非我网址既可以识别又可以统计。
 							1. 防盗链：看图解，哪来的
 							2. 统计工作：看图解，哪来的
 #		3. 请求空行:空行,分隔用
 			空行，就是用于分割POST请求的请求头，和请求体的。
-#		4. 请求体(正文)：get方式没有请求体。
+#		4. 请求体(正文)：注意get方式没有请求体。
 			* 封装POST请求消息的请求参数的。=
 
 #		* 字符串格式：
@@ -97,7 +97,7 @@
 			username=zhangsan	
 
 
-#	* 响应消息数据格式
+#	* 响应消息数据格式 
 
  ## Request：原理图
  	1. request对象和response对象的原理----------图
@@ -108,10 +108,49 @@
  		ServletRequest		--	接口
  			|	继承
  		HttpServletRequest	-- 接口
- 			|	tomcat实现
- 		org.apache.catalina.connector.RequestFacade 类(tomcat编写的)
+ 			|	tomcat自己实现
+ 		org.apache.catalina.connector.RequestFacade 类(见tomcat源码)
  		
+##    3. request功能：
+#		1. 获取请求消息数据----行--头--体
+			1. 获取请求行数据
+				* GET /day14/demo1?name=zhangsan HTTP/1.1
+				* 方法：
+					1. 获取请求方式 ：GET
+						* String getMethod()  
+#					2. (*)获取虚拟目录：/day14
+						* String getContextPath()
+#					3. 获取Servlet路径: /demo1
+						* String getServletPath()
+#					4. 获取get方式请求参数：name=zhangsan
+						* String getQueryString()
+##					5. (*)获取请求URI：/day14/demo1（虚拟/资源）
+						* String getRequestURI():		/day14/demo1
+						* StringBuffer getRequestURL()  :http://localhost/day14/demo1
 
+##				* URL:统一资源定位符 ： http://localhost/day14/demo1	中华人民共和国
+##				* URI：统一资源标识符 : /day14/demo1					共和国
+					
+#					6. 获取协议及版本：HTTP/1.1
+						* String getProtocol()
+
+#					7. 获取客户机的IP地址：
+						* String getRemoteAddr()
+					
+#			2. 获取请求头数据
+				* 方法：
+					* (*)String getHeader(String name):通过请求头的名称获取请求头的值
+					* Enumeration<String> getHeaderNames():获取所有的请求头名称
+				     referer，直接访问是null值，其他网址间接访问才有值。referer获取的是别的网址！
+###			3. 获取请求体数据:（request对象对请求体封装成了流）
+				* 请求体：只有POST请求方式，才有请求体，在请求体中封装了POST请求的请求参数
+				* 步骤：
+##					1. 获取流对象
+						*  BufferedReader getReader()：获取字符输入流，只能操作字符数据
+						*  ServletInputStream getInputStream()：获取字节输入流，可以操作所有类型数据
+							* 在文件上传知识点后讲解（文件，图片，视频等）
+
+##					2. 再从流对象中拿数据
 
 
 
