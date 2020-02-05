@@ -188,3 +188,10 @@ Context：n.	(事情发生的) 背景，环境，来龙去脉; 上下文; 语境
 			所有项目的web.xml都继承了apache-tomcat-8.5.31\conf\web.xml
 			
 
+##		2. 域对象：共享数据
+			1. setAttribute(String name,Object value)
+			2. getAttribute(String name)
+			3. removeAttribute(String name)
+
+			* ServletContext对象范围：所有用户所有请求的数据（换个浏览器也能获取到），
+			            存的数据所有用户都可以操控，不安全，生命周期长，同服务器启停。数据多，内存压力大。
