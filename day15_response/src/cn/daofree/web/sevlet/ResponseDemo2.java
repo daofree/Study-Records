@@ -8,22 +8,25 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @ClassName ServletDemo1
- * @Description: 5xx：服务器端错误。代表：500(服务器内部出现异常)
+ * @ClassName ResponseDemo2
+ * @Description: 重定向
  * @Author DaoTianXia
- * @Date 2020-02-05-12:20
+ * @Date 2020-02-05-14:26
  * @Version V1.0
  **/
-@WebServlet("/servletDemo1")
-public class ServletDemo1 extends HttpServlet {
-
+@WebServlet("/responseDemo2")
+public class ResponseDemo2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int i = 3/0;
+
+        System.out.println("demo2222222........");
+
+        Object msg = req.getAttribute("msg");
+        System.out.println(msg);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doPost(req, resp);
+        this.doPost(req,resp);
     }
 }
