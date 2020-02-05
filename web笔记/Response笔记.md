@@ -145,6 +145,12 @@
         			response.setContentType("text/html;charset=utf-8");
         			
 
+#		3. 服务器输出字节数据到浏览器
+			* 步骤：
+				1. 获取字节输出流
+				2. 输出数据
+		String的getBytes()方法是得到一个操作系统默认的编码格式的字节数组,"你好".getBytes() 得到的是GBK
+
 	
 	
 
