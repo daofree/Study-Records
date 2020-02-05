@@ -129,3 +129,22 @@
 								req.getRequestDispatcher("/responseDemo2").forward(req,resp);
 ###重定向是客户端用的路径，转发是服务器用的路径	
 	
+
+#		2. 服务器输出字符数据到浏览器
+			* 步骤：
+				1. 获取字符输出流（流向客户端浏览器的）
+				2. 输出数据
+
+			* 注意：浏览器打开默认的字符集和当前操作系统的语言环境有关，操作系统中文,GBK2312
+##				* 乱码问题：
+					1. PrintWriter pw = response.getWriter();获取的流(tomcat返回的)的默认编码是ISO-8859-1
+					2. 设置该流的默认编码，setCharacterEncoding
+					3. 告诉浏览器响应体使用的编码，setHeader("content-type","text/html;charset=utf-8");
+
+					//简单的形式，设置编码，是在获取流之前设置
+        			response.setContentType("text/html;charset=utf-8");
+        			
+
+	
+	
+
