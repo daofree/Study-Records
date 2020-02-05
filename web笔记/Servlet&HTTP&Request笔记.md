@@ -116,7 +116,7 @@
 				* 方法：
 					1. 获取请求方式 ：GET
 						* String getMethod()  
-#					2. (*)获取虚拟目录：/day14
+###					2. (*)获取虚拟目录：/day14
 						* String getContextPath()
 #					3. 获取Servlet路径: /demo1
 						* String getServletPath()
