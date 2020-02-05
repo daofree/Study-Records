@@ -159,7 +159,32 @@
 			BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
 			...
 			ImageIO.write(image,"jpg",resp.getOutputStream());
-	
+	    
 ##获取图片，注意缓存！！+加时间戳new Date().getTime()
 
+虚拟目录动态获取：request.getContextPath()
+response.setContentType("text/html;charset=utf-8");
+Context：n.	(事情发生的) 背景，环境，来龙去脉; 上下文; 语境;
+
+请求资源（web应用ServletContext）产生了请求对象，引出了资源对象（web应用）！
+
+## ServletContext对象：
+	1. 概念：代表整个web应用，可以和程序（servlet的）的容器(服务器)来通信。
+##	web应用是部署在tomcat服务器里的
+#	2. 获取： org.apache.catalina.core.ApplicationContextFacade@109bddec
+		1. 通过request对象获取
+			request.getServletContext();
+		2. 通过HttpServlet获取
+			this.getServletContext();
+			
+#	3. 功能：
+##		1. 获取MIME类型：
+			* MIME类型:在互联网通信过程中定义的一种文件数据类型（通信标准）
+				* 格式： 大类型/小类型   text/html		image/jpeg
+             记得码？？       response.setContentType("text/html;charset=utf-8");
+
+			* 获取：String getMimeType(String file)  
+			其实是通过扩展名（后缀名）获取的。为啥能获取到，所有对应关系都在服务器里存的，ServletContext对象又能和tomcat通信.
+			所有项目的web.xml都继承了apache-tomcat-8.5.31\conf\web.xml
+			
 
