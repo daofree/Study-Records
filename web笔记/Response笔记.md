@@ -145,12 +145,21 @@
         			response.setContentType("text/html;charset=utf-8");
         			
 
-#		3. 服务器输出字节数据到浏览器
+#		3. 服务器输出字节数据到浏览器,案例见4
 			* 步骤：
 				1. 获取字节输出流
 				2. 输出数据
 		String的getBytes()方法是得到一个操作系统默认的编码格式的字节数组,"你好".getBytes() 得到的是GBK
 
 	
+
+#		4. 验证码（验证码图片在内存里，可用内存里的二进制数据写到页面上去）
+			1. 本质：图片
+			2. 目的：防止恶意表单注册
+			BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+			...
+			ImageIO.write(image,"jpg",resp.getOutputStream());
 	
+##获取图片，注意缓存！！+加时间戳new Date().getTime()
+
 
