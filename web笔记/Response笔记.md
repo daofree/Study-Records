@@ -195,3 +195,19 @@ Context：n.	(事情发生的) 背景，环境，来龙去脉; 上下文; 语境
 
 			* ServletContext对象范围：所有用户所有请求的数据（换个浏览器也能获取到），
 			            存的数据所有用户都可以操控，不安全，生命周期长，同服务器启停。数据多，内存压力大。
+
+##		3. 获取文件的真实(服务器)路径;/WEB-INF/classes==src（src类加载也可以）
+        实际部署在服务器中的项目里面的路径，不是工作空间（源码）的路径
+			1. 方法：String getRealPath(String path)  
+				 String b = context.getRealPath("/b.txt");//web目录下资源访问
+		         System.out.println(b);
+		
+		        String c = context.getRealPath("/WEB-INF/c.txt");//WEB-INF目录下的资源访问
+		        System.out.println(c);
+		
+		        String a = context.getRealPath("/WEB-INF/classes/a.txt");//src目录下的资源访问
+		        System.out.println(a);
+		   /==项目部署路径docBase="D:\IdeaProjects\Study-Records\out\artifacts\day15_response_war_exploded"
+
+        /WEB-INF/classes==src
+        		src下还可以通过类加载器ClassLoder获取！只能在src下！
