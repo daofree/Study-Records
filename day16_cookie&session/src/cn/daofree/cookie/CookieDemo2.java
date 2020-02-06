@@ -20,6 +20,7 @@ public class CookieDemo2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // 我们自己可以获取请求头（cookie:msg=hello），解析出来的，但用封装好的api
         //3. 获取Cookie
         Cookie[] cs = req.getCookies();
         //获取数据，遍历Cookies

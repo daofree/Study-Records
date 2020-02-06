@@ -32,4 +32,8 @@
     每次doPost，烦；
     模板设置Settings设置：File and Code Templates-->other-->web-->				 
     @WebServlet("/cookieDemo1") ==<== <url-pattern>/RegistServlet</url-pattern>
-    
+
+    3. 实现原理--图解+抓包
+		* 基于响应头set-cookie和请求头cookie实现 
+		
+		   
