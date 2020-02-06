@@ -242,4 +242,15 @@ Context：n.	(事情发生的) 背景，环境，来龙去脉; 上下文; 语境
 				1. 获取客户端使用的浏览器版本信息
 				2. 根据不同的版本信息，响应不同的数据（设置filename的编码方式不同）
 
-        		
+      https://www.boxuegu.com/ask/detail/1223
+      IDE中找不到sun.misc.BASE64Encoder jar包,在项目开发过程中，安装了JDK 9以上版本，
+      发现sun.misc.Base64Encoder和sun.misc.Base64Decoder无法使用。找不到导入的包  	
+      原因：
+      
+      查看官网发现，JDK中的/lib/tool.jar和/lib/rt.jar已经从Java SE 9中删除
+      
+      处理办法：
+      
+      方法1. 切换JDK1.8
+      
+      方法2. 直接用 java.util.Base64.Encoder 和 java.util.Base64.Decoder 替代使用。	
