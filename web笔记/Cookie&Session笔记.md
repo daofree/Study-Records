@@ -65,5 +65,14 @@
 					* setDomain(".baidu.com"),那么tieba.baidu.com和news.baidu.com中cookie可以共享	
 				电商项目：域名映射，分布式部署可能用到
 
+	5. Cookie的特点和作用
+		1. cookie存储数据在客户端浏览器，不安全
+		2. 浏览器对于单个cookie 的大小有限制(4kb) 以及 对同一个域名下的总cookie数量也有限制(20个)
+
+		* 作用：
+			1. cookie一般用于存出少量的不太敏感的数据
+			2. 在不登录的情况下，完成服务器对客户端的身份识别
+
+
 
 					   
