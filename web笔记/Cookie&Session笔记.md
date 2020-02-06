@@ -27,13 +27,13 @@
 				* new Cookie(String name, String value) 
 #			2. 发送Cookie对象
 				* response.addCookie(Cookie cookie) 
-#]			3. 获取Cookie，拿到数据
+#			3. 获取Cookie，拿到数据
 				* Cookie[]  request.getCookies() 
     每次doPost，烦；
     模板设置Settings设置：File and Code Templates-->other-->web-->				 
     @WebServlet("/cookieDemo1") ==<== <url-pattern>/RegistServlet</url-pattern>
 
-#    3. 实现原理--图解+抓包
+#    3. 实现原理--图解+抓包，http协议里
 		* 基于响应头set-cookie和请求头cookie实现 
 		
 	4. cookie的细节
@@ -131,4 +131,22 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
                 jsp脚本可以被截断,写Java代码和html标签非常方便！但页面不方便阅读，展示+流程控制，难写复杂！  
                 
                  
-					   
+## Session：主菜
+	1. 概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。HttpSession
+	2. 快速入门：
+		1. 获取HttpSession对象：
+			HttpSession session = request.getSession();
+		2. 使用HttpSession对象：
+			Object getAttribute(String name)  
+			void setAttribute(String name, Object value)
+			void removeAttribute(String name)  
+	
+	3. 原理--图解--tomcat间接创建了cookie!
+		* Session的实现是依赖于Cookie（响应头，请求头）的。
+	   过程：	
+		第一次获取session时（没有session获取不到，没有id），也是没有cookie的，
+		会在内存中创建session,并有唯一一个id值，
+		当给务器响应时，会发送一个响应头set-cookie:JSESSIONID=值;
+		第二次访问时，服务器会获取cookie信息。并根据JSESSIONID的id在内存中查找有没有id。。。
+
+											   

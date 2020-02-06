@@ -1,0 +1,35 @@
+package cn.daofree.session;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+
+/**
+ * @ClassName SessionDemo1
+ * @Description: 使用session共享数据
+ * @Author DaoTianXia
+ * @Date 2020-02-06-23:56
+ * @Version V1.0
+ **/
+@WebServlet("/sessionDemo1")
+public class SessionDemo1 extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        //使用session共享数据
+
+        //1.获取session
+        HttpSession session = request.getSession();
+        //2.存储数据
+        session.setAttribute("msg","hello session");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doPost(request, response);
+    }
+}
