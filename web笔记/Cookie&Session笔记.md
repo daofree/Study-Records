@@ -5,7 +5,7 @@
 	2. JSP：入门学习
 
 
-请求又引出了会话技术！
+请求又引出了会话技术！（如购物时每次加入购物车操作）
 ##背景
         因为http协议是无状态的，每次请求响应与其他请求响应都是独立的！不能进行数据交流交换！会话技术就是来解决
 ## 会话技术
@@ -93,4 +93,39 @@
                 cookie设值，键一样，会覆盖之前原来的值。
 
 
+## JSP：入门学习:   动静结合的页面只能response.getWrite().write()往页面上响应数据，标签，一写万千百行！
+	1. 概念：
+		* Java Server Pages： java服务器端页面
+			* 可以理解为：一个特殊的页面，其中既可以指定定义html标签，又可以定义java代码
+			* 用于简化书写！！！
+
+
+#	2. 原理：jsp文件转换为java文件，编译成字节码文件.class,提供访问，作出响应。
+		* 字节码文件能被浏览器访问到，JSP本质上就是一个Servlet！（只有Servlet才能被访问到）
+        work运行时产生的资源文件！
+   每一个项目的配置目录
+C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\conf\Catalina\localhost
+一访问jsp,生成了work目录,放置对应生成的java与字节码文件！
+tomcat帮我们写了静态页面，index_jsp.java,还编译index_jsp.class
+C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\localhost\day16\org\apache\jsp
+
+
+#	3. <% JSP的脚本 %>：JSP定义Java代码的方式，代表位置不同   
+		1. <%  代码 %>：定义的java代码，在service方法中。service方法中可以定义什么，该脚本中就可以定义什么。
+		2. <%! 代码 %>：定义的java代码，在jsp转换后的java类的成员位置。
+		3. <%= 代码 %>：定义的java代码，就近原则输出，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。
+
+
+	4. JSP的内置对象：
+		* 在jsp页面中不需要获取和创建，可以直接使用的对象
+		* jsp一共有9个内置对象。
+		* 今天学习3个：
+			* request
+			* response
+			* out：字符输出流对象。可以将数据输出到页面上。和response.getWriter()类似
+#				* response.getWriter()和out.write()的区别：
+##					* 在tomcat服务器真正给客户端做出响应之前，会先找response缓冲区数据，再找out缓冲区数据。
+					* response.getWriter()数据输出永远在out.write()之前
+				
+				
 					   

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * @ClassName CookieDemo5
- * @Description: cookie能不能存中文？
+ * @Description: cookie能不能存中文？一般可以，特殊不行
  * @Author DaoTianXia
  * @Date 2020-02-06-15:11
  * @Version V1.0
