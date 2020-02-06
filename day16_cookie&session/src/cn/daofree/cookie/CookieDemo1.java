@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @ClassName ${NAME}
+ * @ClassName CookieDemo1
  * @Description: Cookie快速入门
  * @Author DaoTianXia
  * @Date 2020-02-06-13:44

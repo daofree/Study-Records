@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @ClassName ${NAME}
+ * @ClassName CookieDemo5
  * @Description: cookie能不能存中文？
  * @Author DaoTianXia
  * @Date 2020-02-06-15:11

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @ClassName ${NAME}
+ * @ClassName CookieDemo3
  * @Description: 一次可不可以发送多个cookie? 可以
  * @Author DaoTianXia
  * @Date 2020-02-06-14:20

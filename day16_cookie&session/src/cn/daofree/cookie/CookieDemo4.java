@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @ClassName ${NAME}
+ * @ClassName CookieDemo4
  * @Description: cookie在浏览器中保存多长时间？持久化倒计时,0删除
  * @Author DaoTianXia
  * @Date 2020-02-06-14:59
