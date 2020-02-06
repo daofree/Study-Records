@@ -110,7 +110,7 @@ tomcat帮我们写了静态页面，index_jsp.java,还编译index_jsp.class
 C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\localhost\day16\org\apache\jsp
 
 
-#	3. <% JSP的脚本 %>：JSP定义Java代码的方式，代表位置不同   
+#	3. <% JSP的脚本 %>：JSP定义Java代码的方式，代表位置不同;  jsp脚本可以被截断   
 		1. <%  代码 %>：定义的java代码，在service方法中。service方法中可以定义什么，该脚本中就可以定义什么。
 		2. <%! 代码 %>：定义的java代码，在jsp转换后的java类的成员位置。
 		3. <%= 代码 %>：定义的java代码，就近原则输出，会输出到页面上。输出语句中可以定义什么，该脚本中就可以定义什么。
@@ -127,5 +127,8 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 ##					* 在tomcat服务器真正给客户端做出响应之前，会先找response缓冲区数据，再找out缓冲区数据。
 					* response.getWriter()数据输出永远在out.write()之前
 				
-				
+5. 案例:改造Cookie案例:	
+                jsp脚本可以被截断,写Java代码和html标签非常方便！但页面不方便阅读，展示+流程控制，难写复杂！  
+                
+                 
 					   
