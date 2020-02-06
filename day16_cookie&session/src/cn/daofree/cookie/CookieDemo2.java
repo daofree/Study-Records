@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * @ClassName CookieDemo1
- * @Description: Cookie快速入门
+ * @Description: Cookie快速入门，获取cookie
  * @Author DaoTianXia
  * @Date 2020-02-06-13:30
  * @Version V1.0
