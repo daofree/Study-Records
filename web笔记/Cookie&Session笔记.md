@@ -211,4 +211,7 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 	        页面是两次请求（验证码一个），生成的验证码放session里（安全），放request里，两次请求是不能共享的！
 	                存储数据，success页面显示XXX欢迎你！这个跳转用重定向，要存在session里，存request域中就不行了！·    
 	
-														   
+	注意要一次性的验证码！	//删除session中存储的验证码
+                        session.removeAttribute("checkCode_session");		
+  
+ ## 想知道cookie可不可以     ！                 										   
