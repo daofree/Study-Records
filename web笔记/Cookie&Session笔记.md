@@ -149,4 +149,46 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 		当给务器响应时，会发送一个响应头set-cookie:JSESSIONID=值;
 		第二次访问时，服务器会获取cookie信息。并根据JSESSIONID的id在内存中查找有没有id。。。
 
-											   
+	4. 细节：
+		1. 当客户端关闭后（会话结束），服务器不关闭，再次打开，两次获取session是否为同一个？
+#			* 默认情况下。不是。因为session依赖cookie,浏览器关了，cookie没了，session就没了；
+			* 如果需要相同，则可以延长cookie时间，创建Cookie,键为JSESSIONID，设置最大存活时间，让cookie持久化保存。
+				 Cookie c = new Cookie("JSESSIONID",session.getId());
+		         c.setMaxAge(60*60);
+		         response.addCookie(c);
+
+		2. 客户端不关闭，服务器关闭后(内存释放，会话结束，session销毁)，两次获取的session是同一个吗？
+#			* 不是同一个，不一样会引发一系列问题，比如网购车对象是存在session里的
+			    但是要确保数据不丢失。tomcat自动完成以下工作
+				* session的钝化：序列化
+					* 在服务器正常关闭之前，将session对象序列化到硬盘上，（work目录生成SESSION.ser）
+				* session的活化：反序列化
+					* 在服务器启动后，将session文件转化为内存中的session对象即可。
+					（读取后然后删除work目录生成的SESSION.ser）
+#				session对象的地址值不一样，但是id值是一样的
+				
+				本地tomcat验证成功!---IDEA失败!bug！
+				
+				IDEA会钝化，单独的配置文件里的work会序列
+				C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\conf\Catalina\localhost
+				但是活化不会成功。再次启动，idea会把work目录删掉，再创建新的work目录，所以读取不到那个文件！！
+								
+				
+#		3. session什么时候被销毁？
+			1. 服务器关闭
+			2. session对象调用invalidate() 。
+			3. session默认失效时间 30分钟
+				父web.xml里有选择性配置修改，自己添加个子web.xml也可以！
+				<session-config>
+			        <session-timeout>30</session-timeout>
+			    </session-config>
+
+	 5. session的特点----购物
+		 1. session用于存储一次会话的多次请求的数据，存在服务器端(购物！)
+		 2. session可以存储任意类型，任意大小的数据 
+		   setAttribute(String name, Object value)，object没有类型，大小限制，cookiez只能字符串，还不能空格等特殊字符
+
+		* session与Cookie的区别：主菜（数据量大）与小饼干的区别！！
+			1. session存储数据在服务器端，Cookie在客户端
+			2. session没有数据大小限制，Cookie有
+			3. session数据安全，Cookie相对于不安全											   
