@@ -6,6 +6,7 @@
 <body>
 
     <h1>服务器正忙...isErrorPage="true"可以用exception </h1>
+    需要指定errorPage="500.jsp"
     <%
         String message = exception.getMessage();
         out.print(message);

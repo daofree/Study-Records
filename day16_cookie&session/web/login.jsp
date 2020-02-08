@@ -22,7 +22,7 @@
 </head>
 <body>
 
-    <form action="/day16/loginServlet" method="post">
+    <form action="${pageContext.request.contextPath}/loginServlet" method="post">
         <table>
             <tr>
                 <td>用户名</td>
