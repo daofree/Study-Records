@@ -139,6 +139,32 @@ JavaWen 三大组件Filter Listener Servlet
 								2. 增强返回值类型
 								3. 增强方法体执行逻辑		
 
+## Listener：监听器
+	* 概念：web的三大组件之一。
+		* 事件监听机制（js种绑定事件）
+			* 事件	：一件事情，（点击）---ServletContext对象创建
+			* 事件源 ：事件发生的地方，（按钮）---tomcat
+			* 监听器 ：一个对象，（一段代码）---ContextLoderListener implements ServletContextListener
+			* 注册监听：将事件、事件源、监听器绑定在一起。 当事件源上发生某个事件后，执行监听器代码---配置<listener>
+
+##有多很多监听器对象！！！
+
+	* ServletContextListener接口:监听ServletContext对象的创建和销毁
+		* 方法：
+			* void contextDestroyed(ServletContextEvent sce) ：ServletContext对象被销毁之前会调用该方法
+			* void contextInitialized(ServletContextEvent sce) ：ServletContext对象创建后会调用该方法
+		* 步骤：
+			1. 定义一个类，实现ServletContextListener接口
+			2. 复写方法
+			3. 配置
+				1. web.xml
+						<listener>
+     					 <listener-class>cn.itcast.web.listener.ContextLoaderListener</listener-class>
+   						</listener>
+
+						* 指定初始化参数<context-param>---资源路径位置
+				2. 注解：
+					* @WebListener
 
                        
 										
