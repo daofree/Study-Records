@@ -40,7 +40,7 @@
     					2. jquery-xxx.min.js：生产版本。程序中使用，没有缩进。体积小一些。程序加载更快
     
     			2. 导入JQuery的js文件：导入min.js文件
-    			3. 使用 $()方法对象的名字,$(选择器)
+    			3. 使用      $()方法对象的名字,$(选择器)
     				var div1 = $("#div1");
        				alert(div1.html());
 
@@ -50,10 +50,32 @@
             3. 两者相互转换
                 * jq -- > js : jq对象[索引] 或者 jq对象.get(索引)
                 * js -- > jq : $(js对象)
-                
+            单个玩就是js;数组玩就是JQ    
                 
 
-
+    4. 选择器：筛选具有相似特征的元素(标签)
+    
+    		1. 基本操作学习：
+    			1. 事件绑定
+    				//1.获取b1按钮
+    	            $("#b1").click(function(){
+    	                alert("abc");
+    	            });
+    	            
+###    			2. 入口函数,（资源未加载，脚本先执行，需要入口）
+    				 $(function () {
+    		           
+           			 });
+    				 window.onload  和 $(function) 区别
+    	                 * window.onload 只能定义一次,如果定义多次，后边的会将前边的覆盖掉
+    	                 * $(function)可以定义多次的。
+    	                 
+    			3. 样式控制：css方法
+    				 // $("#div1").css("background-color","red");
+              		$("#div1").css("backgroundColor","pink");
+    
+    
+    		2. 分类
 
 
 
