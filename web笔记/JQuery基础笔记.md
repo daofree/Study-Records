@@ -44,5 +44,18 @@
     				var div1 = $("#div1");
        				alert(div1.html());
 
+    3. JQuery对象(通过$()拿出来的)和JS对象区别与转换
+    		1. JQuery对象在操作时，更加方便。
+            2. JQuery对象和js对象方法不通用的.
+            3. 两者相互转换
+                * jq -- > js : jq对象[索引] 或者 jq对象.get(索引)
+                * js -- > jq : $(js对象)
+                
+                
+
+
+
+
+
 
 			
