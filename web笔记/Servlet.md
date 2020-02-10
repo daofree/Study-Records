@@ -1,3 +1,22 @@
+##背景    
+    动态资源（显示不一样）要具有逻辑姓，且是代码（Java）实现的！！
+	即浏览器请求动态资源，找的是Java类！且这种Java类依赖服务器才能运行，没有主方法！！
+	是tomcat执行它！是随便一个类，Tomcat都能执行它吗？？
+	这个java类需要一定规范和规则，tomcat才能认识它，执行它，创建对象，调用方法！
+	规则==接口！接口就是定义规则的，这里就是Servlet!!
+
+    Servlet是JavaEE规范的一种，主要是为了扩展Java作为Web服务的功能，统一接口。
+    Java Servlet API是Servlet容器和Servlet之间的接U，它定义了Servlet的各种方法，
+    还定义了Servlet容器传送给Servlet的对象类，其中最重要的是请求对象ServletRequest和
+    响应对象ServletResponseo这两个对象都是由Servlet容器在客户端调用Servlet时产生的，
+    Servlet容器把客户请求信息封装在ServletRequest对象中，然后把这两个对象都传送给要调
+    用的Servlet，Servlet处理完后把响应结果写入ServletResponse，然后由Servlet容器把响应
+    结果发送到客户端。
+    
+    由其他内部厂商如tomcat，jetty内部实现web的功能。
+   
+    Tomcat就是满足这种需要的JSP/Servlet引擎，是Sun公司的JSP/Servlet的官方实现。
+    
 ## Servlet：  server applet
 	* 概念：运行在服务器端的小程序
 	  遵守（规则==接口）==Servlet
