@@ -42,19 +42,20 @@
 		// 入口函数
 		$(function () {
 			// <input type="button" value="改变 id 为 one 的元素的背景色为 红色"  id="b1"/>
+			// 给b1按钮绑定单击事件
 			$("#b1").click(function () {
 				$("#one").css("backgroundColor","pink")
-			})
+			});
 
 			// <input type="button" value=" 改变元素名为 <div> 的所有元素的背景色为 红色"  id="b2"/>
 			$("#b2").click(function () {
 				$("div").css("backgroundColor","pink")
-			})
+			});
 
 			// <input type="button" value=" 改变 class 为 mini 的所有元素的背景色为 红色"  id="b3"/>
 			$("#b3").click(function () {
 				$(".mini").css("backgroundColor","pink")
-			})
+			});
 
 			// <input type="button" value=" 改变所有的<span>元素和 id 为 two 的元素的背景色为红色"  id="b4"/>
 			$("#b4").click(function () {
