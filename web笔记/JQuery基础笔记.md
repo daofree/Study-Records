@@ -144,7 +144,21 @@
         			            <a><font>内容</font></a> --> 内容
         			3. val()： 获取/设置元素的value属性值
         				
-				
+				2. 属性操作
+                			1. 通用属性操作
+                				1. attr(): 获取/设置元素的属性
+                				2. removeAttr():删除属性
+                				
+                				3. prop():获取/设置元素的属性
+                				4. removeProp():删除属性
+                
+##                				* attr和prop区别？
+                					1. 如果操作的是元素的固有属性，则建议使用prop；查表。
+                					若用attr获取固有checked属性，selected等属性为undefined，获取不到；
+                					2. 如果操作的是元素自定义的属性，则建议使用attr；
+                				    若用prop也可以。
+
+                			
 				
 				
 				

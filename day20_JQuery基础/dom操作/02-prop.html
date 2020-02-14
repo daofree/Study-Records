@@ -33,17 +33,24 @@
 	 </style>
     
 	<script type="text/javascript">
-	
-		//获取北京节点的name属性值
 
-		//设置北京节点的name属性的值为dabeijing
+		$(function () {
+			//获取北京节点的name属性值
+			let v1 = $("#bj").attr("name");
+			//alert(v1);
+			//设置北京节点的name属性的值为dabeijing
+			$("#bj").attr("name","dabeijing");
 
-		//新增北京节点的discription属性 属性值是didu
+			//新增北京节点的discription属性 属性值是didu
+			$("#bj").attr("discription","didu");
+			//删除北京节点的name属性并检验name属性是否存在
+			$("#bj").removeAttr("name");
 
-		//删除北京节点的name属性并检验name属性是否存在
-		
-		//获得hobby的的选中状态
-		
+			//获得hobby的的选中状态
+			let vp = $("#hobby").prop("checked");
+			alert(vp);
+		});
+
 		
 	</script>
 	
