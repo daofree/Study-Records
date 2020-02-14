@@ -88,7 +88,7 @@
 						* 本地SYSTEM：<!DOCTYPE 根标签名 SYSTEM "dtd文件的位置">
 						* 网络PUBLIC：<!DOCTYPE 根标签名 PUBLIC "dtd文件名字" "dtd文件的位置URL">
 <!ATTLIST student number ID #REQUIRED>
-属性number，属性类型ID，必须出现，ID表示number唯一
+属性number，属性类型ID，必须出现，类型ID表示number唯一
 （#PCDATA）是字符串
 
 
@@ -110,7 +110,8 @@
 #  3. 解析：操作xml文档，将文档中的数据读取到内存中
 		* 操作xml文档
 			1. 解析(读取)：将文档中的数据读取到内存中
-			2. 写入：将内存中的数据保存到xml文档中。持久化的存储
+			2. 写入：将内存中的
+			数据保存到xml文档中。持久化的存储
 
 		* 解析xml的方式：两种思想
 			1. DOM：将标记语言文档一次性加载进内存，在内存中形成一颗dom树

@@ -5,12 +5,27 @@
 		<title></title>
 		<script  src="../js/jquery-3.3.1.min.js"></script>
 		<script>
-			// 获取myinput 的value值
-			
-			// 获取mydiv的标签体内容
-			
-			// 获取mydiv文本内容
-		
+            $(function () {
+                // 获取myinput 的value值
+                let value = $("#myinput").val();
+                alert(value);
+                // 设置myinput 的value值
+                $("#myinput").val("lisi");
+
+                // 获取mydiv的标签体内容
+                let v2 = $("#mydiv").html();
+                alert(v2);
+                // 设置mydiv的标签体内容
+                $("#mydiv").html("html设置");
+
+
+                // 获取mydiv文本内容
+                let v3 = $("#mydiv").text();
+                alert(v3);
+                // 设置mydiv的文本内容
+                $("#mydiv").text("text设置文本内容");
+            });
+
 		</script>
 		
 	</head>
