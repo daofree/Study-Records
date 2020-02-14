@@ -157,19 +157,17 @@
                 					若用attr获取固有checked属性，selected等属性为undefined，获取不到；
                 					2. 如果操作的是元素自定义的属性，则建议使用attr；
                 				    若用prop也可以。
-
+                				    
+                            2. 对class属性操作
+                            	1. addClass():添加class属性值
+                            	2. removeClass():删除class属性值
+                            	3. toggleClass():切换class属性
+                            		* toggleClass("one"): 
+                            			* 判断如果元素对象上存在class="one"，则将属性值one删除掉。  
+                            			     如果元素对象上不存在class="one"，则添加
+                            	4. css():
                 			
 				
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+				                                                                                                                                                                                                   
+		
