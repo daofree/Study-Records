@@ -19,7 +19,7 @@
 						2. easing：用来指定切换效果，默认是"swing"，可用参数"linear"
 							* swing：动画执行时效果是 先慢，中间快，最后又慢
 							* linear：动画执行时速度是匀速的
-						3. fn：在动画完成时执行的函数，每个元素执行一次。
+						3. fn：在动画完成时执行的函数，每个元素执行一次。可以为空。
 
 				2. hide([speed,[easing],[fn]])
 				3. toggle([speed],[easing],[fn])
@@ -35,5 +35,23 @@
 				3. fadeToggle([speed,[easing],[fn]])
 
 
-	
+	2. 遍历
+    		1. js的遍历方式
+    			* for(初始化值;循环结束条件;步长)
+# 2. jq的遍历方式
+    			1. jq对象.each(callback)
+    				1. 语法：
+    					jquery对象.each(function(index,element){});
+    						* index:就是元素在集合中的索引
+    						* element：就是集合中的每一个元素对象
+    
+    						* this：集合中的每一个元素对象
+    				2. 回调函数返回值：
+    					* true:如果当前function返回为false，则结束循环(break)。
+    					* false:如果当前function返回为true，则结束本次循环，继续下次循环(continue)
+    			2. 全局遍历方式，object还可以是js对象
+    			        $.each(object, [callback])
+    			        
+    			3. for..of: jquery    3.0 版本之后提供的方式
+    				for(元素对象 of 容器对象)
 	
