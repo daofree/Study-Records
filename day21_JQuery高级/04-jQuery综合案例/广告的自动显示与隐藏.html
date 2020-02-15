@@ -11,6 +11,38 @@
     <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
     <script>
 
+        /*
+            需求：
+                1. 当页面加载完，3秒后。自动显示广告
+                2. 广告显示5秒后，自动消失。
+
+
+            分析：
+                1. 使用定时器来完成。setTimeout (执行一次定时器)
+                2. f12动画案例，分析发现JQuery的显示和隐藏动画效果（方法）
+                    其实就是控制display实现动画的-----style="display: none;
+                3. 使用  show/hide方法来完成广告的显示
+         */
+
+        //入口函数，在页面加载完成之后，定义定时器，调用这两个方法
+        $(function () {
+            console.log("----谷歌不行-----");
+            //定义定时器，调用adShow方法 3秒后执行一次
+            setTimeout(adShow,3000);
+            //定义定时器，调用adHide方法，8秒后执行一次
+            setTimeout(adHide,8000);
+            console.log("#####谷歌不行#####");
+        });
+        //显示广告
+        function adShow() {
+            //获取广告div，调用显示方法
+            $("#ad").show("slow");
+        }
+        //隐藏广告
+        function adHide() {
+            //获取广告div，调用隐藏方法
+            $("#ad").hide("slow");
+        }
     </script>
 </head>
 <body>
@@ -18,7 +50,8 @@
 <div>
     <!-- 广告DIV -->
     <div id="ad" style="display: none;">
-        <img style="width:100%" src="../img/adv.jpg" />
+        <img style="width:100%" src="../img/man04.jpg" />
+        <!--<img style="width:100%" src="../img/adv.jpg" />-->
     </div>
 
     <!-- 下方正文部分 -->
