@@ -78,9 +78,10 @@
         1. 广告显示和隐藏
         2. 抽奖
         				
-    5. 插件：增强JQuery的功能
+    5. 插件：增强（扩展）JQuery的功能（$==jQuery）------用JQ自定义方法--扩展
     		1. 实现方式：
-    			1. $.fn.extend(object) 
+    			1. $.fn.extend(object) ---对象插件
     				* 增强通过Jquery获取的对象的功能  $("#id")
-    			2. $.extend(object)
-    				* 增强JQeury对象自身的功能  $/jQuery				 
+    			2. $.extend(object) ---全局插件
+    				* 增强JQeury对象自身的功能  $ / jQuery
+    		见案例				 
