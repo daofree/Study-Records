@@ -55,3 +55,23 @@
     			3. for..of: jquery    3.0 版本之后提供的方式
     				for(元素对象 of 容器对象)
 	
+    3. 事件绑定
+    		1. jquery标准的绑定方式
+    			* jq对象.事件方法(回调函数)；//click(f);
+    			* 注：如果调用事件方法，不传递回调函数，则会触发浏览器默认行为。
+    			    * $("#name").focus();//让文本输入框获得焦点
+    				* 表单对象.submit();//让表单提交
+    				
+    		2. on绑定事件/off解除绑定
+    			* jq对象.on("事件名称",回调函数)
+    			* jq对象.off("事件名称")
+    				* 如果off方法不传递任何参数，则将组件上的所有事件全部解绑
+    				
+    		3. 事件切换：toggle
+    			* jq对象.toggle(fn1,fn2...)
+    				* 当单击jq对象对应的组件后，会执行fn1.第二次点击会执行fn2.....
+    				
+    			* 注意：1.9版本 .toggle() 方法删除,jQuery Migrate（迁移）插件可以恢复此功能。jquery-migrate-1.0.0.js
+    				 <script src="../js/jquery-migrate-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+    				
+    				 
