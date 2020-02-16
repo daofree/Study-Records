@@ -64,3 +64,24 @@
 		                }
 		            }
 
+        
+##    2. JQeury实现方式
+##    			1. $.ajax()
+    				* 语法：$.ajax({键值对});-----$.ajax(url,[settings]);
+    				
+    				 //使用$.ajax()发送异步请求
+    		            $.ajax({
+    		                url:"ajaxServlet1111" , // 请求路径
+    		                type:"POST" , //请求方式
+    		                //data: "username=jack&age=23",//请求参数
+    		                data:{"username":"jack","age":23},
+    		                success:function (data) {
+    		                    alert(data);
+    		                },//响应成功后的回调函数
+    		                error:function () {
+    		                    alert("出错啦...")
+    		                },//表示如果请求响应出现错误，会执行的回调函数
+    		
+    		                dataType:"text"//设置接受到的响应数据的格式
+    		            });
+

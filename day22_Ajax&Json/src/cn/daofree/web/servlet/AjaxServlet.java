@@ -24,7 +24,7 @@ public class AjaxServlet extends HttpServlet {
 
         // 处理业务逻辑。耗时，
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
