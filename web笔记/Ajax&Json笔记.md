@@ -162,4 +162,37 @@
     			            for(var key in p){
     			                alert(key+":"+p[key]);
     			            }
-    			        }    		                 						
+    			        }    	
+    
+##    3. JSON数据和Java对象的相互转换
+            json数据载体在网络中传输，客户端服务端。---图解
+            
+    		* JSON解析器：
+    			* 常见的解析器：官方Jsonlib，谷歌Gson，阿里fastjson，springmvc框架内置的jackson
+    		
+###    		1. JSON转为Java对象
+    			1. 导入jackson的相关jar包
+    			2. 创建Jackson核心对象 ObjectMapper
+    			3. 调用ObjectMapper的相关方法进行转换
+    				1. readValue(json字符串数据,Class)
+###    		2. Java对象转换JSON
+    			1. 使用步骤：
+    				1. 导入jackson的相关jar包，准备java对象
+    				2. 创建Jackson核心对象 ObjectMapper
+    				3. 调用ObjectMapper的相关方法进行转换
+    					1. 转换方法：
+    						* writeValue(参数1，obj):
+    		                    参数1：
+    		                        File：将obj对象转换为JSON字符串，并保存到指定的文件中
+    		                        Writer：将obj对象转换为JSON字符串，并将json数据填充到字符输出流中
+    		                        OutputStream：将obj对象转换为JSON字符串，并将json数据填充到字节输出流中
+    		                * writeValueAsString(obj):将对象转为json字符串
+    
+    					2. 注解：
+    						1. @JsonIgnore：排除属性。不会转换字符串了
+    						2. @JsonFormat：属性值得格式化
+    							* @JsonFormat(pattern = "yyyy-MM-dd")
+    
+    					3. 复杂java对象转换
+    						1. List：数组
+    						2. Map：对象格式一致			        	                 						
