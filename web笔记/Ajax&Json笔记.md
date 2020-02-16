@@ -85,3 +85,20 @@
     		                dataType:"text"//设置接受到的响应数据的格式
     		            });
 
+##              2. $.get()：发送get请求
+                		* 语法：$.get(url, [data], [callback], [type])
+                			 * 参数：
+                				* url：请求路径
+                				* data：请求参数
+                				* callback：回调函数
+                				* type：响应结果的类型
+          
+                3. $.post()：发送post请求
+                    	* 语法：$.post(url, [data], [callback], [type])
+                    		 * 参数：
+                    			* url：请求路径
+                    			* data：请求参数
+                    			* callback：回调函数
+                    			* type：响应结果的类型		
+                    			
+                    						

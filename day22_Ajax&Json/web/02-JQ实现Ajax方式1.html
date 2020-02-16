@@ -11,7 +11,7 @@
             //使用$.ajax()发送异步请求
 
             $.ajax({
-                url:"ajaxServlet" ,             // 请求路径
+                url:"ajaxServlet111" ,              // 请求路径
                 type:"POST" ,                       // 请求方式
                 //data: "username=jack&age=23",     // 请求参数
                 data:{"username":"jack","age":23},  // json格式
@@ -19,7 +19,7 @@
                     alert(data);
                 },                                  // 响应成功后的回调函数
                 error:function () {
-                    alert("出错啦...")
+                    alert("出错啦...");// 路径错误ajaxServlet111
                 },                                  // 表示如果请求响应出现错误，会执行的回调函数
 
                 dataType:"text"                     // 设置接受到的响应数据的格式
