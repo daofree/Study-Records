@@ -171,10 +171,11 @@
     			* 常见的解析器：官方Jsonlib，谷歌Gson，阿里fastjson，springmvc框架内置的jackson
     		
 ###    		1. JSON转为Java对象
-    			1. 导入jackson的相关jar包
+    			1. 导入jackson的相关jar包，准备java对象
     			2. 创建Jackson核心对象 ObjectMapper
     			3. 调用ObjectMapper的相关方法进行转换
     				1. readValue(json字符串数据,Class)
+    				
 ###    		2. Java对象转换JSON
     			1. 使用步骤：
     				1. 导入jackson的相关jar包，准备java对象
@@ -195,4 +196,5 @@
     
     					3. 复杂java对象转换
     						1. List：数组
-    						2. Map：对象格式一致			        	                 						
+    						2. Map：对象格式一致		
+    							        	                 						
