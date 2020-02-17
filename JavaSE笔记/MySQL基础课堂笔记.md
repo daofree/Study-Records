@@ -259,4 +259,47 @@
 			SELECT NAME,math,english,math+IFNULL(english,0) AS 总分 FROM student;
 
 
-					    
+	3. 条件查询
+    		1. where子句后跟条件
+    		2. 运算符
+    			* > 、< 、<= 、>= 、= 、<>不等于(!=)
+    			    不等于
+    			    SELECT * FROM student WHERE age <> 20;
+                    SELECT * FROM student WHERE age != 20;
+                
+    			* BETWEEN...AND  
+    			* and  或 &&
+    			    SELECT * FROM student WHERE age >= 20 && age <=30;
+                    SELECT * FROM student WHERE age >= 20 AND age <=30;
+                    SELECT * FROM student WHERE age BETWEEN 20 AND 30;
+                
+##    			* IN(集合) 
+                * or  或 || 
+    			    SELECT * FROM student WHERE age=22 OR age = 18 OR age=25;
+                    SELECT * FROM student WHERE age IN (22,18,25);                    
+
+###    			* IS NULL  （null值不能使用 = （!=） 判断）
+    			问题：错误语句SELECT * FROM student WHERE english = NULL; 
+    			
+    			        SELECT * FROM student WHERE english IS NULL;
+                    	SELECT * FROM student WHERE english  IS NOT NULL;
+                    	   		  			
+    			* not  或 !（!= 与 IS NOT NULL）
+    			
+##    			* LIKE：模糊查询
+    				* 占位符：占一个多个
+    					* _: 单个任意字符
+    					* %：多个任意字符    			
+    			    
+    				-- 查询姓马的有哪些？ like
+    				SELECT * FROM student WHERE NAME LIKE '马%';
+    				-- 查询姓名第二个字是化的人
+    				
+    				SELECT * FROM student WHERE NAME LIKE "_化%";
+    				
+    				-- 查询姓名是3个字的人
+    				SELECT * FROM student WHERE NAME LIKE '___';
+    				
+    				
+    				-- 查询姓名中包含德的人
+    				SELECT * FROM student WHERE NAME LIKE '%德%';				    
