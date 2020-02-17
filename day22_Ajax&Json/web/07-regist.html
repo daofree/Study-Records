@@ -18,12 +18,17 @@
                //                         {"userExsit":false,"msg":"用户名可用"}
                $.get("findUserServlet",{username:username},function (data) {
                    //判断userExsit键的值是否是true
-
+                   console.log("##############");
+                   console.log(data.userExsit);
                    alert(data);//object才是json,字符串，不是json
 
                    console.log(data);// 字符串，不是json,要想当做json数据格式使用
                    // alert(data);
                    var span = $("#s_username");
+
+                   console.log(data.userExsit);
+                   console.log("--------------------");
+
                    if(data.userExsit){
                        //用户名存在
                        span.css("color","red");

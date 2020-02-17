@@ -203,4 +203,4 @@
     			1. $.get(type):将最后一个参数type指定为"json"
     			2. 在服务器端设置MIME类型
     				response.setContentType("application/json;charset=utf-8");
-    											        	                 						
+    备注：Ajax里 dataType 预期服务器返回的数据类型。如果不指定，jQuery 将自动根据 HTTP 包 MIME 信息来智能判断，2是成立的！										        	                 						
