@@ -197,4 +197,10 @@
     					3. 复杂java对象转换
     						1. List：数组
     						2. Map：对象格式一致		
-    							        	                 						
+    # 案例：
+    	* 校验用户名是否存在---绑定离焦事件，ajax异步处理，访问数据库
+    		1. 服务器响应的数据，在客户端使用时，要想当做json数据格式使用。有两种解决方案：
+    			1. $.get(type):将最后一个参数type指定为"json"
+    			2. 在服务器端设置MIME类型
+    				response.setContentType("application/json;charset=utf-8");
+    											        	                 						
