@@ -218,4 +218,45 @@
 		* 注意：
 			1. 如果不加任何条件，则会将表中所有记录全部修改。
 			
-						    
+## DQL：查询表中的记录
+	* select * from 表名;
+	
+	1. 语法：w伟ghl
+		select
+			字段列表
+		from
+			表名列表
+		where
+			条件列表
+		group by
+			分组字段
+		having
+			分组之后的条件
+		order by
+			排序
+		limit
+			分页限定
+
+
+	2. 基础查询
+		1. 多个字段的查询
+			select 字段名1，字段名2... from 表名；
+			* 注意：
+				* 如果查询所有字段，则可以使用*来替代字段列表。
+##		2. 去除重复：
+			* distinct
+			SELECT DISTINCT address FROM student;
+##		3. 计算列
+			* 一般可以使用四则运算计算一些列的值。（一般只会进行数值型的计算）
+			SELECT NAME,math,english,math+IFNULL(english,0) FROM student;
+			
+			问题：null参与的运算，计算结果都为null。如何解决？？
+			* ifnull(表达式1,表达式2)：
+				* 表达式1：哪个字段需要判断是否为null
+				* 如果该字段为null后的替换值。
+##		4. 起别名：
+			* as：as也可以省略
+			SELECT NAME,math,english,math+IFNULL(english,0) AS 总分 FROM student;
+
+
+					    
