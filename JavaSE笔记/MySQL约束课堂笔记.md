@@ -200,7 +200,8 @@
 				1. 级联更新：ON UPDATE CASCADE 
 				2. 级联删除：ON DELETE CASCADE ---一删都删了---谨慎操作
 				
-				
+		5. 默认 default 
+		    如果一列没有值，使用默认值 		
 ## 数据库的设计
 
 	1. 多表之间的关系
@@ -224,4 +225,75 @@
 			3. 一对一(了解)：---唯一外键 或者合成一张表
 				* 如：人和身份证
 				* 实现方式：一对一关系实现，可以在任意一方添加唯一外键指向另一方的主键。
-					
+		3. 案例
+		复合主键（含有一个以上的字段组成）
+##		联合主键（同时是两个表的主键组合起来的）
+
+##      意义：用2个字段(或者多个字段,后面具体都是用2个字段组合)来确定一条记录，
+##		说明，这2个字段都不是唯一的，2个字段单独可以分别重复，但组合起来必须是唯一的！ 
+        这么设置的好处，可以很直观的看到某个重复字段的记录条数。
+
+##		 PRIMARY KEY(rid,uid), -- 联合主键
+		
+            -- 创建旅游线路分类表 tab_category
+			-- cid 旅游线路分类主键，自动增长
+			-- cname 旅游线路分类名称非空，唯一，字符串 100
+			CREATE TABLE tab_category (
+				cid INT PRIMARY KEY AUTO_INCREMENT,
+				cname VARCHAR(100) NOT NULL UNIQUE
+			);
+			
+			-- 创建旅游线路表 tab_route
+			/*
+			rid 旅游线路主键，自动增长
+			rname 旅游线路名称非空，唯一，字符串 100
+			price 价格
+			rdate 上架时间，日期类型
+			cid 外键，所属分类
+			*/
+			CREATE TABLE tab_route(
+				rid INT PRIMARY KEY AUTO_INCREMENT,
+				rname VARCHAR(100) NOT NULL UNIQUE,
+				price DOUBLE,
+				rdate DATE,
+				cid INT,
+				FOREIGN KEY (cid) REFERENCES tab_category(cid)
+			);
+			
+			/*创建用户表 tab_user
+			uid 用户主键，自增长
+			username 用户名长度 100，唯一，非空
+			password 密码长度 30，非空
+			name 真实姓名长度 100
+			birthday 生日
+			sex 性别，定长字符串 1
+			telephone 手机号，字符串 11
+			email 邮箱，字符串长度 100
+			*/
+			CREATE TABLE tab_user (
+				uid INT PRIMARY KEY AUTO_INCREMENT,
+				username VARCHAR(100) UNIQUE NOT NULL,
+				PASSWORD VARCHAR(30) NOT NULL,
+				NAME VARCHAR(100),
+				birthday DATE,
+				sex CHAR(1) DEFAULT '男',
+				telephone VARCHAR(11),
+				email VARCHAR(100)
+			);
+			
+			/*
+			创建收藏表 tab_favorite
+			rid 旅游线路 id，外键
+			date 收藏时间
+			uid 用户 id，外键
+			rid 和 uid 不能重复，设置复合主键，同一个用户不能收藏同一个线路两次
+			*/
+			CREATE TABLE tab_favorite (
+				rid INT, -- 线路id
+				DATE DATETIME,
+				uid INT, -- 用户id
+				-- 创建复合主键
+				PRIMARY KEY(rid,uid), -- 联合主键
+				FOREIGN KEY (rid) REFERENCES tab_route(rid),
+				FOREIGN KEY(uid) REFERENCES tab_user(uid)
+			);					
