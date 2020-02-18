@@ -92,4 +92,47 @@
 					SELECT 	* FROM dept t2 RIGHT JOIN emp t1 ON t1.`dept_id` = t2.`id`;
 					
 					
-		
+        3. 子查询：--嵌套查询--从条件到表
+			* 概念：查询中嵌套查询，称嵌套查询为子查询。
+##			问题背景：
+				-- 查询工资最高的员工信息
+			解决1：	
+				-- 1 查询最高的工资是多少 9000
+				SELECT MAX(salary) FROM emp;
+				
+				-- 2 查询员工信息，并且工资等于9000的
+				SELECT * FROM emp WHERE emp.`salary` = 9000;
+			解决2：	
+				-- 一条sql就完成这个操作。子查询
+				SELECT * FROM emp WHERE emp.`salary` = (SELECT MAX(salary) FROM emp);
+
+			* 子查询不同情况
+				1. 子查询的结果是单行单列的：
+					* 子查询可以作为条件，使用运算符去判断。 运算符： > >= < <= =
+					
+					-- 查询员工工资小于平均工资的人
+					SELECT * FROM emp WHERE emp.salary < (SELECT AVG(salary) FROM emp);
+					
+				2. 子查询的结果是多行单列的：---in
+					* 子查询可以作为条件，使用运算符in来判断
+					
+					-- 查询'财务部'和'市场部'所有的员工信息
+					SELECT id FROM dept WHERE NAME = '财务部' OR NAME = '市场部';
+					SELECT * FROM emp WHERE dept_id = 3 OR dept_id = 2;
+					-- 子查询
+					SELECT * FROM emp WHERE dept_id IN (SELECT id FROM dept WHERE NAME = '财务部' OR NAME = '市场部');
+
+				3. 子查询的结果是多行多列（表）的：---多行多列==虚拟表
+					* 子查询可以作为一张虚拟表参与查询
+					
+					-- 查询员工入职日期是2011-11-11日之后的员工信息和部门信息
+					-- 子查询
+					SELECT * FROM dept t1 ,(SELECT * FROM emp WHERE emp.`join_date` > '2011-11-11') t2
+					WHERE t1.id = t2.dept_id;
+					
+					-- 普通内连接
+					SELECT * FROM emp t1,dept t2 WHERE t1.`dept_id` = t2.`id` AND t1.`join_date` >  '2011-11-11'	
+
+
+
+						
