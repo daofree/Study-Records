@@ -133,6 +133,142 @@
 					-- 普通内连接
 					SELECT * FROM emp t1,dept t2 WHERE t1.`dept_id` = t2.`id` AND t1.`join_date` >  '2011-11-11'	
 
-
+        * 多表查询练习--练习.sql
+				-- 1.查询所有员工信息。查询员工编号，员工姓名，工资，职务名称，职务描述
+				/*
+					分析：
+						1.员工编号，员工姓名，工资，需要查询emp表  职务名称，职务描述 需要查询job表
+						2.查询条件 emp.job_id = job.id
+				
+				*/
+				SELECT 
+					t1.`id`, -- 员工编号
+					t1.`ename`, -- 员工姓名
+					t1.`salary`,-- 工资
+					t2.`jname`, -- 职务名称
+					t2.`description` -- 职务描述
+				FROM 
+					emp t1, job t2
+				WHERE 
+					t1.`job_id` = t2.`id`;
+				
+				
+				
+				-- 2.查询员工编号，员工姓名，工资，职务名称，职务描述，部门名称，部门位置
+				/*
+					分析：
+						1. 员工编号，员工姓名，工资 emp  职务名称，职务描述 job  部门名称，部门位置 dept
+						2. 条件： emp.job_id = job.id and emp.dept_id = dept.id
+				*/
+				
+				SELECT 
+					t1.`id`, -- 员工编号
+					t1.`ename`, -- 员工姓名
+					t1.`salary`,-- 工资
+					t2.`jname`, -- 职务名称
+					t2.`description`, -- 职务描述
+					t3.`dname`, -- 部门名称
+					t3.`loc` -- 部门位置
+				FROM 
+					emp t1, job t2,dept t3
+				WHERE 
+					t1.`job_id` = t2.`id` AND t1.`dept_id` = t3.`id`;
+				   
+				-- 3.查询员工姓名，工资，工资等级
+				/*
+					分析：
+						1.员工姓名，工资 emp  工资等级 salarygrade
+						2.条件 这两个表没有关联，等值判断不合适
+						    emp.salary >= salarygrade.losalary and emp.salary <= salarygrade.hisalary
+							即：emp.salary BETWEEN salarygrade.losalary and salarygrade.hisalary
+							
+###							* BETWEEN...AND  
+###							---单表里，动值比定值
+###							---多表里，动值比动值（符合笛卡尔积现象 ）
+				*/
+				SELECT 
+					t1.ename ,
+					t1.`salary`,
+					t2.*
+				FROM emp t1, salarygrade t2
+				WHERE t1.`salary` BETWEEN t2.`losalary` AND t2.`hisalary`;
+				
+				
+				
+				-- 4.查询员工姓名，工资，职务名称，职务描述，部门名称，部门位置，工资等级
+				/*
+					分析：
+						1. 员工姓名，工资 emp ， 职务名称，职务描述 job 部门名称，部门位置，dept  工资等级 salarygrade
+						2. 条件： emp.job_id = job.id and emp.dept_id = dept.id and emp.salary BETWEEN salarygrade.losalary and salarygrade.hisalary
+							
+				*/
+				SELECT 
+					t1.`ename`,
+					t1.`salary`,
+					t2.`jname`,
+					t2.`description`,
+					t3.`dname`,
+					t3.`loc`,
+					t4.`grade`
+				FROM 
+					emp t1,job t2,dept t3,salarygrade t4
+				WHERE 
+					t1.`job_id` = t2.`id` 
+					AND t1.`dept_id` = t3.`id`
+					AND t1.`salary` BETWEEN t4.`losalary` AND t4.`hisalary`;
+				
+				
+				
+				-- 5.查询出部门编号、部门名称、部门位置、部门人数
+				
+				/*
+					分析：
+						1.部门编号、部门名称、部门位置 dept 表。 部门人数 emp表
+						2.部门人数使用分组查询GROUP BY。按照emp.dept_id完成分组，查询count(id)
+###						3.使用子查询将第2步的查询结果（多行多列）和dept表进行关联查询
+						
+				*/
+				SELECT 
+					t1.`id`,t1.`dname`,t1.`loc` , t2.total
+				FROM 
+					dept t1,
+					(SELECT
+						dept_id,COUNT(id) total
+					FROM 
+						emp
+					GROUP BY dept_id) t2
+				WHERE t1.`id` = t2.dept_id;
+				
+				
+				-- 6.查询所有员工的姓名及其直接上级的姓名,没有领导的员工也需要查询
+###				自关联，同外键约束！！两张表的关联！！  AS一表变两表
+				/*
+					分析：
+						1.姓名 emp， 直接上级的姓名 emp
+							* emp表的id 和 mgr 是自关联
+						2.条件 emp.id = emp.mgr
+						3.查询左表的所有数据，和 交集数据
+							* 使用左外连接查询
+					
+				*/
+				/*
+				select
+					t1.ename,
+					t1.mgr,
+					t2.`id`,
+					t2.ename
+				from emp t1, emp t2
+				where t1.mgr = t2.`id`;
+				
+				*/
+				
+				SELECT 
+					t1.ename,
+					t1.mgr,
+					t2.`id`,
+					t2.`ename`
+				FROM emp t1
+				LEFT JOIN emp t2
+				ON t1.`mgr` = t2.`id`;
 
 						

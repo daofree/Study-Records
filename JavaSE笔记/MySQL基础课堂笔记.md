@@ -236,9 +236,31 @@
 			排序
 		limit
 			分页限定
-
-
+    
 	2. 基础查询
+	
+	            CREATE TABLE student3 (   
+                    id int,  -- 编号   
+                    name varchar(20), -- 姓名   
+                    age int, -- 年龄   
+                    sex varchar(5),  -- 性别   
+                    address varchar(100),  -- 地址   
+                    math int, -- 数学   
+                    english int -- 英语 
+                );
+                
+                INSERT INTO student3
+                        (id,NAME,age,sex,address,math,english) 
+                VALUES 
+                        (1,'马云',55,'男', '杭州',66,78),
+                        (2,'马化腾',45,'女','深圳',98,87),
+                        (3,'马景涛',55,'男','香港',56,77),
+                        (4,'柳岩',20,'女','湖南',76,65),
+                        (5,'柳青',20,'男','湖南',86,NULL),
+                        (6,'刘德华',57,'男','香港 ',99,99),
+                        (7,'马德',22,'女','香港',99,99),
+                        (8,'德玛西亚',18,'男','南京',56,65); 
+			
 		1. 多个字段的查询
 			select 字段名1，字段名2... from 表名；
 			* 注意：
@@ -259,7 +281,7 @@
 			SELECT NAME,math,english,math+IFNULL(english,0) AS 总分 FROM student;
 
 
-	3. 条件查询
+	3. 条件查询                     
     		1. where子句后跟条件
     		2. 运算符
     			* > 、< 、<= 、>= 、= 、<>不等于(!=)
@@ -267,7 +289,7 @@
     			    SELECT * FROM student WHERE age <> 20;
                     SELECT * FROM student WHERE age != 20;
                 
-    			* BETWEEN...AND  
+    			* BETWEEN...AND  ---单表里，动值比定值
     			* and  或 &&
     			    SELECT * FROM student WHERE age >= 20 && age <=30;
                     SELECT * FROM student WHERE age >= 20 AND age <=30;
