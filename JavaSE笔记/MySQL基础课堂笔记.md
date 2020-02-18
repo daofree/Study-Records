@@ -250,7 +250,7 @@
 			* 一般可以使用四则运算计算一些列的值。（一般只会进行数值型的计算）
 			SELECT NAME,math,english,math+IFNULL(english,0) FROM student;
 			
-			问题：null参与的运算，计算结果都为null。如何解决？？
+##			问题：null参与的运算，计算结果都为null。如何解决？？
 			* ifnull(表达式1,表达式2)：
 				* 表达式1：哪个字段需要判断是否为null
 				* 如果该字段为null后的替换值。

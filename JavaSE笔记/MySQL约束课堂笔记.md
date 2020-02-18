@@ -89,3 +89,116 @@
 
 		3. limit 是一个MySQL"方言"，Oracle用rownumber.
 
+
+## 约束
+	* 概念： 对表中的数据进行限定，保证数据的正确性、有效性和完整性。	
+	* 分类：
+		1. 主键约束：primary key
+		2. 非空约束：not null
+		3. 唯一约束：unique
+		4. 外键约束：foreign key
+
+##	* 非空约束：not null，值不能为null
+		1. 创建表时添加约束
+			CREATE TABLE stu(
+				id INT,
+				NAME VARCHAR(20) NOT NULL -- name为非空
+			);
+		2. 创建表完后，添加非空约束---有空值，添加约束失败
+			ALTER TABLE stu MODIFY NAME VARCHAR(20) NOT NULL;
+
+		3. 删除name的非空约束
+			ALTER TABLE stu MODIFY NAME VARCHAR(20);
+	
+	
+##	* 唯一约束（索引）：unique，值不能重复,但可以为null
+		1. 创建表时，添加唯一约束
+			CREATE TABLE stu(
+				id INT,
+				phone_number VARCHAR(20) UNIQUE -- 添加了唯一约束
+			
+			);
+##			* 注意mysql中，唯一约束限定的列的值可以有多个null
+		
+		
+##		2. 删除唯一约束---DROP INDEX
+		    MODIFY删不掉；
+			ALTER TABLE stu DROP INDEX phone_number;
+		
+		3. 在创建表后，添加唯一约束---存在数据不唯一，添加约束会失败
+			ALTER TABLE stu MODIFY phone_number VARCHAR(20) UNIQUE;
+	
+##	* 主键约束：primary key。
+		1. 注意：
+			1. 含义：非空且唯一
+			2. 一张表只能有一个字段为主键
+			3. 主键就是表中记录的唯一标识
+
+		2. 在创建表时，添加主键约束
+			create table stu(
+				id int primary key,-- 给id添加主键约束
+				name varchar(20)
+			);
+
+		3. 删除主键------因为唯一，所以直接删除！
+			-- 错误 alter table stu modify id int ;
+			ALTER TABLE stu DROP PRIMARY KEY;
+
+		4. 创建完表后，添加主键
+			ALTER TABLE stu MODIFY id INT PRIMARY KEY;
+
+#		5. 自动增长：---auto_increment---比上一个多一
+			1.  概念：如果某一列是数值类型的，使用 auto_increment 可以来完成值得自动增长
+
+			2. 在创建表时，添加主键约束，并且完成主键自增长
+			create table stu(
+				id int primary key auto_increment,-- 给id添加主键约束
+				name varchar(20)
+			);
+
+			
+			3. 删除自动增长
+			ALTER TABLE stu MODIFY id INT;
+			4. 添加自动增长
+			ALTER TABLE stu MODIFY id INT AUTO_INCREMENT;
+
+注意：主键是给数据库和程序使用的，不是给最终的客户使用的。所以主键有没有含义没有关系，只要不重复，非空就行。 
+
+
+
+##背景：单表数据容易出现（员工部门）
+        1）数据冗余
+        2）后期还会出现增删改的问题，一改都改!
+解决：表的拆分（员工+部门） 
+
+##	* 外键约束：foreign key,让表与表产生关系，从而保证数据的正确性。--可以为null,不可以为不存在的值
+		1. 在创建表时，可以添加外键---前提是references的外表要存在!
+			* 语法：
+				create table 表名(
+					....
+					外键列 int,
+					constraint 外键名称 foreign key (外键列名称) references 主表名称(主表列名称)
+					constraint emp_dept_fk foreign key (dep_id) references department(id);
+				);
+
+		2. 删除外键
+			ALTER TABLE 表名 DROP FOREIGN KEY 外键名称;
+
+		3. 创建表之后，添加外键
+			ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
+		
+##		背景：改外键的值很麻烦
+            update employ set dep_id = null where dep_id = 1;
+            update department set id = 5 where id =1;
+            update employ set dep_id = 5 where dep_id is null;
+		
+		4. 级联操作---设置级联更新，级联删除
+###			1. 添加级联操作
+				语法：ALTER TABLE 表名 ADD CONSTRAINT 外键名称 
+						FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称) ON UPDATE CASCADE ON DELETE CASCADE  ;
+			2. 分类：
+				1. 级联更新：ON UPDATE CASCADE 
+				2. 级联删除：ON DELETE CASCADE ---一删都删了---谨慎操作
+				
+				
+	
