@@ -187,7 +187,7 @@
 		3. 创建表之后，添加外键
 			ALTER TABLE 表名 ADD CONSTRAINT 外键名称 FOREIGN KEY (外键字段名称) REFERENCES 主表名称(主表列名称);
 		
-##		背景：改外键的值很麻烦
+##		背景：改外键约束的值很麻烦
             update employ set dep_id = null where dep_id = 1;
             update department set id = 5 where id =1;
             update employ set dep_id = 5 where dep_id is null;
