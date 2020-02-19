@@ -373,8 +373,56 @@
     --------------------------------------------------------------------------
                 set global transaction isolation level serializable;
                 各自开启事务，一个改，一个查，查不到（只有光标）--锁表了。另一事务改完结束事务后，光标消失才可查到。
-                
-                
+                 
+            
+## DCL：
+	* SQL分类：
+		1. DDL：操作数据库和表
+		2. DML：增删改表中数据
+		3. DQL：查询表中数据
+		4. DCL：管理用户，授权
+
+	* DBA：数据库管理员
+
+	* DCL：管理用户，授权
+		1. 管理用户
+			1. 添加用户：
+				* 语法：CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
+				
+				        CREATE USER 'zhangsan'@'loclhost' IDENTIFIED BY '123';
+				        CREATE USER 'lisi'@'%' IDENTIFIED BY '123';
+			2. 删除用户：
+				* 语法：DROP USER '用户名'@'主机名';
+				
+				        DROP USER 'zhangsan'@'loclhost';
+			3. 修改用户密码：
+				
+				UPDATE USER SET PASSWORD = PASSWORD('新密码') WHERE USER = '用户名';
+				UPDATE USER SET PASSWORD = PASSWORD('abc') WHERE USER = 'lisi';
+				
+				SET PASSWORD FOR '用户名'@'主机名' = PASSWORD('新密码');
+				SET PASSWORD FOR 'root'@'localhost' = PASSWORD('123');
+
+###				* mysql中忘记了root用户的密码？---无验证登录改密
+					1. cmd -- > net stop mysql 停止mysql服务
+						* 需要管理员运行该cmd
+
+					2. 使用无验证方式启动mysql服务： mysqld --skip-grant-tables
+					3. 打开新的cmd窗口,直接输入mysql命令，敲回车。就可以登录成功
+					4. use mysql;
+					5. update user set password = password('你的新密码') where user = 'root';
+					6. 关闭两个窗口
+					7. 打开任务管理器，手动结束mysqld.exe 的进程
+					8. 启动mysql服务
+					9. 使用新密码登录。
+					
+			4. 查询用户：
+				-- 1. 切换到mysql数据库
+				USE myql;
+				-- 2. 查询user表
+				SELECT * FROM USER;
+				
+###				* 通配符： % 表示可以在任意主机使用用户登录数据库（可远程）                   
                 
     
     
