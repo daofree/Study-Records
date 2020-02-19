@@ -271,4 +271,58 @@
 				LEFT JOIN emp t2
 				ON t1.`mgr` = t2.`id`;
 
-						
+## 事务--多个操作同时成功，同时失败
+        背景：转账
+	1. 事务的基本介绍
+		1. 概念：
+			*  如果一个包含多个步骤的业务操作，被事务管理，那么这些操作要么同时成功，要么同时失败。
+			
+		2. 操作：
+			1. 开启事务： start transaction;   ---要想被事务管理
+			2. 回滚：rollback;                 ---失败
+			3. 提交：commit;                   ---成功
+		3. 例子：
+			CREATE TABLE account (
+				id INT PRIMARY KEY AUTO_INCREMENT,
+				NAME VARCHAR(10),
+				balance DOUBLE
+			);
+			-- 添加数据
+			INSERT INTO account (NAME, balance) VALUES ('zhangsan', 1000), ('lisi', 1000);
+			
+			
+			SELECT * FROM account;
+			UPDATE account SET balance = 1000;
+			-- 张三给李四转账 500 元
+			
+			-- 0. 开启事务
+##			START TRANSACTION;
+			-- 1. 张三账户 -500
+			
+			UPDATE account SET balance = balance - 500 WHERE NAME = 'zhangsan';
+			-- 2. 李四账户 +500
+			-- 出错了...
+			UPDATE account SET balance = balance + 500 WHERE NAME = 'lisi';
+			
+			-- 发现执行没有问题，提交事务
+##			COMMIT;
+			
+			-- 发现出问题了，回滚事务
+##			ROLLBACK;
+
+		4. MySQL数据库中事务默认自动提交
+			
+			* 事务提交的两种方式：
+				* 自动提交：
+					* mysql就是自动提交的
+#					* 一条DML(增删改)语句会自动提交一次事务。（一条）
+				* 手动提交：
+				    * 需要先开启事务（START TRANSACTION;），再提交（COMMIT;）
+					* Oracle 数据库默认是手动提交事务
+										
+			* 修改事务的默认提交方式：
+				* 查看事务的默认提交方式：SELECT @@autocommit; -- 1 代表自动提交  0 代表手动提交
+				* 修改默认提交方式：     set @@autocommit = 0;
+##				改为0后：一条DML(增删改)语句，是不会生效的！除非commit;
+				
+										
