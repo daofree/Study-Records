@@ -331,4 +331,52 @@
     		3. 隔离性：多个事务之间。相互独立。
     		4. 一致性：事务操作前后，数据总量不变
     		
-    											
+    3. 事务的隔离级别（了解）
+    		* 概念：多个事务之间隔离的，相互独立的。
+    		        但是如果多个事务操作同一批数据，则会引发一些问题，设置不同的隔离级别就可以解决这些问题。
+#   ## 		* 开启事务存在的问题：
+    			1. 脏读：一个事务，读取到另一个事务中没有提交的数据
+    			2. 不可重复读(虚读)：在同一个事务中，两次读取到的数据不一样。
+    			3. 幻读：一个事务操作(DML)数据表中所有记录，另一个事务添加了一条数据，则第一个事务查询不到自己的修改。(mysql种看不到，演示不出来)
+    		* 隔离级别：
+    			1. read uncommitted：读未提交
+    				* 产生的问题：脏读、不可重复读、幻读
+    			2. read committed：读已提交 （Oracle）
+    				* 产生的问题：不可重复读、幻读
+    			3. repeatable read：可重复读 （MySQL默认）
+    				* 产生的问题：幻读
+    			4. serializable：串行化--锁表操作
+    				* 可以解决所有的问题
+    
+    			* 注意：隔离级别从小到大安全性越来越高，但是效率越来越低
+    			* 数据库查询隔离级别：
+    				* select @@tx_isolation;
+    			* 数据库设置隔离级别：
+    				* set global transaction isolation level  级别字符串;
+    				
+    * 演示：两个窗口，设置读未提交后，各自开启事务，一个改，一个查，脏读出现（读到未提交数据）；
+                改的rollback;查的再查，虚读出现；（两次查询不一样）。
+    			set global transaction isolation level read uncommitted;
+    			start transaction;
+    			-- 转账操作
+    			update account set balance = balance - 500 where id = 3;
+    			update account set balance = balance + 500 where id = 4;				
+    --------------------------------------------------------------------------
+                set global transaction isolation level read committed;
+                update account set balance = balance - 500 where id = 3;
+                update account set balance = balance + 500 where id = 4;
+                各自开启事务，一个改，一个查，脏读消失（数据未提交）；             
+                             改的commit;查的再查，虚读出现；（读到提交数据，两次查询不一样）。
+    --------------------------------------------------------------------------
+                set global transaction isolation level repeatable read;             
+                             虚读不再出现，结束事务后，才可看见数据变化；
+    --------------------------------------------------------------------------
+                set global transaction isolation level serializable;
+                各自开启事务，一个改，一个查，查不到（只有光标）--锁表了。另一事务改完结束事务后，光标消失才可查到。
+                
+                
+                
+    
+    
+    
+    														
