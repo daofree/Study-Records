@@ -384,7 +384,7 @@
 
 	* DBA：数据库管理员
 
-	* DCL：管理用户，授权
+	* DCL：管理用户，授权-------数据库mysql中user表
 		1. 管理用户
 			1. 添加用户：
 				* 语法：CREATE USER '用户名'@'主机名' IDENTIFIED BY '密码';
@@ -422,7 +422,25 @@
 				-- 2. 查询user表
 				SELECT * FROM USER;
 				
-###				* 通配符： % 表示可以在任意主机使用用户登录数据库（可远程）                   
+###				* 通配符： % 表示可以在任意主机使用用户登录数据库（可远程）  
+
+        2. 权限管理：
+     			1. 查询权限：
+     				-- 查询权限
+     				SHOW GRANTS FOR '用户名'@'主机名';
+     				SHOW GRANTS FOR 'lisi'@'%';
+     
+     			2. 授予权限：
+     				-- 授予权限
+     				grant 权限列表 on 数据库名.表名 to '用户名'@'主机名';
+     				-- 给张三用户授予所有权限，在任意数据库任意表上
+     				
+     				GRANT ALL ON *.* TO 'zhangsan'@'localhost';
+     				
+     			3. 撤销权限：
+     				-- 撤销权限：
+     				revoke 权限列表 on 数据库名.表名 from '用户名'@'主机名';
+     				REVOKE UPDATE ON db3.`account` FROM 'lisi'@'%';                      
                 
     
     
