@@ -17,7 +17,6 @@ public class ReflectTest {
             前提：不能改变该类的任何代码。可以创建任意类的对象，可以执行任意方法
          */
 
-
         //1.解析注解
         //1.1获取该类(加注解的类)的字节码文件对象
         Class<ReflectTest> reflectTestClass = ReflectTest.class;
