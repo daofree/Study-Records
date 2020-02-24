@@ -75,4 +75,41 @@
 
 		* 代码：JDBCUtils
 		
-			
+		
+###		背景：把查询结果结果集封装对象，很麻烦。不想自己干！只想写sql就行。
+## Spring JDBC
+	* Spring框架对JDBC的简单封装。提供了一个JDBCTemplate对象简化JDBC的开发.
+	            不需要申请连接，不需要释放资源了，内部都封装了。只要给池子就行了！！
+	* 步骤：
+		1. 导入jar包
+		2. 创建JdbcTemplate对象。依赖于数据源DataSource
+			* JdbcTemplate template = new JdbcTemplate(ds);
+
+		3. 调用JdbcTemplate的方法来完成CRUD的操作
+			* update():执行DML语句。增、删、改语句
+			* queryForMap():查询结果将结果集封装为map集合，将列名作为key，将值作为value 将这条记录封装为一个map集合
+###				* 注意：这个方法查询的结果集长度只能是1-------Map<String, Object> map
+			* queryForList():查询结果将结果集封装为list集合
+###				* 注意：将每一条记录封装为一个Map集合，再将Map集合装载到List集合中------List<Map<String, Object>> list
+###			* query():查询结果，将结果封装为JavaBean对象
+				* query的参数：RowMapper
+					* 一般我们使用BeanPropertyRowMapper实现类。可以完成数据到JavaBean的自动封装
+					* new BeanPropertyRowMapper<类型>(类型.class)
+###					使用BeanPropertyRowMapper时注意 不能把null值转化为基本类型（不接受null）------使用引用类型
+			* queryForObject：查询结果，将结果封装为对象
+###				* 一般用于聚合函数的查询-- Long total = jdbcTemplate.queryForObject(sql, Long.class);
+								
+				
+	4. 练习：
+    			* 需求：
+    			-------DML-------
+    				1. 修改id=1001数据的 salary 为 10000
+    				2. 添加一条记录
+    				3. 删除刚才添加的记录
+    			-------DL-------	
+    				4. 查询id为1的记录，将其封装为Map集合
+    				5. 查询所有记录，将其封装为List
+    				6. 查询所有记录，将其封装为Emp对象的List集合
+    				7. 查询总记录数
+    
+    	* 代码：	JdbcTemplateDemo2.java					
