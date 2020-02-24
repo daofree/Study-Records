@@ -220,5 +220,35 @@
     			3. del key：删除指定的key value			
 
 
-
+    4. 持久化
+    		1. redis是一个内存数据库（临时的），当redis服务器重启，获取电脑重启，数据会丢失，
+    		我们可以将redis内存中的数据持久化保存到硬盘的文件中。
+    		
+###    		2. redis持久化机制：
+    			1. RDB：默认方式，不需要进行配置，默认就使用这种机制，持久化需要IO操作写入，对性能影响低
+    				* 在一定的间隔时间中，检测key的变化情况，然后持久化数据
+    				1. 编辑redis.windows.conf文件
+    					#   after 900 sec (15 min) if at least 1 key changed
+    					save 900 1
+    					#   after 300 sec (5 min) if at least 10 keys changed
+    					save 300 10
+    					#   after 60 sec if at least 10000 keys changed
+    					save 60 10000
+    					
+    				2. 重新启动redis服务器，并指定配置文件名称-----修改save 10 5-----需要用cmd窗口在文件位置处输入下面命令
+    					   >redis-server.exe redis.windows.conf	
+    					   set name 1 ........
+###				      解压目录下生成rdb文件！！
+    				
+    			2. AOF：日志记录的方式，可以记录每一条命令的操作。可以每一次命令操作后，持久化数据。----性能影响大
+    				1. 编辑redis.windwos.conf文件
+    					appendonly no（关闭aof） --> appendonly yes （开启aof）
+    					
+    					# appendfsync always ： 每一次操作都进行持久化
+    					appendfsync everysec ： 每隔一秒进行一次持久化
+    					# appendfsync no	 ： 不进行持久化
+    
+###                不进行持久化===>>>redis就是一个相当大的map集合！！！
+                
+    					
 	
