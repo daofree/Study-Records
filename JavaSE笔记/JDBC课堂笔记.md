@@ -144,8 +144,58 @@
 					user=
 					password=
 
-
 		3. 抽取一个方法释放资源
 		
-		
+	* 练习：
+		* 需求：
+			1. 通过键盘录入用户名和密码
+			2. 判断用户是否登录成功
+				* select * from user where username = "" and password = "";
+				* 如果这个sql有查询结果，则成功，反之，则失败
+
+		* 步骤：
+			1. 创建数据库表 user
+				CREATE TABLE USER(
+					id INT PRIMARY KEY AUTO_INCREMENT,
+					username VARCHAR(32),
+					PASSWORD VARCHAR(32)
+				
+				);
+
+				INSERT INTO USER VALUES(NULL,'zhangsan','123');
+				INSERT INTO USER VALUES(NULL,'lisi','234');
+
+			2. 代码实现：JDBCDemo9.java
+			
+###背景：		上述登录案例中，存在任意用户使用（a' or 'a' = 'a）皆可登录的问题。	------sql注入
+			
+			
+###    5. PreparedStatement：执行sql的对象-----------解决sql注入问题
+    			1. SQL注入问题：在拼接sql时，有一些sql的特殊关键字参与字符串的拼接。会造成安全性问题
+    				1. 输入用户随便，输入密码：a' or 'a' = 'a
+###    				2. sql：select * from user where username = 'fhdsjkf' and password = 'a' or 'a' = 'a'
+                    因为  or 'a' = 'a'是True，F||T==>T
+    
+    			2. 解决sql注入问题：使用PreparedStatement对象来解决
+    			3. 预编译的SQL：参数使用?作为占位符
+    			4. 步骤：
+    				1. 导入驱动jar包 mysql-connector-java-5.1.37-bin.jar
+    				2. 注册驱动
+    				3. 获取数据库连接对象 Connection
+    				4. 定义sql
+    					* 注意：sql的参数使用？作为占位符。 如：select * from user where username = ? and password = ?;
+    				5. 获取执行sql语句的对象 PreparedStatement  Connection.prepareStatement(String sql) 
+    				6. 给？赋值：
+    					* 方法： setXxx(参数1,参数2)
+    						* 参数1：？的位置编号 从1 开始
+    						* 参数2：？的值
+    				7. 执行sql，接受返回结果，不需要传递sql语句
+    				8. 处理结果
+    				9. 释放资源
+    
+    			5. 注意：后期都会使用PreparedStatement来完成增删改查的所有操作
+    				1. 可以防止SQL注入
+    				2. 效率更高								
+
+
 	
