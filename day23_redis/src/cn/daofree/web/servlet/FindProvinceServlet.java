@@ -25,10 +25,15 @@ public class FindProvinceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 调用service查询
         ProvinceServiceImpl provinceService = new ProvinceServiceImpl();
-        List<Province> list = provinceService.fillAll();
-        // 序列化list为json
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(list);
+
+//        List<Province> list = provinceService.fillAll();
+//        // 序列化list为json
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String json = objectMapper.writeValueAsString(list);
+
+        // 用redis
+        String json = provinceService.findAllJson();
+
         System.out.println(json);
         // 响应结果
         response.setContentType("application/json;charset=utf-8");

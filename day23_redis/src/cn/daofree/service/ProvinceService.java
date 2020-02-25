@@ -13,4 +13,5 @@ import java.util.List;
  **/
 public interface ProvinceService {
     public List<Province> fillAll();
+    public String findAllJson();
 }
