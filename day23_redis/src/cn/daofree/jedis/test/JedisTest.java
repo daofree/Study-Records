@@ -1,7 +1,10 @@
 package cn.daofree.jedis.test;
 
+import cn.daofree.jedis.util.JedisPoolUtils;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.List;
 import java.util.Map;
@@ -165,4 +168,44 @@ public class JedisTest {
         //3. 关闭连接
         jedis.close();
     }
+
+    /**
+     * jedis连接池使用
+     */
+    @Test
+    public void test7(){
+        //0.创建一个配置对象
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(50);
+        config.setMaxIdle(10);
+
+        //1.创建Jedis连接池对象--默认配置
+        JedisPool jedisPool = new JedisPool(config,"localhost",6379);
+        //2.获取连接
+        Jedis resource = jedisPool.getResource();
+        //3. 使用
+        resource.set("hehe","haha");
+        //4. 关闭 归还到连接池中
+        resource.close();
+    }
+
+
+    /**
+     * jedis连接池工具类使用
+     */
+    @Test
+    public void test8(){
+        //通过连接池工具类获取
+        Jedis jedis = JedisPoolUtils.getJedis();
+
+        //3. 使用
+        jedis.set("hello","world");
+
+        //4. 关闭 归还到连接池中
+        jedis.close();
+
+    }
+
+
+
 }
