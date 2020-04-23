@@ -4,6 +4,8 @@
 #Object--万类之祖
     Java，不需要import就能引用到的类
     第一种：java.lang下面的包。
+    包的位置：%JAVA_HOME%/jre/lib/rt.jar
+    
     Java语言中的java.lang包是由编译器直接自动导入的，
     java.lang包是Java语言的核心类库，包括了运行Java程序必不可少的系统类，
     如基本数据类型、基本数学函数、字符串处理、线程、异常处理类等。
@@ -74,7 +76,7 @@
     删除
     替换
     反转
-    截取返回的是String，本身不变
+    截取（返回的是String，本身不变）
 ##  不能把字符串的值直接赋给StringBuffer.这是两个类！
     构造/append--->StringBuffer
     构造/toString--->String
@@ -158,7 +160,11 @@
 #       数组Array高级 与 工具类Arrays
     排序 
         冒泡：两两比较跑一遍，大的往后放。因为每次可以得到一个最大值！所以每一遍比较次数递减。共比数组长度-1次
-        选择：我要一个打10个！我要打9个！打8个！每次可以得到一个最小值！
+        选择：我要一个打10个！（1-9）我要打9个！（2-9）打8个！（3-9）每次可以得到一个最小值！
+        插入：同选择相反，和在第一个方向上依次比较
+        归并：不断分裂直至11排序，分成1个不懂，另一组比完再和1比，11排序到组组排序
+        快速：第一个由远及近比较，交换后，第二个继续刚才的比，交换一次，递进一次，继续
+        希尔：先隔半匹配排序，再隔半半匹配。直至相邻11匹配
     查找
         基本（无序），从头找到尾，没有返-1
         二分（有序），
@@ -166,14 +172,136 @@
     二维数组与双重for有异曲同工之妙！
 
     
+# 基本类型包装类的引入
+    类里有成员变量，有方法，可以直接用！对基本类型进行更多操作！
+    将基本类型封装成对象的好处在于可以在对象中定义更多的功能方法操作该数据！
+    常用于基本类型和字符串的转换
+    
+    进制的范围0-36==>因为0-9，a-z总共36
+    反编译观察自动拆装箱！只是给编译器看的！
+    
+    使用自动拆装箱，不能为null，否则null.intValue()，报空指针异常。
+    byte常量池[-128,127]---byte数据缓冲池----查看valueof()源码，超出byte常量池就new!
+   
+    https://www.cnblogs.com/to-creat/p/5891042.html
+    
+##    包装类的作用：
+    集合不允许存放基本类型数据（数组可以），存放数字时，要用包装类型。
+    自动拆装箱：
+    也解决了集合中不能放基本类型的问题
 
 
+#   链表的实现，为Java类集的框架服务
+    链表是一种最基本的数据结构，依靠引用关系来实现多个数据的保存！一个链表==多个节点。
+    火车车厢（节点）：1.货物==保存数据2.挂钩==下一个节点引用
+    火车头==root
+    挂钩(节点引用)==next
+    如果哪个车厢的next==null，那么就是它最后一个节点
+    Node是功能类（专门负责保存节点关系），不是简单Java类。由其他类负责Node关系匹配（挂节点）
+    设置和取得数据（装货（设置数据内容）+ 挂钩（匹配关系））
+    方法一循环取出，挂钩作为判断条件（while（挂钩 != null））
+    方法二递归操作，（方法套方法，参数要变化（改为下一个挂钩））挂钩作为判断条件
+    
+    递归，参数(or调用对象)要有止境。
+    
+    设置和取数据，为什么要Node！直接数组不行吗？
+    数据本身不具备先后关系，用Node来封装，并指向下一个节点（设置好了关系）。
+    主方法就是客户端！目前做的有点多，自己动手处理Node关系，事实应该只关心数据的设置和取出！
+    
+##    改进：需要一个工具类实现关系处理
+    通过之前的分析，可以发现链表的最大作用的类就是Node，
+    但是以上程序都是由用户自己去匹配节点关系的，
+    但是这些节点的匹配工作不应该由用户完成，应该由一个程序专门负责。
+	那么专门负责这个节点操作的类，就称为链表类 —— Link，负责处理节点关系，
+	而用户不需要关心节点问题，只需要关心Link的处理操作即可。
+    客户端需要一个类隐藏链表中的细节操作（Node对象关系处理，数据增加输出）
+    客户端只见Link操作，不见Node,Link来处理Node，与root有关
+    第一个Node，自己就是火车头，他的node是下一个节点引用
+    root-->第一个节点--->第二个节点--->第三个节点--->第四个节点--->null
+    火车头的引用叫做root
+    每个Node，显示指向下一个，但隐式的被前一个节点所指！
+    链表是否有数据，判断root根即可。root有node指向就有数据(即第一个node节点有没有指向<root指向不空>！)
+    每一个链表都有一个root。
+    Link对象只关心root。
+    创建链表new Link()，生成的root为空。
+    保存第一个数据。root---> [Node(data)--->] null
+    下一个数据怎么存？ 看当前节点的next有没有引用，不能用root判断,(递归寻找到next为空，每次从第一个节点开始找)
+    第一次(Link)：this = Link.root
+    第二次(Node)：this = Link.root.next
+    (Node)Link.root.next.next
+    (Node)Link.root.next.next.next
+    ...
+    Link只关心根节点root，Node关心next节点。 
+    
+    动态对象数组，此处单项无循环链表，最简单的
+    链表最好的使用就是横向替代对象数组。
 
-
-
-
-
-
-
-
-
+# 正则
+    规则字符在java.util.regex.Pattern中
+    
+    Pattern是正则字符串的编译表示形式。
+    判断,string.matches(regex);
+    {}次数----\d==[0,9]  \w==[a-zA-Z_0-9]
+    
+    分割string.split("\\.");//以点分割
+        string.split(" +");//以空格分割
+        string.split("\\\\");//以程序中的路径分隔符分割（硬盘单杠，程序双杠）
+    替换
+        string.replaceAll(regex, replacement);
+        
+    获取 (匹配后才能获取)
+    Pattern正则编译模式类(字符串)   Matcher匹配器(三种匹配，matchers整个\lookingat从头\find一个一个找子串)
+    boolean b = Pattern.compile(regex).matcher(string).matches();
+    ==string.matches(regex);
+    单词边界\b,
+    匹配后find 才能 group();
+    
+    
+#   Math
+        abs绝对值ceil天花板floor地板pow(a,b)a的b,sqrt开正根,max()，min(),
+#   Random
+        public Random(long seed)有种子（给出指☞定的种子）每次得到的随机数是相同的
+        public Random() 无种子（默认当前时间的毫秒值）
+        public int nextInt()返回int范围内的随机数
+        public int nextInt(int n)返回[0，n)范围内的随机数
+#   System
+        System.gc();会自动调用finalize()方法。先释放自己，再释放父类对象。
+        exit(int status);终止当前的Java虚拟机。status=0表示正常退出
+        currentTimeMillis();返回毫秒值，可用来⏲计时。
+        arryccopy(源数组，源数组起始位置，目标数组，目标数组起始位置，复制数量);复制指定数组,替换到指定数组位置
+        arryccopy(arr,1,arr2,2,2);
+#   BigInteger 超过Integer范围的数据进行计算2147483648
+        BigInteger(String s);
+        +=*/
+        add(),subtract(),multiply(),divide(),divideAndRemainder()返回商和余数的数组
+#   BigDecimal    解决（float与double）精度问题（有效数字位）
+        BigDecimal(String s);
+        add(),subtract(),multiply(),divide(),
+        
+#   日期类Date    毫秒值重写是给外国人看的
+        获取毫秒值
+#   格式类              给中国人看
+#   抽象类DateFormat   format(date);
+    子类SimpleDareFormt()
+        SimpleDareFormt("yyyy年MM月dd日 HH:mm:ss")
+        String s = sd.format(date);// 把date转成字符串
+        把字符串转成date,构造方法中的格式必须和给定的格式匹配
+        Date d = sd.parse(s);
+        
+#   日历类：封装了所有的日历字段值，日期计算很方便
+#   Calendar抽象类    闰月闰年2月非此不可
+    Calendar.getInstance().get(Calendar.YEAR);
+    add(Calendar.YEAR, int +-i);  // 随意更改时间
+    set(int y, int m + 1, int d); // 随意设置时间
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
