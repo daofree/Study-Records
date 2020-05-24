@@ -18,6 +18,8 @@ public class FileDemo1 {
         System.out.println(file2.createNewFile());
         System.out.println(file2.toString());
         System.out.println("----" + file2);
+        System.out.println("----" + file2.getPath());
+        System.out.println("----" + file2.getAbsolutePath());
 
         System.out.println(file.delete());
         System.out.println(file2.delete());
