@@ -36,7 +36,7 @@
         
         write(int b);字节
         write(byte[] b);字节数组
-        write(byte b[], int off, int len);
+        ·write(byte b[], int off, int len);
     ·数据换行
         写入换行符号\n,有些文本编辑器实现，
         但windos记事本打开却没换行，而是黑方块！
@@ -52,7 +52,7 @@
             int read()；一次读取一个字节值（int），游标下移，类似迭代器的next(),
                 返回-1，说明到末尾，换行也能读到
                 ------强转(char)字节值（int）--(char)fileInputStream.read()
-            int read(byte[] b); 一次读取一个字节数组
+            ·int read(byte[] b); 一次读取一个字节数组
         
         ·注意：控制台中文乱码！ä¸­
             字节流读取中文，把一个汉字拆成两个字节值（int），再强转(char)，然后一个字节一个字节输出到控制台乱码   
@@ -84,9 +84,65 @@
         2种读取(一个字节，一个数组) X 2个操作类(基本类/高效类)
         
        
-##   转换流
-
-##   字符流-基类Reader,Writer
-        输入
+       
+##   转换流：字节流操作中文不是很方便,把字节流转换成字符流！
+##   编码表：字符+对应的数值组成一张表。ASCII/Unicode/ISO-8859-1/GB2312/GBK/GB18030/BIG5/UTF-8
+            UTF-8最多是3个字节表示，分123个字节区间，能1就1，能2就2，不能就3，兼容性广！
+            String(byte[] b, String charsetName) 通过指定字符集解码字节数组
+            byte[] getBytes(String charsetName) 使用指定字符集把字符串编码为字节数组，无参就是本地默认
+            例子：编码不一致，解析就会出现问题
+                String s = "你好";
+                byte[] b = s.getBytes();// 默认编码(本地GBK)
+                byte[] b = s.getBytes("UTF-8");// UTF-8编码
+                String ss = new String(b);// 默认解码(本地GBK)(中文2个组合)
+                String ss = new String(b, "UTF-8");// UTF-8解码(中文3个组合)
+            
+##   字符流==字节流+编码表   -基类Reader,Writer--看构造就是一个转换流
+        输入 
+            OutputStreamWrite(OutputStream o);默认编码，把字节流转换为字符流
+            OutputStreamWrite(OutputStream o, String charsetName);指定编码，把字节流转换为字符流
+        
+        5种写
+            write(int s);写一个字符（两个字节）
+            write(char[] s);写一个字符数组
+            ·write(char[] s, int off, int len);写一个字符数组的一部分
+            write(String s);写一个字符串
+            write(String s, int off, int len);写一个字符串的一部分
+        为什么数据没有进去？
+            因为字符=2字节，而文件存储单位是字节。字符在缓冲区里。
+            要flush();刷新缓冲区。close()关闭前也会刷新！
+        
         输出
+            InputStreamRead(InputStream is)
+            InputStreamRead(InputStream is, String charsetName)
+        4种读
+            read();一次读一个字符
+            ·read(char[] cbuf);一次读一个字符数组（将字符读入数组）
+        复制案例：字符转换流    
+
+### 转换流简化写法，OutputStreamWrite的直接子类FileWrite--便捷FileRead
+        由于常见操作都是默认本地编码，不需要指定编码！！又由于转换流名称太长,所以...
+        OutputStreamWrite = FileOutputStream + 编码表（默认）
+        FileWrite = FileOutputStream + 编码表（默认）
+        同理FileRead
+        源码很简单，就是为了简写
+        
+       OutputStreamWrite ==> FileWrite ---> BufferedWriter
+        
+### 字符缓冲流---高效                
+        BufferedWriter
+        BufferedRead
+        字符缓冲流<----转换流<--包装--字节流
+        
+    复制文本案例：字符流，基本2高效2，字节流，基本2高效2---8种方式
+    复制图片案例：字节流，基本2高效2---4种方式
+        
+####     特殊方法：
+        BufferedWriter--newLine();写入一个由系统属性定义的行分隔符，跨平台       
+        BufferedRead--readLine();读取一个文本行，即一次读一行，遇到\r\n回车等即该行终止...
+                包含字符串，不包含终止符，即不会自动换行... 读不到返null
+                
+                
+                
+        
 ##   其他流
