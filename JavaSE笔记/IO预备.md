@@ -117,7 +117,7 @@
     ·delete()
     
     重命名
-    ·renameTo(File dest)  改名+剪切--主要看file  
+    ·renameTo(File dest)  改名+剪切移动/改名--主要看参数file  
     
     判断
         isDirectory();文件夹

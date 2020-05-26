@@ -124,25 +124,60 @@
         由于常见操作都是默认本地编码，不需要指定编码！！又由于转换流名称太长,所以...
         OutputStreamWrite = FileOutputStream + 编码表（默认）
         FileWrite = FileOutputStream + 编码表（默认）
-        同理FileRead
+        同理FileRead(File file)
         源码很简单，就是为了简写
         
-       OutputStreamWrite ==> FileWrite ---> BufferedWriter
+       OutputStreamWrite ==> FileWrite(File file) ---> BufferedWriter
         
-### 字符缓冲流---高效                
-        BufferedWriter
-        BufferedRead
+### 字符缓冲流---高效---包装字符流！                
+        BufferedWriter(FileWrite fw)
+        BufferedRead(FileRead fr)
         字符缓冲流<----转换流<--包装--字节流
         
     复制文本案例：字符流，基本2高效2，字节流，基本2高效2---8种方式
     复制图片案例：字节流，基本2高效2---4种方式
         
-####     特殊方法：
+####     特殊方法：读一行，写不会换行
         BufferedWriter--newLine();写入一个由系统属性定义的行分隔符，跨平台       
         BufferedRead--readLine();读取一个文本行，即一次读一行，遇到\r\n回车等即该行终止...
                 包含字符串，不包含终止符，即不会自动换行... 读不到返null
+        ·写一行，换一行，刷一行  
+              
+     ·备注：字符流复制文本案例: 基本2 + 高效2 + 高特1  （字符，字符数组，一行）
                 
-                
-                
+##  小结：
+        读字节/字符数组时，第一次/最后一次实际读到多少，就写多少。。。write(b, 0 , len);
+        int b = 0;
+        while((b=fid.read()) != -1){
+            fos.write(b);
+        }
         
+        byte[] b = new byte[1024];
+        int len = 0;
+        while((len=fis.read(b)) != -1){
+            fos.write(b, 0 , len);
+        }
+        
+    案例：
+        字符流复制文本5种方式
+        复制图片4种方式，字节流
+        文本内容--> ArrayList,只读不写（readLine()到，直接add）
+        ArrayList--> 文本内容,只写不读（遍历集合，直接write(),newLine(),flush()）
+        
+        ·自实现readLine()案例
+        while((ch = r.read()) != -1)){
+            if(ch == '\n'){
+                continue;
+            }
+            // 遇到换行就返回值，那么问题来了，最后一行没有换行咋整？（即-1）就没得返了？？
+            if(ch == '\n'){
+                return sb.toString();
+            }else{
+                sb.append((char)ch);//hello world java(-1)
+            }
+        }
+        //最后一行没有换行，即遇到-1,终止while(return还在里面)， 即已经拼接好了，就是没返回
+        if(sb.length() > 0){
+            return sb.toString();
+        }
 ##   其他流
