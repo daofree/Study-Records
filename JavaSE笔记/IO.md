@@ -162,7 +162,7 @@
         字符流复制文本5种方式
         复制图片4种方式，字节流
         文本内容--> ArrayList,只读不写（readLine()到，直接add）
-        ArrayList--> 文本内容,只写不读（遍历集合，直接write(),newLine(),flush()）
+        ArrayList--> 文本内容,只写不读（遍历集合，直接write(String s),newLine(),flush()）
         
         ·自实现readLine()案例
         while((ch = r.read()) != -1)){
@@ -180,4 +180,10 @@
         if(sb.length() > 0){
             return sb.toString();
         }
+        
+### Read--BufferedReader--LineNumberReader
+        自己实现特有功能：getLineNumber(),setLineNumber()--可以使用行号功能让代码发到外面加有行号！
+        定义变量，读一行，就++。
+        自定义类继承BufferedReader，添加LineNumber变量，然后++;更简单
+        
 ##   其他流
