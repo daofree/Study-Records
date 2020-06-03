@@ -366,7 +366,7 @@
 ###        JDK4出现的类：Buffer缓冲, Channer通道
 ###        JDK7的NIO的使用
                 Path接口
-                final class Paths---static get(URL );
+                final class Paths---static get(URL url);
                 操作文件工具类
                 final class Files---copy(Path source, OutputStream out);复制文件
                 write(Path p, Iterable l, Charset cs, OpenOption ... options)
@@ -378,6 +378,10 @@
            
 ##  借鸡生蛋 Iterable + Enumeration + Path
         Properties prop = System.getProperties();
+    
+    Vector的子类 栈Stack
+    HashTable的子类是 类中流Properties
+    
     
     
            
