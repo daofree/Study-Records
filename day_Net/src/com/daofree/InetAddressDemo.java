@@ -13,9 +13,9 @@ import java.net.UnknownHostException;
 public class InetAddressDemo {
     public static void main(String[] args) {
         try {
-            InetAddress byName = InetAddress.getByName("LAPTOP-TP34TCPG");
+            // InetAddress byName = InetAddress.getByName("dao");
             InetAddress byIpName = InetAddress.getByName("192.168.0.105");
-            System.out.println(byName);
+            // System.out.println(byName);
             System.out.println(byIpName.getHostName());
         } catch (UnknownHostException e) {
             System.out.println("主机名有误");
