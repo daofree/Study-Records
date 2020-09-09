@@ -17,10 +17,16 @@ public class FangXiang2 {
     public static final FangXiang2 ZUO = new FangXiang2("左");
     public static final FangXiang2 YOU = new FangXiang2("右");
 
+
     private FangXiang2(String name){
         this.name = name;
     }
 
+    /**
+     * Gets name.
+     *
+     * @return the name
+     */
     public String getName() {
         return name;
     }

@@ -20,7 +20,13 @@ public class TestEnum {
         Direcation3 d3 = Direcation3.LEFT;
         System.out.println(d3);
         System.out.println(d3.getName());
+        // 调用方法是 左
         d3.show();
+        d3.setName("中");
+        System.out.println("-set方法" + d3.getName());
+        // 调用方法是 左
+        d3.show();
+
 
         Direcation3 dd = Direcation3.RIGHT;
         System.out.println("------switch--------");

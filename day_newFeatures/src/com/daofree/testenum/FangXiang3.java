@@ -45,6 +45,8 @@ public abstract class FangXiang3 {
         return name;
     }
 
-    // 加入抽象方法
+    /**
+     * Show.加入抽象方法
+     */
     public abstract void show();
 }

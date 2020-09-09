@@ -38,7 +38,12 @@ public enum Direcation3 {
     };
 
     private String name;
-    private Direcation3(String name){
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    Direcation3(String name){
         this.name = name;
     }
 

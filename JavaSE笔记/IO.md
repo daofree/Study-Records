@@ -344,19 +344,19 @@
         JVM在序列化对象时会自动生成一个serialVersionUID, 
         然后将我们显示指定的serialVersionUID属性值赋给自动生成的serialVersionUID.
         
-        
-#       类中流-->Properties类--->HashTable的子类-->Map集合啊
+        Properties与流交互
+#       类中流-->Properties类--->HashTable的子类-->Map集合啊--->有集合通用方法
         Properties可保存流中，可流中加载，是个与IO流结合的属性集合类
         new Properties().put(Object, Object);
+
+###        Properties与IO流结合
+        load(Reader reader);读文件数据到Properties集合
+        store(Writer w; String comments);存储Properties集合中的数据到文件.comments注释
         
 ###        特有功能：看底层实现，换名限制入参，再调用put
         setProperty(String key, String value);只添加字符串
         getProperty(String key);获取
-        stringPropertyNames();键集
-        
-###        Properties与IO流结合
-        load(Reader reader);读文件数据到Properties集合
-        store(Writer w; String comments);存储Properties集合中的数据到文件.comments注释
+        stringPropertyNames();键集        
         
         
 # NIO 即 newIO

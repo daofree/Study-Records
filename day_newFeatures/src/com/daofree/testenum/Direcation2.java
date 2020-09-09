@@ -18,7 +18,7 @@ public enum Direcation2 {
     RIGHT("右");
 
     private String name;
-    private Direcation2(String name){
+    Direcation2(String name){
         this.name = name;
     }
 
