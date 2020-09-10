@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * @ClassName TestAnnoDemo
- * @Description: 测试--定义 + 解析--使用注解
+ * @Description: 测试--定义 + 解析-->使用注解
  * @Author DaoTianXia
  * @Date 2020-08-16-18:30
  * @Version V1.0
