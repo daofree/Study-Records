@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * @ClassName Demo
+ * @ClassName DemoLambda
  * @Description: JDK7新特性
  * @Author DaoTianXia
  * @Date 2020-07-25-10:39

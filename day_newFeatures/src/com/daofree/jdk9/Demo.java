@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * @ClassName Demo
+ * @ClassName DemoLambda
  * @Description: JDK9新特性
  * @Author DaoTianXia
  * @Date 2020-07-26-11:41
