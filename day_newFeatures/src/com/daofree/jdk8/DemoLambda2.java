@@ -40,10 +40,12 @@ public class DemoLambda2 {
 
         System.out.println("=========================");
         // 更加简化
-        Arrays.sort(p, Comparator.comparingInt(Person::getAge));
-        for (Person pp :p) {
+        Arrays.sort(p, Comparator.comparingInt(Person :: getAge));
+        for (Person pp : p) {
             System.out.println("lambda2 =="+ pp);
         }
 
+        // lambda要有上下文可推导，不可独立存在
+        Runnable r = () -> System.out.println("...");
     }
 }
