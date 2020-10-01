@@ -1,3 +1,8 @@
+Servlet是规范之一，如果用到框架如SpringMVC，你都感觉不到Servlet的存在，
+并不是说已经过时了，只是框架给你隐藏了底层的实现.
+学过Servlet好处是什么：
+打下坚实的基础，学习框架就得心应手了
+
 ##背景    
     动态资源（显示不一样）要具有逻辑姓，且是代码（Java）实现的！！
 	即浏览器请求动态资源，找的是Java类！且这种Java类依赖服务器才能运行，没有主方法！！
@@ -17,8 +22,8 @@
    
     Tomcat就是满足这种需要的JSP/Servlet引擎，是Sun公司的JSP/Servlet的官方实现。
     
-## Servlet：  server applet
-	* 概念：运行在服务器端的小程序
+## Servlet：  server applet(不是普通的Java类，要依赖服务器才能运行，是tomcat执行它)
+	* 概念：运行在服务器端的小程序，tomcat执行它，服务连接器，交互数据，生成动态web
 	  遵守（规则==接口）==Servlet
 		* Servlet就是一个接口，定义了Java类被浏览器访问到(tomcat识别)的规则。
 		* 将来我们自定义一个类，实现Servlet接口，复写方法。tomcat就可以识别。
@@ -30,7 +35,7 @@
 		2. 定义一个类，实现Servlet接口
 			* public class ServletDemo1 implements Servlet
 		3. 实现接口中的5个抽象方法
-##		4. 配置Servlet，映射资源名（/demo1），配置全类名路径(资源)	
+##		4. 配置Servlet，映射资源名（/demo1），配置全类名路径(资源)	防止多个Servlet与资源混乱
 #			 在web.xml中配置：写一个servlet,配置一个！。。。多！
 		    <!--配置Servlet -->
 		    <servlet>
@@ -44,13 +49,14 @@
 		    </servlet-mapping>
 #发现：定义了一个类，没有创建对象，也没有调用方法，居然自己被执行了？原理反射
 
-#	* 执行原理：反射,对象创建，方法调用都是服务器执行的，servlet依赖web容器
+#	* Servlet执行原理：反射,对象创建，方法调用都是tomcat服务器执行的，servlet依赖web容器
 		1. 当服务器接受到客户端浏览器的请求后，会解析请求URL路径，获取访问的Servlet的资源路径
 		2. 查找web.xml文件，是否有对应的<url-pattern>标签体内容。
 		3. 如果有，则在找到对应的<servlet-class>全类名
 #看到全类名，在配置中，第一件事想到反射
 		4. tomcat会将字节码文件加载进内存Class.forName(全类名)，并且创建其对象cls.newInstance();
 		5. 调用其方法---如service().
+所以Servlet的运行要依赖web容器。在容器里，有人帮你创建对象调用方法
 
 #	* Servlet中的方法及生命周期：
 		1. 被创建：执行init方法，只执行一次
@@ -87,7 +93,7 @@
 			4. 在类上使用@WebServlet注解，进行配置
 				* @WebServlet("资源路径")
 				* (urlPatterns = "/demo")
-				* (value = "/demo2")
+				* (value = "/demo2")    value最重要的属性---urlPatterns
 				* ("/demo3")
 ##          注解说明WebServlet
                 @Target({ElementType.TYPE})
@@ -109,7 +115,7 @@
 ###注：虚拟目录是项目的访问方式
 
 ## IDEA与tomcat的相关配置
-	1. IDEA会为每一个tomcat部署的项目单独建立一份配置文件
+	1. IDEA会为每一个tomcat部署的项目 单独建立一份配置文件
 		* 查看控制台启动日志的log：
 IDEA单独配置当前项目的配置文件
 ##      Using CATALINA_BASE:   "C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records"

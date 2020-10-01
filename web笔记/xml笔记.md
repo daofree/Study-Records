@@ -5,7 +5,7 @@
 		3. 解析
 
 
-## XML：
+## XML：浏览器也可以直接解析的
 	1. 概念：Extensible Markup Language 可扩展标记语言
 		* 可扩展：标签都是自定义的。 <user>  <student>
 #标记语言：标签构成的语言
@@ -99,7 +99,13 @@
 					2.引入xsi前缀.  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 					3.引入xsd文件命名空间.  xsi:schemaLocation="http://www.itcast.cn/xml  student.xsd"
 					4.为每一个xsd约束声明一个前缀,作为标识  xmlns="http://www.itcast.cn/xml" 
-
+				备注：	
+					前缀 可以防止多个约束文件冲突
+					 在一个拥有众多元素的文档中，拥有前缀， 也不能完全避免命名冲突的问题 -->命名空间
+					 为元素定义一个命名空间， 将一个很长的， 可以保证全局唯一性的字符串与该元素关联起来。
+					 这样就可以避免命名冲突了。					 
+					【命名空间】， 只是一个全局唯一字符串而已
+					
 				<students   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 					xmlns="http://www.itcast.cn/xml"
 					xsi:schemaLocation="http://www.itcast.cn/xml  student.xsd">
@@ -120,7 +126,7 @@
 				* 服务器端
 			2. SAX：逐行读取，读一行释放一行，指针下移一行；所以是基于事件驱动的。
 				* 优点：不占内存。
-				* 缺点：只能读取，不能增删改
+				* 缺点：只能读取，不能增删改（编写难度大）
 				* 移动端，如安卓
 
 
@@ -160,7 +166,7 @@
 		        System.out.println(name);
 
 #      * 对象的使用：在这里Document的对象是继承Element对象的
-			1. Jsoup：工具类，可以解析html或xml文档，返回Document
+			1. Jsoup：工具类，可以解析html或xml文档，都返回Document
 				* parse：解析html或xml文档，返回Document
 					* 文件parse​(File in, String charsetName)：解析xml或html文件的。
 					* 字符串parse​(String html)：解析xml或html字符串
@@ -189,7 +195,7 @@
 			5. Node：节点对象
 				* 是Document和Element的父类。方法大家都可用！
 
-##  * 2种快捷查询方式：（一个一个层级找）
+##  * Jsoup里2种快捷查询方式：（一个一个层级找）
 			1. selector:选择器cssQuery
 				* 使用的方法：Elements	select​(String cssQuery)
 					* 语法：参考Selector类中定义的语法，即定位参数写法
@@ -197,7 +203,7 @@
             2. XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言
 #             XPath是对DOM树（Jsoup获得的document）操作的。
 
-###				* 使用Jsoup的Xpath需要额外导入jar包。
+###				* 使用Jsoup的Xpath需要额外导入jar包-JsoupXpath-0.3.2.jar。
 ###				* 查询w3cshool参考手册，使用xpath的语法完成查询
 				
 				selN等4个方法

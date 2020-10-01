@@ -18,14 +18,14 @@
 		2. 服务器端会话技术：Session
 
 
-## Cookie：
+## Cookie：服务器第一次响应数据给浏览器，让浏览器保存，下一次请求带着这些数据
 	1. 概念：客户端会话技术，将数据保存到客户端
 
 	2. 快速入门：
 		* 使用步骤：
 			1. 创建Cookie对象，绑定数据
 				* new Cookie(String name, String value) 
-#			2. 发送Cookie对象
+#			2. 发送Cookie对象-让浏览器知道
 				* response.addCookie(Cookie cookie) 
 #			3. 获取Cookie，拿到数据
 				* Cookie[]  request.getCookies() 
@@ -33,15 +33,17 @@
     模板设置Settings设置：File and Code Templates-->other-->web-->				 
     @WebServlet("/cookieDemo1") ==<== <url-pattern>/RegistServlet</url-pattern>
 
-#    3. 实现原理--图解+抓包，http协议里
-		* 基于响应头set-cookie和请求头cookie实现 
-		
+#    3. 实现原理--图解+抓包，发送获取都在以http协议进行交互
+		* 基于响应头set-cookie和请求头cookie实现
+		    响应set-cookie:msg=XXXXXXXXXXXXX 
+		    请求cookie:msg=XXXXXXXXXXXXX
+		    
 	4. cookie的细节
 		1. 一次可不可以发送多个cookie?
-			* 可以,多个在浏览器会以;号隔开
+			* 可以（多个在浏览器会以;号隔开）
 			* 可以创建多个Cookie对象，使用response调用多次addCookie方法发送cookie即可。
 		2. cookie在浏览器中保存多长时间？
-			1. 默认情况下，当浏览器关闭后，Cookie数据被销毁
+			1. 默认情况下，当浏览器关闭后，Cookie数据被销毁--保存在浏览器内存里，浏览器一关，内存就释放了
 #			2. 持久化存储：
 				* setMaxAge(int seconds)
 					1. 正数：将Cookie数据写到硬盘的文件中。持久化存储。并指定cookie存活时间，时间到后，cookie文件自动失效
@@ -49,8 +51,8 @@
 					3. 零：删除cookie信息,(都没了)
 		3. cookie能不能存中文？
 			* 在tomcat 8 之前 cookie中不能直接存储中文数据。
-				* tomcat 8 之前需要将中文数据转码---一般采用URL编码(%E3)
-			* 在tomcat 8 之后，cookie支持中文数据。特殊字符还是不支持，32空格错误！建议使用URL编码存储，URL解码解析
+				* tomcat 8 之前需要将中文数据转码---一般采用URL编码(%E3这个鬼样子，cookie就支持了)
+			* 在tomcat 8 之后，cookie支持中文数据。特殊字符还是不支持（存时间），32空格错误！建议使用URL编码存储，URL解码解析
 		4. cookie共享问题？范围有多大？？
 			1. 假设在一个tomcat服务器中，部署了多个web项目，那么在这些web项目中cookie能不能共享？
 				* 默认情况下cookie不能共享（只在当前的虚拟目录）
@@ -101,12 +103,13 @@
 
 
 #	2. 原理：jsp文件转换为java文件，编译成字节码文件.class,提供访问，作出响应。
-		* 字节码文件能被浏览器访问到，JSP本质上就是一个Servlet！（只有Servlet才能被访问到）
+		* 字节码文件能被浏览器访问到，故JSP本质上就是一个Servlet！（只有Servlet才能被访问到）
         work运行时产生的资源文件！
    每一个项目的配置目录
 C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\conf\Catalina\localhost
-一访问jsp,生成了work目录,放置对应生成的java与字节码文件！
-tomcat帮我们写了静态页面，index_jsp.java,还编译index_jsp.class
+        一访问jsp,生成了work目录,放置对应生成的java与字节码文件！
+        tomcat帮我们写了静态页面，index_jsp.java（里面class index_jsp继承了HttpJspBase extends HttpServlet），
+            还编译index_jsp.class
 C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\localhost\day16\org\apache\jsp
 
 
@@ -126,12 +129,13 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 #				* response.getWriter()和out.write()的区别：
 ##					* 在tomcat服务器真正给客户端做出响应之前，会先找response缓冲区数据，再找out缓冲区数据。
 					* response.getWriter()数据输出永远在out.write()之前
+					    --tomcat响应前，先找response缓冲区。拼到响应体后，再找out缓冲区
 				
-5. 案例:改造Cookie案例:	
+5.  案例:改造Cookie案例:	
                 jsp脚本可以被截断,写Java代码和html标签非常方便！但页面不方便阅读，展示+流程控制，难写复杂！  
                 
                  
-## Session：主菜
+## Session：主菜----一次会话，多次请求之间（资源不跳转），共享数据
 	1. 概念：服务器端会话技术，在一次会话的多次请求间共享数据，将数据保存在服务器端的对象中。HttpSession
 	2. 快速入门：
 		1. 获取HttpSession对象：
@@ -184,7 +188,7 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 			    </session-config>
 
 	 5. session的特点----购物
-		 1. session用于存储一次会话的多次请求的数据，存在服务器端(购物！)
+		 1. session用于存储一次会话的多次请求的数据，存在服务器端(购物！)（servletContext范围太大了）
 		 2. session可以存储任意类型，任意大小的数据 
 		   setAttribute(String name, Object value)，object没有类型，大小限制，cookiez只能字符串，还不能空格等特殊字符
 
@@ -204,14 +208,14 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 
 	2. 分析：图解！  先判断验证码！节约数据库！！
 	        图中第二步获取参数：有三个；用户名，密码，验证码；
-	        第三步，单独获取验证码(图片?)
+	        第三步，单独获取验证码(图片?) 程序生成的验证码放在一个Servlet里
 	        第五步，程序生成的验证码在servlet里，单独请求这个验证码图片，
 	               然后登录页面提交到LoginServlet里面，又是另外一次请求，===>两次请求！需要在两次请求中共享数据！
 	        
 	        页面是两次请求（验证码一个），生成的验证码放session里（安全），放request里，两次请求是不能共享的！
 	                存储数据，success页面显示XXX欢迎你！这个跳转用重定向，要存在session里，存request域中就不行了！·    
 	
-	注意要一次性的验证码！	//删除session中存储的验证码
+	注意要一次性的验证码！	//获取验证码后，删除session中存储的验证码
                         session.removeAttribute("checkCode_session");		
   
  ## 想知道cookie可不可以     ！                 										   

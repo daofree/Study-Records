@@ -16,7 +16,7 @@
 #		    静态资源可以直接被浏览器解析
 			* 如： html,css,JavaScript
 		2. 动态资源:每个用户访问相同资源后，得到的结果可能不一样。称为动态资源。
-#		    动态资源被访问后，需要先转换为静态资源，在返回给浏览器
+#		    动态资源被访问后，需要先转换为静态资源，再返回给浏览器
 			* 如：servlet/jsp,php,asp....
 #返回 称为响应			
 
@@ -36,7 +36,7 @@
 	
 ##	* web服务器软件：接收用户（通过浏览器）的请求，处理请求，做出响应。
 		* 在web服务器软件中，可以部署web项目，让用户通过浏览器来访问这些项目
-		* web容器
+		* web容器（动态资源只能运行在服务器软件里）
 
 
 	* 常见的java相关的web服务器软件：
@@ -46,15 +46,25 @@
 		* Tomcat：Apache基金组织，中小型的JavaEE服务器，仅仅支持少量的JavaEE规范servlet/jsp。开源的，免费的。
 
 
-#	* JavaEE：Java语言在企业级开发中使用的技术规范的总和，一共规定了13项大的规范
+#	* JavaEE：Java语言在企业级开发中使用的技术规范的总和，一共规定了13项大的规范（接口）
 
 ##	* Tomcat：web服务器软件
 		1. 下载：http://tomcat.apache.org/
 		2. 安装：解压压缩包即可。
 			* 注意：安装目录建议不要有中文和空格
 		3. 卸载：删除目录就行了
+		
+		目录结构：
+            bin 专门用来存放Tomcat服务器的可执行程序 
+            conf 专门用来存放Tocmat服务器的配置文件 
+            lib 专门用来存放Tomcat服务器的 jar 包 
+            logs 专门用来存放Tomcat服务器运行时输出的日记信息 
+            temp 专门用来存放Tomcdat运行时产生的临时数据 
+            webapps 专门用来存放部署的 Web 工程。 
+            work 是 Tomcat 工作时的目录，用来存放Tomcat运行时jsp翻译为Servlet的源码，和Session钝化的目录。
+            
 		4. 启动：
-			* bin/startup.bat ,双击运行该文件即可
+			* bin/startup.bat ,双击运行该文件即可/dos窗口的Tomcat的bin目录下执行catalina run 启动Tomcat
 			* 访问：浏览器输入：http://localhost:8080 回车访问自己
 			                  http://127.0.0.1:8080
 							  http://别人的ip:8080 访问别人
@@ -63,10 +73,10 @@
 				1. 黑窗口一闪而过：
 					* 原因： 没有正确配置JAVA_HOME环境变量(根本没配置JAVA_HOME)
 					* 解决方案：正确配置JAVA_HOME环境变量
-					* 启动文件（批处理文件）中，脚本需要使用JAVA_HOME.
+					* 启动文件（startup.bat批处理文件）中，catalina.bat脚本写了需要使用JAVA_HOME.
 
 ##				2. 启动报错：pid进程号
-					1. 暴力：找到占用的端口号获取pid进程号，并且任务管理器找到对应的进程pid，杀死该进程
+					1. 暴力：找到占用的端口号获取pid进程号，下面命令，并且任务管理器找到对应的进程pid，杀死该进程
 						* 查看所有的端口占用情况netstat -ano
 						* 查看指定端口的占用情况netstat -ano|findstr 8080
 																		
@@ -90,7 +100,7 @@
 #		6. 部署配置:
 ##			* 部署项目的方式：直接，间接，冷，热
 				1. 直接将项目放到webapps目录下即可。http://127.0.0.1:8080/hello/hello.html
-					* /hello：项目的访问路径（同项目名称）-叫->虚拟目录
+					* /hello：项目的访问路径（可以同项目名称）-叫->虚拟目录
 					hello.html 资源名称
 ##					* 简化部署：将项目打成一个war包，再将war包放置到webapps目录下。
 						* tomcat开启状态，war包放进去会自动解压缩
@@ -98,7 +108,7 @@
             缺点：1.虚拟目录名称==项目名称
                  2.需要拷到webapps下
             
-				2. 配置conf/server.xml文件（重启生效）
+				2. 配置conf/server.xml文件（重启生效，冷部署）
 					在<Host>标签体中配置（文档最后面）
 #					<Context docBase="D:\hello" path="/suiyihuamming" />
 					* docBase:项目存放的路径
@@ -108,7 +118,7 @@
            
            
 ##				3. 在conf\Catalina\localhost创建任意名称（虚拟目录）的xml文件。在文件中编写
-## 这是热部署	
+## 这是热部署-不用重启--IDEA设置	
 					<Context docBase="D:\hello" />
 					* 虚拟目录：xml文件的名称
 					http://127.0.0.1:8080/xml文件名/hello.html
@@ -130,7 +140,7 @@
     Tomcat的核心分为3个部分: 
     （1）Web容器—处理静态页面； 
     （2）catalina — 一个servlet容器—–处理servlet; 
-    （3）还有就是JSP容器，它就是把jsp页面翻译成一般的servlet。
+    （3）还有就是JSP容器，它就是把jsp页面翻译成一般的servlet。一个装配工的没落
 
 #        * 静态项目和动态项目：
 				* 目录结构
@@ -138,17 +148,25 @@
 						-- 项目的根目录
 							-- WEB-INF目录：
 								-- web.xml：web项目的核心配置文件
-								-- classes目录：放置字节码文件的目录(有java代码)
+								-- classes目录：放置字节码文件/资源文件的目录(有java代码)
 								-- lib目录：放置依赖的jar包
 
  ##   * 将Tomcat集成到IDEA中，run-->Edit Configurations
         并且创建JavaEE的项目，暂选JavaEE 7(要学servlet3.0规范)
         部署项目。web下的index.jsp是默认首页！！
         热部署设置
+        
+        没有工程名的时候，默认访问的是 ROOT 工程
+        没有资源名，默认访问 index.html/jsp 页面
+        
+        
+  Tomcat是一个Web服务器（同时也是Servlet容器）  
     
-    
 
 
-
-
+href--资源路径（带&参数）的访问跳转，请求响应，在跳转的中间，干点增删改查的事
+    干完了
+        共享数据就用request转发
+        没有共享就用重定向
+页面有数据变化即是href
 

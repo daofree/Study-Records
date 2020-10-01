@@ -45,7 +45,7 @@ https://blog.csdn.net/gaoxin_gx/article/details/100085161
  system：system 范围依赖与 provided 类似，但是你必须显式的提供一个对于本地系统中 JAR 文件的路径，需要指定 systemPath 磁盘路径，system依赖不推荐使用
 
 
-##在 maven-web 工程中测试各各 scop。 
+##在 maven-web 工程中测试各个 scope。 
 测试总结： 
      默认引入 的 jar 包 ------- compile 【默认范围 可以不写】（编译、测试、运行 都有效 ） 
      servlet-api 、jsp-api ------- provided （编译、测试 有效， 运行时无效 防止和 tomcat 下 jar 冲突）

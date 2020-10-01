@@ -117,7 +117,8 @@
  			|	继承
  		HttpServletRequest	-- 接口
  			|	tomcat自己实现
- 		org.apache.catalina.connector.RequestFacade 类(见tomcat源码)
+ 		org.apache.catalina.connector.RequestFacade 类(见tomcat源码)--打印出来的-再找源码发现
+ 		                        RequestFacade implements HttpServletRequest{}
  		
 ##    3. request功能：
 #		1. 获取请求消息数据----行--头--体
@@ -137,7 +138,7 @@
 						* StringBuffer getRequestURL()  :http://localhost/day14/demo1
 
 ##				* URL:统一资源定位符 ： http://localhost/day14/demo1	中华人民共和国
-##				* URI：统一资源标识符 : /day14/demo1					共和国
+##				* URI：统一资源标识符 : /day14/demo1					共和国--范围更大
 					
 #					6. 获取协议及版本：HTTP/1.1
 						* String getProtocol()
@@ -150,6 +151,9 @@
 					* (*)String getHeader(String name):通过请求头的名称获取请求头的值
 					* Enumeration<String> getHeaderNames():获取所有的请求头名称
 				     referer，直接访问是null值，其他网址间接访问才有值。referer获取的是别的网址！
+				     <a href="资源路径" "/day14/requestDemo">  "https://localhost/day14/login.html"
+				     另一个服务器，访问<a href="https://youku/day14/requestDemo">电影</a>
+				     
 ###			3. 获取请求体数据:（request对象对请求体封装成了流）
 				* 请求体：只有POST请求方式，才有请求体，在请求体中封装了POST请求的请求参数
 				* 步骤：
@@ -162,8 +166,9 @@
 
 
 ##		2. 其他功能：
-			1. 获取请求参数通用方式：
-			不论get还是post请求方式都可以使用下列方法来获取请求参数，故有了this.doPost(request,response);
+			1. 获取请求参数通用方式：请求参数，行头不行吗？
+			
+			不论get还是post请求方式都可以使用下列方法来获取请求参数，故有了this.doPost(request,response);都一样
 				1. String getParameter(String name):
 				    根据参数名称获取参数值    username=zs&password=123
 				2. String[] getParameterValues(String name):复选框
@@ -177,7 +182,7 @@
 						* 解决：在获取参数前，设置request的编码request.setCharacterEncoding("utf-8");
 			
 					
-##			2. 请求转发：一种在服务器内部的 资源跳转 方式（分工）
+##			2. 请求转发：一种在服务器内部的 资源跳转 方式（分工）（一个Servlet干不完时）
 				1. 步骤：
 					1. 通过request对象获取请求转发器对象：RequestDispatcher getRequestDispatcher(String path)
 					2. 使用RequestDispatcher对象来进行转发：forward(ServletRequest request, ServletResponse response) 
@@ -187,7 +192,7 @@
 					2. 只能转发到当前服务器内部资源中；
 					3. 转发是一次请求，多个内部资源访问。
 
-请求转发产生了域对象！
+请求转发产生了域对象！来共享数据
 ##			3. 共享数据：
 				* 域对象：一个有作用范围的对象，可以在范围内共享数据
 				* request域：代表一次请求的范围，一般用于请求转发的多个资源中共享数据
@@ -196,7 +201,7 @@
 					2. Object getAttitude(String name):通过键获取值
 					3. void removeAttribute(String name):通过键移除键值对
 
-			4. 获取ServletContext：org.apache.catalina.core.ApplicationContextFacade@7eeb6b8c
+			4. request获取ServletContext：org.apache.catalina.core.ApplicationContextFacade@7eeb6b8c
 				* ServletContext getServletContext()
 
 ## 案例：用户登录
@@ -474,7 +479,8 @@
 				成员变量：定义的那个。。。
 ##	***			属性：是指setter和getter方法截取后的产物。（BeanUtils）
 					例如：getUsername() --> Username--> username
-###               BeanUtils就是这么获取属性的！！					
+###               BeanUtils就是这么获取属性的！！		
+                    不标准的JavaBean			
 					private String gender;
                     public void setHehe(String gender){
                         this.gender = gender;
@@ -487,11 +493,11 @@ gender打印出来了，说明操作的是属性！setHehe()
 
 
 #			3. 方法：
-				1. setProperty() 
+				1. setProperty() 设置属性
 				2. getProperty()
 				3. populate(Object obj , Map map):将map集合的键值对信息，封装到对应的JavaBean对象中。
 				    BeanUtils把键当作属性的名称，值就是JavaBean对应的属性的值去封装。
-
+                BeanUtils.populate(loginUser, req.getParameterMap());    
 
 
 

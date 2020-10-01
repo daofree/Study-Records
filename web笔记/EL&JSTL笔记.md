@@ -24,6 +24,7 @@
 				* contentType：等同于response.setContentType()
 					1. 设置响应体的mime类型以及字符集
 					2. 设置当前jsp页面的编码（只能是高级的IDE才能生效，如果使用低级工具，则需要设置pageEncoding属性设置当前页面的字符集）
+				buffer="16K" 给out输出用的
 				* import：导包
 				* errorPage：当前页面发生异常后，会自动跳转到指定的错误页面
 				* isErrorPage：标识当前也是是否是错误页面。
@@ -48,7 +49,7 @@
 		* 在jsp页面中不需要创建，直接使用的对象，
 		* 一共有9个：4个域对象共享数据，setA/getA/removeA
 				变量名					真实类型						作用
-			* pageContext				PageContext					当前页面共享数据（设值获取），还可以获取其他八个内置对象
+			* pageContext				PageContext					当前页面共享数据（设值获取），还可以获取其他八个内置对象（一个资源）
 			* request					HttpServletRequest			一次请求访问的多个资源(转发)
 			* session					HttpSession					一次会话的多个请求间
 			* application				ServletContext				所有用户间共享数据(换个浏览器也能获取到)
@@ -73,9 +74,9 @@
 		2. V：View，视图。JSP
 			* 展示数据
 		3. C：Controller，控制器。Servlet
-			* 获取用户的输入
+			* 获取用户的输入（请求参数）
 			* 调用模型
-			* 将数据交给视图进行展示（域对象）
+			* 将数据交给视图进行展示（域对象共享）
 
 
 		* 优缺点：
@@ -87,11 +88,11 @@
 				1. 使得项目架构变得复杂，对开发人员要求高	
 
 
-##JSP不写java代码了，怎么展示数据？？
+##  JSP不写java代码了，怎么展示数据？？
     需要了解替换java代码的两个技术，EL表达式--JSTL标签
     
     
-## EL表达式---------jsp引擎解析?
+## EL表达式---------js引擎解析 ${2 > 3}
 	1. 概念：Expression Language 表达式语言
 	2. 作用：替换和简化jsp页面中java代码的编写
 	3. 语法：${表达式}
@@ -129,8 +130,9 @@
 				
 #				3. 获取对象(属性与逻辑视图)、List集合、Map集合的值
 					1. 对象：${域名称.键名.属性名}
-##						* 本质上会去调用对象的getter方法（因为get/set的才是属性）
+##						* 本质上会去调用对象的getter方法（因为get/set的才是属性）--属性对应set方法，不是成员变量
                         (注意：属性与逻辑视图，如本例的user中)
+                        这个getBirth方法（逻辑视图）没有对应成员变量，自己内部转换了格式，提供get方法
                         
 					2. List集合：${域名称.键名[索引]}
 
@@ -143,7 +145,7 @@
 			* el表达式中有11个隐式对象
 ##			* pageContext：
 				* 获取jsp其他八个内置对象
-#					* 动态获取虚拟目录：${pageContext.request.contextPath}
+#					* 动态获取虚拟目录：${pageContext.request.contextPath}--路径编写
 
 
 ## JSTL
@@ -177,7 +179,11 @@
 		需要使用jstl+el将list集合数据展示到jsp页面的表格table中
 
 
-
+## 三层架构：软件设计架构
+	1. 界面层(表示层)：用户看的得界面。用户可以通过界面上的组件和服务器进行交互
+	2. 业务逻辑层：处理业务逻辑的。
+	3. 数据访问层：操作数据存储文件。
+	
 
 ## 案例：用户信息列表展示
 	1. 需求：用户信息的增删改查操作

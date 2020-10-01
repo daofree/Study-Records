@@ -1,5 +1,5 @@
 ## 今日内容  
-	1. Filter：过滤器
+	1. Filter：过滤器---给tomcat用的，过滤访问资源--请求和响应
 	2. Listener：监听器
     3. Servlet 
 
@@ -15,6 +15,7 @@ JavaWen 三大组件Filter Listener Servlet
 	2. 快速入门：过滤后要放行 doFilter(servletRequest,servletResponse);
 		1. 步骤：
 			1. 定义一个类，实现接口Filter
+			
 			2. 复写方法
 			3. 配置拦截路径
 				1. web.xml
@@ -32,7 +33,7 @@ JavaWen 三大组件Filter Listener Servlet
 			        System.out.println("filterDemo1被执行了....");
 			
 			
-###			        //放行
+###			        //过滤后要 放行
 			        filterChain.doFilter(servletRequest,servletResponse);
 			
 			    }
@@ -58,11 +59,13 @@ JavaWen 三大组件Filter Listener Servlet
 		    
 		2. 过滤器执行流程
 			1. 执行过滤器
-			2. 执行放行后的资源
+			    请求增强
+			2. 执行放行后的资源			    
 			3. 回来执行过滤器放行代码下边的代码
+			    响应增强
 			
 #		3. 过滤器生命周期方法
-			1. init:在服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源
+			1. init:在tomcat服务器启动后，会创建Filter对象，然后调用init方法。只执行一次。用于加载资源
 			2. doFilter:每一次请求被拦截资源时，会执行。执行多次
 			3. destroy:在服务器关闭后，Filter对象被销毁。如果服务器是正常关闭，则会执行destroy方法。只执行一次。用于释放资源
 			
@@ -83,7 +86,7 @@ JavaWen 三大组件Filter Listener Servlet
 				* web.xml配置
 					* 设置<dispatcher></dispatcher>标签即可
 				
-#		5. 过滤器链(配置多个过滤器)
+#		5. 过滤器链(配置多个过滤器)--请求和响应都拦截
 			* 执行顺序：如果有两个过滤器：过滤器1和过滤器2
 				1. 过滤器1
 				2. 过滤器2
@@ -91,7 +94,7 @@ JavaWen 三大组件Filter Listener Servlet
 				4. 过滤器2
 				5. 过滤器1 
 
-##			* 过滤器先后顺序问题：
+##			* 过滤器先后顺序问题：--默认按照类名顺序执行
 				1. 注解配置：按照类名的字符串比较规则比较，值小的先执行
 					* 如： AFilter 和 BFilter，AFilter就先执行了。
 					
@@ -103,8 +106,7 @@ JavaWen 三大组件Filter Listener Servlet
 				1. 访问day17_case案例的资源。验证其是否登录
 				2. 如果登录了，则直接放行。
 				3. 如果没有登录，则跳转到登录页面，提示"您尚未登录，请先登录"。
- 		
-	
+ 		页面中css js 图片 验证码等都是 登录相关资源
 
 		2. 案例2_敏感词汇过滤
 			* 需求：
@@ -112,8 +114,8 @@ JavaWen 三大组件Filter Listener Servlet
 				2. 敏感词汇参考《敏感词汇.txt》
 				3. 如果是敏感词汇，替换为 *** 
 
-			* 分析：
-				1. 对request对象进行增强。增强获取参数相关方法
+			* 分析：（request只有getParameter，没有setParameter方法，怎么办？增强getParameter的返回值（篡改））
+				1. 对request对象进行增强。增强获取参数相关方法。新的request对象
 				2. 放行。传递代理对象
 
 
@@ -129,10 +131,11 @@ JavaWen 三大组件Filter Listener Servlet
 					 	1. 静态代理：有一个.java类文件描述代理模式
 					 	2. 动态代理：在内存中形成代理类
 							* 实现步骤：
-								1. 代理对象和真实对象实现相同的接口
-								2. 代理对象 = Proxy.newProxyInstance();
+								1. 代理对象和真实对象实现相同的接口--认兄弟
+								2. 代理对象 = Proxy.newProxyInstance(执行代理对象需要类加载器，和真实对象一样的接口，处理器);
 								3. 使用代理对象调用方法。
-								4. 增强方法
+								4. 增强方法invoke(参数method是代理对象调用的方法被封装为对象，调用方法传递的实际参数)
+                                    （代理对象执行所有方法，都会执行）
 
 							* 增强方式：方法三要素
 								1. 增强参数列表
@@ -156,15 +159,19 @@ JavaWen 三大组件Filter Listener Servlet
 		* 步骤：
 			1. 定义一个类，实现ServletContextListener接口
 			2. 复写方法
-			3. 配置
+			3. 配置--注册监听
 				1. web.xml
 						<listener>
      					 <listener-class>cn.itcast.web.listener.ContextLoaderListener</listener-class>
    						</listener>
 
-						* 指定初始化参数<context-param>---资源路径位置
+						* 指定初始化参数<context-param>
+						                    <para-name>mingzi</para-name>
+						                    <para-value>weizhi</para-value>
+						                </context-param>---资源路径位置
+						        --监听到ContextLoader对象生成后，就可以来加载全局资源文件
 				2. 注解：
 					* @WebListener
 
-                       
+                框架的监听器自己写好了！已提供，会配置就行       
 										

@@ -73,8 +73,8 @@
     		            $.ajax({
     		                url:"ajaxServlet1111" , // 请求路径
     		                type:"POST" , //请求方式
-    		                //data: "username=jack&age=23",//请求参数
-    		                data:{"username":"jack","age":23},
+    		                //data: "username=jack&age=23",//请求参数-方式1
+    		                data:{"username":"jack","age":23},//请求参数-方式2
     		                success:function (data) {
     		                    alert(data);
     		                },//响应成功后的回调函数
@@ -100,7 +100,13 @@
                     			* data：请求参数
                     			* callback：回调函数
                     			* type：响应结果的类型		
-                    
+                    //定义方法
+                function  fun() {
+                    //使用 $.get() 发送异步请求
+                    $.post("ajaxServlet",{username:"TTT"},function (data) {
+                        alert(data);
+                    },"text");
+                }
                     			
 # JSON：
 	1. 概念： JavaScript Object Notation		JavaScript对象表示法
@@ -108,7 +114,7 @@
 		p.setName("张三");
 		p.setAge(23);
 		p.setGender("男");
-
+        
         Java中把数据封装对象，用对象当参数传递，很方便！
         Js中也想搞对象封装零散数据。
             ---json数据格式（表示对象）
@@ -142,12 +148,10 @@
     			        var person = {"name": "张三", age: 23, 'gender': true};
     			
     			        var ps = [{"name": "张三", "age": 23, "gender": true},
-    			            {"name": "李四", "age": 24, "gender": true},
-    			            {"name": "王五", "age": 25, "gender": false}];
-    			
-    			
-    			
-    			
+    			                  {"name": "李四", "age": 24, "gender": true},
+    			                  {"name": "王五", "age": 25, "gender": false}];    			    			    			
+    			        
+    			        // json遍历
     			        //获取person对象中所有的键和值
     			        //for in 循环
     			       /* for(var key in person){
@@ -197,9 +201,12 @@
     					3. 复杂java对象转换
     						1. List：数组
     						2. Map：对象格式一致		
-    # 案例：
+    						
+    # 案例：json在前端是对象，在后端是字符串string
     	* 校验用户名是否存在---绑定离焦事件，ajax异步处理，访问数据库
-    		1. 服务器响应的数据，在客户端使用时，要想当做json数据格式使用。有两种解决方案：
+    		1. 服务器响应的数据，在客户端使用时，要想当做json数据格式使用。
+    		（问题：乱码+string-->注意哦string!=json，不然data.userExsit();报错,前端有json.值，无string.值）
+    		有两种解决方案：
     			1. $.get(type):将最后一个参数type指定为"json"
     			2. 在服务器端设置MIME类型
     				response.setContentType("application/json;charset=utf-8");
