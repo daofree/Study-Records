@@ -218,4 +218,7 @@ C:\Users\lenovo\.IntelliJIdea2018.3\system\tomcat\_Study-Records\work\Catalina\l
 	注意要一次性的验证码！	//获取验证码后，删除session中存储的验证码
                         session.removeAttribute("checkCode_session");		
   
- ## 想知道cookie可不可以     ！                 										   
+ ## 想知道cookie可不可以     ！
+ 
+ token认证
+ https://www.jianshu.com/p/a32634a5170c                 										   

@@ -27,7 +27,7 @@ Zuul代理--路径映射，路由规则（解决名称过多，名称改变问�
  
 springBoot快速开发单个服务个体
 springCloud管理这些单个个体，为它们提供配置路由等服务！全局服务治理
-springcloud必须依赖Boot，但springBoot可以独立使用
+springcloud必须依赖springBoot，但springBoot可以独立使用
 
 
 
@@ -48,4 +48,15 @@ RestTemplate提供了多种便捷访问远程Http服务的方法，
 
 
 
+https://www.zhihu.com/question/65502802
 
+    restful了解
+        REST确实不是标准，只是设计风格，目的只是让url看起来更简洁实用，是资源状态的一种表达。
+        https://www.cnblogs.com/wmyskxz/p/9104368.html
+        https://www.runoob.com/w3cnote/restful-architecture.html
+        https://zhuanlan.zhihu.com/p/97761256
+        https://zhuanlan.zhihu.com/p/136270398
+
+https://www.cnblogs.com/edisonchou/p/java_spring_cloud_foundation_sample_list.html
+
+        

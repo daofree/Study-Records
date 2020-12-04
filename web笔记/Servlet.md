@@ -3,7 +3,7 @@ Servlet是规范之一，如果用到框架如SpringMVC，你都感觉不到Serv
 学过Servlet好处是什么：
 打下坚实的基础，学习框架就得心应手了
 
-##背景    
+##背景
     动态资源（显示不一样）要具有逻辑姓，且是代码（Java）实现的！！
 	即浏览器请求动态资源，找的是Java类！且这种Java类依赖服务器才能运行，没有主方法！！
 	是tomcat执行它！是随便一个类，Tomcat都能执行它吗？？
@@ -13,7 +13,7 @@ Servlet是规范之一，如果用到框架如SpringMVC，你都感觉不到Serv
     Servlet是JavaEE规范的一种，主要是为了扩展Java作为Web服务的功能，统一接口。
     Java Servlet API是Servlet容器和Servlet之间的接U，它定义了Servlet的各种方法，
     还定义了Servlet容器传送给Servlet的对象类，其中最重要的是请求对象ServletRequest和
-    响应对象ServletResponseo这两个对象都是由Servlet容器在客户端调用Servlet时产生的，
+    响应对象ServletResponse这两个对象都是由Servlet容器在客户端调用Servlet时产生的，
     Servlet容器把客户请求信息封装在ServletRequest对象中，然后把这两个对象都传送给要调
     用的Servlet，Servlet处理完后把响应结果写入ServletResponse，然后由Servlet容器把响应
     结果发送到客户端。

@@ -4,7 +4,7 @@ https://zhuanlan.zhihu.com/p/59663308
 
 学习Spring Boot开发不需要安装Tomcat、Maven和数据库
 Wrapper包装
-
+https://start.spring.io/
 
 嵌入式的特点，轻量级，仅仅是一个jar包（插件）
 

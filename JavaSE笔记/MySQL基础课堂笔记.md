@@ -124,7 +124,6 @@
 			* 使用数据库
 				* use 数据库名称;
 
-
 	2. 操作表
 		1. C(Create):创建
 			1. 语法：
@@ -217,7 +216,13 @@
 
 		* 注意：
 			1. 如果不加任何条件，则会将表中所有记录全部修改。
-			
+        
+        sql中drop、truncate和delete的区别？
+        drop > truncate > delete
+        drop      表结构+表数据（立即生效）
+        truncate  数据（不能回滚-立即生效）
+        delete    数据（一条一条删，且记录日志供回滚--提交生效）
+        			
 ## DQL：查询表中的记录
 	* select * from 表名;
 	
