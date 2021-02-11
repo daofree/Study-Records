@@ -203,7 +203,7 @@
 			    <a href="mailto:itcast@itcast.cn">联系我们</a>
 			    <br>
 			    <a href="http://www.itcast.cn"><img src="image/jiangwai_1.jpg"></a>
-		6. div和span：---正因为没有任何效果，所以才能和css结合
+		6. div和span：---正因为没有任何效果，所以才能和css结合，被使用
 			* div:每一个div占满一整行。块级标签
         	* span：文本信息在一行展示，行内标签 内联标签
 		7. 语义化标签：html5中为了提高程序的可读性，提供了一些标签。没有任何作用。
