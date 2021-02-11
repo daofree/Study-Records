@@ -40,7 +40,7 @@
 					* 所有用户访问，得到的结果可能不一样。
 					* 如：jsp/servlet,php,asp...
 					* 如果用户请求的是动态资源，那么服务器会执行动态资源，再转换为静态资源，最后发送给浏览器
-                      因为浏览器只能解析静态资源。
+###         因为浏览器只能解析静态资源。
 
 		* 我们要学习动态资源，必须先学习静态资源！
 
@@ -55,7 +55,7 @@
 ## HTML
 	1. 概念：是最基础的网页开发语言
 		* Hyper Text Markup Language 超文本标记语言
-			* 超文本:
+			* 超文本:-----超链接
 				* 超文本是用超链接的方法，将各种不同空间的文字信息组织在一起的网状文本.
 			* 标记语言:
 				* 由标签构成的语言。<标签名称> 如 html，xml
@@ -73,28 +73,23 @@
 				错误：<a><b></a></b>
 				正确：<a><b></b></a>
 
-			4. 在开始标签中可以定义属性。属性是由键值对=构成，值需要用引号(单双都可)引起来
+			4. 在开始标签中可以定义属性。属性是由键值对=构成，值需要用引号(单双都可)引起来，color='red'
 			5. html的标签不区分大小写，但是建议使用小写。FONT与font.
 
 		* 代码：
 			<html>
-			
 				<head>
 					<title>title</title>
 				</head>
-				
 				<body>
 					<FONT color='red'>Hello World</font><br/>
-					
 					<font color='green'>Hello World</font>
-				
 				</body>
-		
 			</html>
 
 	3. 标签学习：
 		1. 文件标签：构成html最基本的标签
-			* html:html文档的根标签
+			* html:html文档的根标签  meta charset="UTF-8"> 指定字符集，防止乱码
 			* head：头标签。用于指定html文档的一些属性。引入外部的资源
 			* title：标题标签。
 			* body：体标签
@@ -102,11 +97,11 @@
 		2. 文本标签：和文本有关的标签
 			* 注释：<!-- 注释内容 -->
 			* <h1> to <h6>：标题标签
-				* h1~h6:字体大小逐渐递减
+				* h1~h6:字体大小逐渐递减，自带换行
 			* <p>：段落标签
-			* <br>：换行标签
+			* <br>：换行标签--->在文本中使用换行/制表/空格符无论多少个都会会被解析为一个空格，得用br
 			* <hr>：展示一条水平线
-				* 属性：
+				* 属性：h5已废弃
 					* color：颜色
 					* width：宽度
 					* size：高度
@@ -130,7 +125,7 @@
 					3. #值1值2值3：值的范围：00~FF之间。如： #FF00FF
 				* width：
 					1. 数值：width='20' ,数值的单位，默认是 px(像素)
-					2. 数值%：占比相对于父元素的比例
+					2. 数值%：占比相对于父元素的比例，在父元素body里面（上一级元素）
 
 			* 案例：公司简介
 				<!DOCTYPE html>
@@ -140,42 +135,30 @@
 				    <title>黑马程序员简介</title>
 				</head>
 				<body>
-				
 				<h1>
 				    公司简介
 				</h1>
 				<hr color="#ffd700">
-				
 				<p>
 				<font color="#FF0000">"中关村黑马程序员训练营"</font>是由<b><i>传智播客</i></b>联合中关村软件园、CSDN， 并委托传智播客进行教学实施的软件开发高端培训机构，致力于服务各大软件企业，解决当前软件开发技术飞速发展， 而企业招不到优秀人才的困扰。
 				</p>
-				
 				<p>
 				目前，“中关村黑马程序员训练营”已成长为行业“学员质量好、课程内容深、企业满意”的移动开发高端训练基地， 并被评为中关村软件园重点扶持人才企业。
 				</p>
-				
 				<p>
-				
 				黑马程序员的学员多为大学毕业后，有理想、有梦想，想从事IT行业，而没有环境和机遇改变自己命运的年轻人。 黑马程序员的学员筛选制度，远比现在90%以上的企业招聘流程更为严格。任何一名学员想成功入学“黑马程序员”， 必须经历长达2个月的面试流程，这些流程中不仅包括严格的技术测试、自学能力测试，还包括性格测试、压力测试、 品德测试等等测试。毫不夸张地说，黑马程序员训练营所有学员都是精挑细选出来的。百里挑一的残酷筛选制度确 保学员质量，并降低企业的用人风险。
 				中关村黑马程序员训练营不仅着重培养学员的基础理论知识，更注重培养项目实施管理能力，并密切关注技术革新， 不断引入先进的技术，研发更新技术课程，确保学员进入企业后不仅能独立从事开发工作，更能给企业带来新的技术体系和理念。
 				</p>
-				
 				<p>
-				
 				一直以来，黑马程序员以技术视角关注IT产业发展，以深度分享推进产业技术成长，致力于弘扬技术创新，倡导分享、 开放和协作，努力打造高质量的IT人才服务平台。
 				</p>
-				
 				<hr color="#ffd700">
-				
 				<font color="gray" size="2">
 				    <center>
 				        江苏传智播客教育科技股份有限公司<br>
 				        版权所有Copyright 2006-2018&copy;, All Rights Reserved 苏ICP备16007882
 				    </center>
 				</font>
-				
-				
-				
 				</body>
 				</html>
 
@@ -183,21 +166,16 @@
 			* img：展示图片
 				* 属性：
 					* src：指定图片的位置
-
 			* 代码：
 				 <!--展示一张图片 img-->
-
 			    <img src="image/jingxuan_2.jpg" align="right" alt="古镇" width="500" height="500"/>
-			
 			    <!--
 			        相对路径
 			            * 以.开头的路径
 			                * ./：代表当前目录  ./image/1.jpg
 			                * ../:代表上一级目录
 			     -->
-			
 			    <img src="./image/jiangwai_1.jpg">
-			
 			    <img src="../image/jiangwai_1.jpg">
 		4. 列表标签：
 			* 有序列表：
@@ -213,28 +191,21 @@
 					* target：指定打开资源的方式
 						* _self:默认值，在当前页面打开
 						* _blank：在空白页面打开
-
 			* 代码：
 				 <!--超链接  a-->
-
 			    <a href="http://www.itcast.cn">点我</a>
 			    <br>
-			
 			    <a href="http://www.itcast.cn" target="_self">点我</a>
 			    <br>
 			    <a href="http://www.itcast.cn" target="_blank">点我</a>
-			
 			    <br>
-			
 			    <a href="./5_列表标签.html">列表标签</a><br>
 			    <a href="mailto:itcast@itcast.cn">联系我们</a>
-			
 			    <br>
 			    <a href="http://www.itcast.cn"><img src="image/jiangwai_1.jpg"></a>
-		6. div和span：
+		6. div和span：---正因为没有任何效果，所以才能和css结合
 			* div:每一个div占满一整行。块级标签
         	* span：文本信息在一行展示，行内标签 内联标签
-
 		7. 语义化标签：html5中为了提高程序的可读性，提供了一些标签。没有任何作用。
 			1. <header>：页眉
 			2. <footer>：页脚
@@ -271,9 +242,7 @@
 				<table></table>
 			</td>
 		</tr>
-
 	4. 代码实现
-
 		<!DOCTYPE html>
 		<html lang="en">
 		<head>
@@ -281,7 +250,6 @@
 		    <title>黑马旅游网</title>
 		</head>
 		<body>
-		
 		    <!--采用table来完成布局-->
 		    <!--最外层的table，用于整个页面的布局-->
 		    <table width="100%" align="center">
@@ -291,7 +259,6 @@
 		                <img src="image/top_banner.jpg" width="100%" alt="">
 		            </td>
 		        </tr>
-		
 		        <!-- 第2行 -->
 		        <tr>
 		            <td>
@@ -311,7 +278,6 @@
 		
 		            </td>
 		        </tr>
-		
 		        <!-- 第3行 -->
 		        <tr>
 		            <td>
@@ -413,7 +379,6 @@
 		                </table>
 		            </td>
 		        </tr>
-		
 		        <!-- 第7行 国内游 -->
 		        <tr>
 		            <td>
@@ -440,14 +405,12 @@
 		                        </td>
 		
 		                        <td>
-		
 		                            <img src="image/jiangxuan_2.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
 		
 		                        <td>
-		
 		                            <img src="image/jiangxuan_2.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
@@ -456,27 +419,22 @@
 		
 		                    <tr>
 		                        <td>
-		
 		                            <img src="image/jiangxuan_2.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
 		
 		                        <td>
-		
 		                            <img src="image/jiangxuan_2.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
 		
 		                        <td>
-		
 		                            <img src="image/jiangxuan_2.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
-		
-		
 		                    </tr>
 		                </table>
 		            </td>
@@ -508,14 +466,12 @@
 		                        </td>
 		
 		                        <td>
-		
 		                           <img src="image/jiangxuan_3.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
 		
 		                        <td>
-		
 		                           <img src="image/jiangxuan_3.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
@@ -524,27 +480,22 @@
 		
 		                    <tr>
 		                        <td>
-		
 		                           <img src="image/jiangxuan_3.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
 		
 		                        <td>
-		
 		                           <img src="image/jiangxuan_3.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
 		
 		                        <td>
-		
 		                           <img src="image/jiangxuan_3.jpg" alt="">
 		                            <p>上海飞三亚五天4晚自由行(春节销售+亲子+蜜月+自由行)</p>
 		                            <font color="red">&yen; 699</font>
 		                        </td>
-		
-		
 		                    </tr>
 		                </table>
 		            </td>
@@ -565,9 +516,6 @@
 		                </font>
 		            </td>
 		        </tr>
-		        
 		    </table>
-		
-		
 		</body>
 		</html>
