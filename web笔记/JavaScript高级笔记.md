@@ -30,9 +30,9 @@
 	* 如何绑定事件
 	##两种方式
 		1. 直接在html标签上，指定事件的属性(操作)，属性值就是js代码
-			1. 其中一个事件：onclick--- 单击事件
+			1. 其中一个事件：onclick--- 单击事件onclick="fun()"
 ## 注意：标签与事件绑定在一起了，耦合度高
-		2. 通过js获取元素对象，指定事件属性，设置一个函数
+		2. 通过js获取元素对象，指定事件属性，设置一个函数（放出id,给js获取设置getElementById）
 		
 ##注意： 
         1.注意是否可以先执行JS，后加载html；（获取不到元素对象）
@@ -44,12 +44,12 @@
 	1. 概念：Browser Object Model 浏览器对象模型
 		* 即：将浏览器的各个组成部分封装成对象。
 
-	2. 5个组成：
+	2. 5个组成：Window可以获得其他对象，对象之母
 		* Window：窗口对象（最重要，当前窗口又包括：地址栏Location对象，历史记录History对象（前进后退），中间Body网页内容对象）
             * History：历史记录对象
             * Location：地址栏对象
             * 网页（html）显示内容，即DOM对象（Document）
-		* Navigator：浏览器对象（浏览器本身就是对象）
+		* Navigator：浏览器对象（浏览器本身就是对象）。一个浏览器对象可以打开多个窗口
 		* Screen：显示器屏幕对象
 
 	3. Window：窗口对象(弹框，窗口，定时器)
@@ -124,19 +124,22 @@
 	* 概念： Document Object Model 文档对象模型
 		* 将标记语言(html和xml)文档的各个组成部分，封装为对象。
 		可以使用这些对象，对标记语言(html)文档进行CRUD的动态操作。
+		
+W3C 文档对象模型（DOM）是中立于平台和语言的接口，它允许程序和脚本动态地访问和更新文档的内容、结构和样式。
 
-##当html文档进入浏览器内存，转换为树形结构（DOM树）
+##当html文档进入浏览器内存，转换为树形结构（DOM树），再css样式渲染，js控制html内容样式动态刷新。
+    最后浏览器实现并展示html页面
 ###
-	* W3C DOM 标准被分为 3 个不同的部分：
+	* W3C DOM 标准被分为 3 个不同的部分：核心DOM，xml DOM，html DOM
 ##DOM树里的框里的都是对象
-		* 核心 DOM - 针对任何结构化文档的标准模型
+		* 核心 DOM - 针对任何结构化文档的标准模型--文档里是元素，元素里是属性，文本...
 			** Document：文档对象
     			** Element：元素对象
 	    		* Attribute：属性对象
 		    	* Text：文本对象
 			    * Comment:注释对象
 
-			** Node：节点对象，其他5个的父对象
+			** Node：节点对象，其他5个的父对象，文档树中的一个节点，文档中都是节点
 			
 		* XML DOM - 针对 XML 文档的标准模型
 		* HTML DOM - 针对 HTML 文档的标准模型
@@ -148,19 +151,19 @@
 				1. window.document
 				2. document
 			2. 方法：
-				1. 获取Element对象：
+				1. 获取Element对象：内存中操作
 					1. getElementById()	： 根据id属性值获取元素对象。id属性值一般唯一
 					2. getElementsByTagName()：根据元素名称获取元素对象们。返回值是一个数组
 					3. getElementsByClassName():根据Class属性值获取元素对象们。返回值是一个数组
 					4. getElementsByName(): 根据name属性值获取元素对象们。返回值是一个数组
-				2. 创建其他DOM对象：
+				2. 创建其他DOM对象：内存中操作
 					createAttribute(name)
                 	createComment()
                 	createElement() 常用
                 	createTextNode()
-			3. 属性
+			3. 属性 setAttribute("href", "https://www.baidu.com")
+			        removeAttribute()
 ##对象取对象
-
 		* Element：元素对象
 			1. 获取/创建：通过document来获取和创建
 			2. 方法：
@@ -170,29 +173,29 @@
 		* Node：节点对象，其他5个的父对象,属性方法全部被5个对象继承
 			* 特点：所有dom对象都可以被认为是一个节点
 			* 方法：
-				* CRUD dom树：
+				* CRUD dom树：元素节点，属性节点，文本节点
 					* appendChild()：向节点的子节点列表的结尾添加新的子节点。
 					* removeChild()	：删除（并返回）当前节点的指定子节点。
 					* replaceChild()：用新节点替换一个子节点。
 			* 属性：
 				* parentNode 返回节点的父节点。
 			
-			
-			
-超链接功能：点击样式+跳转。
+超链接功能：有点击样式 + 可跳转（刷新）。
         去掉跳转：href="javascript:void(0);"(死链接)。
-
-
+        void是运算符，阻止返回值的
+        void关键字是js中非常重要的关键字，该操作符指定要计算或运行一个表达式，但是不返回值。
+        
 ##创建对象，添加节点！
 
 ##	* HTML DOM
 		1. 标签体的设置和获取：属性 innerHTML
+		    元素.innerHTML
 		2. 使用html元素对象的属性
 		3. 控制元素样式
 		少(.style.)
 			1. 使用元素的style属性来设置
 				如：
-					 //修改样式方式1
+					 //修改样式方式1  style.键 = 值
 			        div1.style.border = "1px solid red";
 			        div1.style.width = "200px";
 			        //font-size--> fontSize
@@ -214,16 +217,18 @@
 			1. onclick：单击事件
 			2. ondblclick：双击事件
 		2. 焦点事件
-			1. onblur：失去焦点----表单验证
+			1. onblur：失去焦点----可用于表单验证
 			2. onfocus:元素获得焦点。
-
+			    document.getElementById("id值").onblur = function(){...}
 		3. 加载事件：
-			1. onload：一张页面或一幅图像完成加载。
+			1. onload：一张页面或一幅图像完成加载。----解决了，页面加载的先后问题
+			    window.onload() = function(){...}
 
 		4. 鼠标事件：
 			1. onmousedown	鼠标按钮被按下。
-   ## 定义方法时，定义一个形参，接收event对象。
-   ## event 对象的button属性可以获取鼠标按钮被点击了
+			    document.getElementById("id值").onmousedown = function(event){...}
+                * 定义方法时，定义一个形参，接收event对象。引擎会传对象到监听器代码里event
+                * event 对象的button属性可以获取鼠标按钮被点击了（0左-1轮-2右）
 			2. onmouseup	鼠标按键被松开。
 			3. onmousemove	鼠标被移动。
 			4. onmouseover	鼠标移到某元素之上。
@@ -232,27 +237,30 @@
 			
 		5. 键盘事件：
 			1. onkeydown	某个键盘按键被按下。	
+			    if(event.keyCode() == 13){alert("回车，提交表单");}
 			2. onkeyup		某个键盘按键被松开。
 			3. onkeypress	某个键盘按键被按下并松开。
 
 		6. 选择和改变
 			1. onchange	域的内容被改变。
+			    下拉列表--省级联动
 			2. onselect	文本被选中。
 
 		7. 表单事件：
 			1. onsubmit	确认按钮被点击。
-    ## 有返回值T,F,可以阻止表单的提交
+                ## 在onsubmit里 有返回值T,F, 可以阻止表单的提交
+                document.getElementById("id值").onsubmit = function(){return false;}
+                此处func被调用
 			2. onreset	重置按钮被点击。
 
 事件是给引擎识别的，注意返回值。
-表单提交单击事件，要由引擎给出T/F。
+表单提交onclick单击事件，要由引擎给出T/F。
 表单提交提交事件，只要T/F。
 注意表单中onclick事件与onsubmit事件的区别。
 
 表单事件提交给引擎判断提交！
 onclick="return f()"
 onsubmit="T"
-
-
+js代码要 返回t/f, 不要t/f! onclick里的代码要交给引擎封装处理。给他t/f不行，要给return T/F;
 
 
